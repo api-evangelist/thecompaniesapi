@@ -1,0 +1,115 @@
+aid: thecompaniesapi
+name: The Companies API
+review:
+  question: Does The Companies API expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. The Companies API's entire public
+    surface is request/response REST over HTTPS, described by a single
+    OpenAPI 3.1 document served at GET /v2/openapi. There is no server-push
+    transport (WebSocket or SSE) to model. Long-running work (bulk
+    enrichment and large searches) is handled by an asynchronous Actions
+    job queue that is itself polled over REST (GET /v2/actions), not
+    streamed. There is nothing for an AsyncAPI document to describe.
+findings:
+  summary: |
+    The Companies API does not publish a documented public WebSocket API.
+    It is a company data and enrichment platform exposing a single REST API
+    at base https://api.thecompaniesapi.com, with every resource under the
+    /v2 path. Requests are authenticated with an API token passed in the
+    Authorization header (an apiKey security scheme in the OpenAPI). The
+    full OpenAPI 3.1 description is published at GET /v2/openapi and lists
+    37 paths. No realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint is documented anywhere in the spec or the developer
+    docs as of the review date. Asynchronous / long-running work is offered
+    through an Actions job queue (POST /v2/actions to request or estimate a
+    job, GET /v2/actions to poll status, POST /v2/actions/{actionId}/retry)
+    which is consumed over plain REST.
+  openSource: |
+    The Companies API is a proprietary hosted commercial service, not an
+    open-source or self-hostable product. The company publishes open-source
+    client SDKs (TypeScript/JavaScript, Python, Go) under github.com/thecompaniesapi,
+    but the data platform and API themselves are closed and accessed only
+    over the hosted endpoints. Access requires an account and API token;
+    new accounts receive 500 free credits (no credit card required) for
+    evaluation, after which usage is billed against a credit-based monthly
+    plan.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.thecompaniesapi.com
+      documented: true
+      note: All resources under /v2. OpenAPI 3.1 published at GET /v2/openapi.
+    - protocol: Async Jobs (REST-polled)
+      scheme: https
+      documented: true
+      note: Actions job queue for bulk/long-running work. POST /v2/actions to enqueue/estimate, GET /v2/actions to poll, POST /v2/actions/{actionId}/retry. Polled over REST, not pushed.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the OpenAPI spec or developer docs as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.thecompaniesapi.com/v2/companies
+    - POST   https://api.thecompaniesapi.com/v2/companies
+    - GET    https://api.thecompaniesapi.com/v2/companies/by-name
+    - GET    https://api.thecompaniesapi.com/v2/companies/by-prompt
+    - GET    https://api.thecompaniesapi.com/v2/companies/by-email
+    - GET    https://api.thecompaniesapi.com/v2/companies/by-social
+    - GET    https://api.thecompaniesapi.com/v2/companies/count
+    - POST   https://api.thecompaniesapi.com/v2/companies/count
+    - GET    https://api.thecompaniesapi.com/v2/companies/similar
+    - GET    https://api.thecompaniesapi.com/v2/companies/analytics
+    - POST   https://api.thecompaniesapi.com/v2/companies/analytics/export
+    - GET    https://api.thecompaniesapi.com/v2/companies/{domain}
+    - POST   https://api.thecompaniesapi.com/v2/companies/{domain}/ask
+    - GET    https://api.thecompaniesapi.com/v2/companies/{domain}/context
+    - GET    https://api.thecompaniesapi.com/v2/companies/{domain}/email-patterns
+    - GET    https://api.thecompaniesapi.com/v2/industries
+    - GET    https://api.thecompaniesapi.com/v2/industries/similar
+    - GET    https://api.thecompaniesapi.com/v2/technologies
+    - GET    https://api.thecompaniesapi.com/v2/job-titles/enrich
+    - GET    https://api.thecompaniesapi.com/v2/locations/cities
+    - GET    https://api.thecompaniesapi.com/v2/locations/counties
+    - GET    https://api.thecompaniesapi.com/v2/locations/states
+    - GET    https://api.thecompaniesapi.com/v2/locations/countries
+    - GET    https://api.thecompaniesapi.com/v2/locations/continents
+    - GET    https://api.thecompaniesapi.com/v2/lists
+    - POST   https://api.thecompaniesapi.com/v2/lists
+    - PATCH  https://api.thecompaniesapi.com/v2/lists/{listId}
+    - DELETE https://api.thecompaniesapi.com/v2/lists/{listId}
+    - GET    https://api.thecompaniesapi.com/v2/lists/{listId}/companies
+    - POST   https://api.thecompaniesapi.com/v2/lists/{listId}/companies
+    - PATCH  https://api.thecompaniesapi.com/v2/lists/{listId}/companies/toggle
+    - GET    https://api.thecompaniesapi.com/v2/lists/{listId}/companies/{domain}
+    - GET    https://api.thecompaniesapi.com/v2/actions
+    - POST   https://api.thecompaniesapi.com/v2/actions
+    - POST   https://api.thecompaniesapi.com/v2/actions/{actionId}/retry
+    - GET    https://api.thecompaniesapi.com/v2/openapi
+sources:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+    note: Getting Started - REST API, API-token auth in the Authorization header, 500 free credits on signup.
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+    note: Developer reference site (Enrichment API for Companies).
+  - url: https://api.thecompaniesapi.com/v2/openapi
+    type: OpenAPI
+    note: Live OpenAPI 3.1 document. Title "The Companies API" v2.0.0, single production server https://api.thecompaniesapi.com, apiKey security in the Authorization header, 37 paths. No WebSocket.
+  - url: https://www.thecompaniesapi.com/pricing
+    type: Plans
+    note: Credit-based monthly plans (Startup / Scaleup / Enterprise) plus 500 free credits on signup.
+  - url: https://github.com/thecompaniesapi
+    type: SourceCode
+    note: Open-source client SDKs (TypeScript, Python, Go). The data platform itself is proprietary and hosted.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. The Companies API's entire public
+    API is request/response REST described by one OpenAPI 3.1 document, and
+    asynchronous work is handled by a REST-polled Actions job queue rather
+    than a server-push transport. No AsyncAPI document was created because
+    there is nothing streaming to model.

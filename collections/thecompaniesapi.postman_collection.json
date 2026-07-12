@@ -1,0 +1,248 @@
+{
+  "info": {
+    "name": "The Companies API",
+    "description": "Company data and enrichment API. Base URL: https://api.thecompaniesapi.com (all resources under /v2). Authenticate with an API token in the Authorization header. New accounts get 500 free credits. Full OpenAPI 3.1 at GET /v2/openapi.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization", "type": "string" },
+      { "key": "value", "value": "{{apiToken}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.thecompaniesapi.com/v2", "type": "string" },
+    { "key": "apiToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Company Search",
+      "item": [
+        {
+          "name": "Search companies (segmentation)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies", "host": ["{{baseUrl}}"], "path": ["companies"] },
+            "description": "Search companies using a segmentation query."
+          }
+        },
+        {
+          "name": "Search companies (segmentation body)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/companies", "host": ["{{baseUrl}}"], "path": ["companies"] },
+            "description": "Search companies using a segmentation query in the request body."
+          }
+        },
+        {
+          "name": "Search companies by name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/by-name?name=", "host": ["{{baseUrl}}"], "path": ["companies", "by-name"], "query": [{ "key": "name", "value": "" }] },
+            "description": "Search companies by name."
+          }
+        },
+        {
+          "name": "Search companies by prompt",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/by-prompt?prompt=", "host": ["{{baseUrl}}"], "path": ["companies", "by-prompt"], "query": [{ "key": "prompt", "value": "" }] },
+            "description": "Search companies by natural-language prompt."
+          }
+        },
+        {
+          "name": "Count companies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/count", "host": ["{{baseUrl}}"], "path": ["companies", "count"] },
+            "description": "Get the count of companies matching a segmentation query."
+          }
+        },
+        {
+          "name": "Similar companies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/similar?domains=", "host": ["{{baseUrl}}"], "path": ["companies", "similar"], "query": [{ "key": "domains", "value": "" }] },
+            "description": "Get similar companies from one or many domains."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company Enrichment",
+      "item": [
+        {
+          "name": "Fetch company by domain",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/:domain", "host": ["{{baseUrl}}"], "path": ["companies", ":domain"], "variable": [{ "key": "domain", "value": "" }] },
+            "description": "Get a single company's data by its domain."
+          }
+        },
+        {
+          "name": "Fetch company by email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/by-email?email=", "host": ["{{baseUrl}}"], "path": ["companies", "by-email"], "query": [{ "key": "email", "value": "" }] },
+            "description": "Get a company's data by a work email."
+          }
+        },
+        {
+          "name": "Fetch company by social",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/by-social?url=", "host": ["{{baseUrl}}"], "path": ["companies", "by-social"], "query": [{ "key": "url", "value": "" }] },
+            "description": "Get a company's data by a social-media profile."
+          }
+        },
+        {
+          "name": "Company context",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/:domain/context", "host": ["{{baseUrl}}"], "path": ["companies", ":domain", "context"], "variable": [{ "key": "domain", "value": "" }] },
+            "description": "Get the full context of a company by its domain."
+          }
+        },
+        {
+          "name": "Company email patterns",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/:domain/email-patterns", "host": ["{{baseUrl}}"], "path": ["companies", ":domain", "email-patterns"], "variable": [{ "key": "domain", "value": "" }] },
+            "description": "Get email patterns for a company by its domain."
+          }
+        },
+        {
+          "name": "Ask a company",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"question\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/companies/:domain/ask", "host": ["{{baseUrl}}"], "path": ["companies", ":domain", "ask"], "variable": [{ "key": "domain", "value": "" }] },
+            "description": "Ask a natural-language question about a company by its domain."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reference Data",
+      "item": [
+        {
+          "name": "Search industries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/industries?search=", "host": ["{{baseUrl}}"], "path": ["industries"], "query": [{ "key": "search", "value": "" }] },
+            "description": "Search industries."
+          }
+        },
+        {
+          "name": "Similar industries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/industries/similar?industries=", "host": ["{{baseUrl}}"], "path": ["industries", "similar"], "query": [{ "key": "industries", "value": "" }] },
+            "description": "Get similar industries from one or many industries."
+          }
+        },
+        {
+          "name": "Search technologies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/technologies?search=", "host": ["{{baseUrl}}"], "path": ["technologies"], "query": [{ "key": "search", "value": "" }] },
+            "description": "Search technologies (technographics)."
+          }
+        },
+        {
+          "name": "Search cities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/locations/cities?search=", "host": ["{{baseUrl}}"], "path": ["locations", "cities"], "query": [{ "key": "search", "value": "" }] },
+            "description": "Search cities (location reference data)."
+          }
+        },
+        {
+          "name": "Enrich job titles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/job-titles/enrich?titles=", "host": ["{{baseUrl}}"], "path": ["job-titles", "enrich"], "query": [{ "key": "titles", "value": "" }] },
+            "description": "Normalize and enrich raw job titles."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lists",
+      "item": [
+        {
+          "name": "Get lists",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/lists", "host": ["{{baseUrl}}"], "path": ["lists"] },
+            "description": "Get and filter your lists."
+          }
+        },
+        {
+          "name": "Create list",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/lists", "host": ["{{baseUrl}}"], "path": ["lists"] },
+            "description": "Create a new list."
+          }
+        },
+        {
+          "name": "List companies in a list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/lists/:listId/companies", "host": ["{{baseUrl}}"], "path": ["lists", ":listId", "companies"], "variable": [{ "key": "listId", "value": "" }] },
+            "description": "Get the companies in a list."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Actions",
+      "item": [
+        {
+          "name": "Get actions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/actions", "host": ["{{baseUrl}}"], "path": ["actions"] },
+            "description": "Get and filter your asynchronous actions (jobs)."
+          }
+        },
+        {
+          "name": "Request an action",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/actions", "host": ["{{baseUrl}}"], "path": ["actions"] },
+            "description": "Request or estimate a new asynchronous action."
+          }
+        }
+      ]
+    }
+  ]
+}

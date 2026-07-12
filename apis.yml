@@ -1,0 +1,229 @@
+aid: thecompaniesapi
+url: https://raw.githubusercontent.com/api-evangelist/thecompaniesapi/refs/heads/main/apis.yml
+name: The Companies API
+kind: company
+description: The Companies API is a company data and enrichment platform offering
+  programmatic access to firmographic, technographic, and web-intelligence data on
+  50M+ companies. Its REST API (base https://api.thecompaniesapi.com, all resources
+  under /v2) covers company search and segmentation, company enrichment by domain,
+  email, or social profile, similar-company lookup, industry and technology reference
+  data, location reference data, saved lists, and asynchronous bulk actions.
+  Requests are authenticated with an API token passed in the Authorization header,
+  billing is credit-based, and the full OpenAPI 3.1 description is published at
+  /v2/openapi.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Company Data
+- Data Enrichment
+- Firmographics
+- Web Intelligence
+- B2B Data
+- Reference Data
+- Company Search
+created: '2026-07-11'
+modified: '2026-07-11'
+specificationVersion: '0.19'
+apis:
+- aid: thecompaniesapi:thecompaniesapi-company-search-api
+  name: The Companies API Company Search API
+  tags:
+  - Company Search
+  - Firmographics
+  - B2B Data
+  - Segmentation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Search and segment the 50M+ company database with structured
+    segmentation queries, natural-language prompts, or company name. Endpoints
+    include GET/POST /v2/companies (search by segmentation), GET
+    /v2/companies/by-name, GET /v2/companies/by-prompt, GET/POST
+    /v2/companies/count (count matches), and GET /v2/companies/similar
+    (lookalike companies from one or more domains).
+- aid: thecompaniesapi:thecompaniesapi-company-enrichment-api
+  name: The Companies API Company Enrichment API
+  tags:
+  - Data Enrichment
+  - Company Data
+  - Web Intelligence
+  - Firmographics
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Retrieve 100+ data points on a single company by its domain,
+    a work email, or a social-media profile. Endpoints include GET
+    /v2/companies/{domain}, GET /v2/companies/by-email, GET
+    /v2/companies/by-social, GET /v2/companies/{domain}/context (full
+    company context), GET /v2/companies/{domain}/email-patterns, and POST
+    /v2/companies/{domain}/ask (ask a natural-language question about a company).
+- aid: thecompaniesapi:thecompaniesapi-company-analytics-api
+  name: The Companies API Company Analytics API
+  tags:
+  - Analytics
+  - Firmographics
+  - B2B Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Aggregate analytics over search segmentations and saved lists -
+    market sizing and distribution across firmographic attributes. Endpoints
+    include GET /v2/companies/analytics and POST /v2/companies/analytics/export.
+- aid: thecompaniesapi:thecompaniesapi-industries-api
+  name: The Companies API Industries API
+  tags:
+  - Industries
+  - Reference Data
+  - Classification
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Reference data for industry classification used across the
+    company dataset. Endpoints include GET /v2/industries (search industries)
+    and GET /v2/industries/similar (find related industries from one or more
+    inputs) for building and normalizing segmentation filters.
+- aid: thecompaniesapi:thecompaniesapi-technologies-api
+  name: The Companies API Technologies API
+  tags:
+  - Technographics
+  - Reference Data
+  - Web Intelligence
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Reference data for the technologies (technographics) detected on
+    company websites, used to build technology-based segments. Endpoint GET
+    /v2/technologies searches the technology catalog.
+- aid: thecompaniesapi:thecompaniesapi-locations-api
+  name: The Companies API Locations API
+  tags:
+  - Reference Data
+  - Locations
+  - Geographic
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Geographic reference data for normalizing and filtering
+    companies by location. Endpoints include GET /v2/locations/cities,
+    /v2/locations/counties, /v2/locations/states, /v2/locations/countries,
+    and /v2/locations/continents.
+- aid: thecompaniesapi:thecompaniesapi-lists-api
+  name: The Companies API Lists API
+  tags:
+  - Lists
+  - Data Management
+  - B2B Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Create and manage saved lists of companies for building and
+    maintaining target datasets. Endpoints include GET/POST /v2/lists,
+    PATCH/DELETE /v2/lists/{listId}, GET/POST /v2/lists/{listId}/companies,
+    PATCH /v2/lists/{listId}/companies/toggle, and GET
+    /v2/lists/{listId}/companies/{domain}.
+- aid: thecompaniesapi:thecompaniesapi-actions-api
+  name: The Companies API Actions API
+  tags:
+  - Async
+  - Bulk Enrichment
+  - Jobs
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Queue, estimate, and track asynchronous jobs for bulk
+    enrichment and search workloads. Endpoints include GET /v2/actions
+    (list/filter jobs), POST /v2/actions (request or estimate a job), and
+    POST /v2/actions/{actionId}/retry.
+- aid: thecompaniesapi:thecompaniesapi-job-titles-api
+  name: The Companies API Job Titles Enrichment API
+  tags:
+  - Data Enrichment
+  - Job Titles
+  - Reference Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  properties:
+  - url: https://www.thecompaniesapi.com/api
+    type: Documentation
+  - url: https://thecompaniesapi.dev/api
+    type: APIReference
+  - url: openapi/thecompaniesapi-openapi.yml
+    type: OpenAPI
+  description: Normalize and enrich raw job titles into structured seniority
+    and department signals. Endpoint GET /v2/job-titles/enrich.
+common:
+- type: Authentication
+  url: authentication/thecompaniesapi-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/thecompaniesapi
+- type: LinkedIn
+  url: https://www.linkedin.com/company/thecompaniesapi
+- type: Website
+  url: https://www.thecompaniesapi.com
+- type: Documentation
+  url: https://www.thecompaniesapi.com/api
+- type: Plans
+  url: plans/thecompaniesapi-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/thecompaniesapi-rate-limits.yml
+- type: FinOps
+  url: finops/thecompaniesapi-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

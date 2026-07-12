@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/thecompaniesapi-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  headerName: Authorization
+  description: 'API token passed in the Authorization header. Create and manage
+    tokens on your API tokens page in the account settings. New accounts receive
+    500 free credits (no credit card required) to start. Modeled note: the OpenAPI
+    declares an apiKey scheme on the Authorization header; confirm whether a
+    "Bearer " prefix is required against the live docs.'
+  sources:
+  - openapi/thecompaniesapi-openapi.yml
+  - https://www.thecompaniesapi.com/api

@@ -1,0 +1,71 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: The Companies API
+providerId: thecompaniesapi
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: true
+tags:
+- Company Data
+- Data Enrichment
+- Firmographics
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Companies API applies two independent controls. First, a per-second
+  request rate limit (RPS) that is tied to the subscription plan - Startup 50
+  RPS, Scaleup 250 RPS, Enterprise 1,000 RPS. Second, a monthly credit
+  allowance that meters how much work an account can perform; each call spends
+  credits and, once the included allowance is exhausted, overage credits are
+  billed per 1,000. Long-running and bulk workloads are dispatched through the
+  asynchronous Actions job queue so they do not have to be issued as a burst of
+  synchronous requests.
+notes: >-
+  RPS values captured from the public pricing page on 2026-07-11 and should be
+  reconciled against the live page. Some third-party summaries quote different
+  RPS numbers for the middle tiers; verify against the provider before relying
+  on exact figures.
+sources:
+- https://www.thecompaniesapi.com/pricing
+- https://www.thecompaniesapi.com/api
+- https://api.thecompaniesapi.com/v2/openapi
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Second (Startup)
+  scope: account
+  metric: requests
+  limit: 50/sec
+  notes: Per-plan synchronous request rate limit on the Startup tier.
+- name: Requests Per Second (Scaleup)
+  scope: account
+  metric: requests
+  limit: 250/sec
+  notes: Per-plan synchronous request rate limit on the Scaleup tier.
+- name: Requests Per Second (Enterprise)
+  scope: account
+  metric: requests
+  limit: 1000/sec
+  notes: Per-plan synchronous request rate limit on the Enterprise tier.
+- name: Monthly Credit Allowance
+  scope: account
+  metric: credits
+  limit: per plan (50k / 250k / 500k)
+  notes: Each call spends credits; overage billed per 1,000 credits once the allowance is used.
+- name: Free Signup Credits
+  scope: account
+  metric: credits
+  limit: 500 (one-time)
+  notes: Granted to new accounts for evaluation, no credit card required.
+policies:
+- name: Credit Metering
+  description: Work is metered in credits rather than by a flat request quota; different operations can cost different amounts of credits.
+- name: Asynchronous Actions
+  description: Bulk and long-running jobs run through the Actions queue (POST /v2/actions) and are polled over REST, smoothing demand against the per-second limit.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

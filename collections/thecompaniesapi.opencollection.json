@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The Companies API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": { "key": "Authorization", "value": "{{apiToken}}", "in": "header" }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Company Search", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search companies (segmentation).", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies" },
+          "docs": "Search companies using a segmentation query."
+        },
+        {
+          "info": { "name": "Search companies by name.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies/by-name" },
+          "docs": "Search companies by name."
+        },
+        {
+          "info": { "name": "Search companies by prompt.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies/by-prompt" },
+          "docs": "Search companies by natural-language prompt."
+        },
+        {
+          "info": { "name": "Count companies.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies/count" },
+          "docs": "Get the count of companies matching a segmentation query."
+        },
+        {
+          "info": { "name": "Similar companies.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies/similar" },
+          "docs": "Get similar companies from one or many domains."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Company Enrichment", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Fetch company by domain.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain",
+            "params": [{ "name": "domain", "value": "", "type": "path", "description": "The company domain." }]
+          },
+          "docs": "Get a single company's data by its domain."
+        },
+        {
+          "info": { "name": "Fetch company by email.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies/by-email" },
+          "docs": "Get a company's data by a work email."
+        },
+        {
+          "info": { "name": "Fetch company by social.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/companies/by-social" },
+          "docs": "Get a company's data by a social-media profile."
+        },
+        {
+          "info": { "name": "Company context.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain/context",
+            "params": [{ "name": "domain", "value": "", "type": "path", "description": "The company domain." }]
+          },
+          "docs": "Get the full context of a company by its domain."
+        },
+        {
+          "info": { "name": "Company email patterns.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain/email-patterns",
+            "params": [{ "name": "domain", "value": "", "type": "path", "description": "The company domain." }]
+          },
+          "docs": "Get email patterns for a company by its domain."
+        },
+        {
+          "info": { "name": "Ask a company.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain/ask",
+            "body": { "type": "json", "data": "{ \"question\": \"\" }" },
+            "params": [{ "name": "domain", "value": "", "type": "path", "description": "The company domain." }]
+          },
+          "docs": "Ask a natural-language question about a company by its domain."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Reference Data", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search industries.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/industries" },
+          "docs": "Search industries."
+        },
+        {
+          "info": { "name": "Similar industries.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/industries/similar" },
+          "docs": "Get similar industries from one or many industries."
+        },
+        {
+          "info": { "name": "Search technologies.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/technologies" },
+          "docs": "Search technologies (technographics)."
+        },
+        {
+          "info": { "name": "Search cities.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/locations/cities" },
+          "docs": "Search cities (location reference data)."
+        },
+        {
+          "info": { "name": "Enrich job titles.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/job-titles/enrich" },
+          "docs": "Normalize and enrich raw job titles."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Lists", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get lists.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/lists" },
+          "docs": "Get and filter your lists."
+        },
+        {
+          "info": { "name": "Create list.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.thecompaniesapi.com/v2/lists", "body": { "type": "json", "data": "{ \"name\": \"\" }" } },
+          "docs": "Create a new list."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Actions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get actions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.thecompaniesapi.com/v2/actions" },
+          "docs": "Get and filter your asynchronous actions (jobs)."
+        },
+        {
+          "info": { "name": "Request an action.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.thecompaniesapi.com/v2/actions", "body": { "type": "json", "data": "{}" } },
+          "docs": "Request or estimate a new asynchronous action."
+        }
+      ]
+    }
+  ]
+}

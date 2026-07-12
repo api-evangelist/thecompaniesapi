@@ -1,0 +1,183 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: The Companies API
+providerId: thecompaniesapi
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: true
+tags:
+- Company Data
+- Data Enrichment
+- Firmographics
+- Web Intelligence
+- B2B Data
+- Plans
+description: >-
+  The Companies API is billed on a credit-based subscription model. Every new
+  account starts with 500 free credits (no credit card required) for evaluation.
+  Paid plans are monthly and bundle a fixed monthly credit allowance plus a
+  per-second request rate limit, with metered overage priced per 1,000
+  additional credits. All plans provide full access to every API feature and
+  the complete 50M+ company database; higher tiers raise the credit allowance,
+  raise the rate limit, and lower the overage rate. Annual billing gives two
+  months free.
+notes: >-
+  Prices, credit allowances, and rate limits captured from the public pricing
+  page on 2026-07-11 and should be reconciled against the live page, which can
+  change. Overage rates below are as displayed on the pricing page; some
+  third-party summaries quote different per-1,000-credit overage figures, so
+  treat overage as approximate.
+sources:
+- https://www.thecompaniesapi.com/pricing
+- https://www.thecompaniesapi.com/api
+plans:
+- id: thecompaniesapi-free
+  name: Free Credits
+  type: free
+  description: >-
+    Every new account is granted 500 free credits on signup with no credit
+    card required, giving full access to search and enrichment for evaluation.
+  entries:
+  - label: Signup Credits
+    name: free_credits
+    type: quota
+    metric: credits
+    limit: 500
+    timeFrame: once
+    geo: global
+    unit: 1
+    price: free (500 credits, no credit card required)
+    userMultiplied: false
+  elements:
+  - name: Company Search
+  - name: Company Enrichment
+  - name: Full Database Access
+- id: thecompaniesapi-startup
+  name: Startup
+  type: paid
+  description: >-
+    Entry paid tier: 50,000 credits per month, 50 requests/sec rate limit,
+    full access to all features and the full database.
+  entries:
+  - label: Monthly Subscription
+    name: startup_subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $95 per month
+    userMultiplied: false
+  - label: Included Credits
+    name: startup_credits
+    type: quota
+    metric: credits
+    limit: 50000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Overage Credits
+    name: startup_overage
+    type: usage
+    metric: credits
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: approx $2.50 per 1,000 additional credits
+    userMultiplied: false
+  elements:
+  - name: All API Features
+  - name: 50 Requests Per Second
+  - name: Full Database Access
+- id: thecompaniesapi-scaleup
+  name: Scaleup
+  type: paid
+  description: >-
+    Growth tier: 250,000 credits per month, 250 requests/sec rate limit, lower
+    overage rate than Startup.
+  entries:
+  - label: Monthly Subscription
+    name: scaleup_subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $295 per month
+    userMultiplied: false
+  - label: Included Credits
+    name: scaleup_credits
+    type: quota
+    metric: credits
+    limit: 250000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Overage Credits
+    name: scaleup_overage
+    type: usage
+    metric: credits
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: approx $1.75 per 1,000 additional credits
+    userMultiplied: false
+  elements:
+  - name: All API Features
+  - name: 250 Requests Per Second
+  - name: Full Database Access
+- id: thecompaniesapi-enterprise
+  name: Enterprise
+  type: paid
+  description: >-
+    Top published tier: 500,000 credits per month, 1,000 requests/sec rate
+    limit, lowest overage rate. Larger volumes and custom terms are available
+    by contacting sales.
+  entries:
+  - label: Monthly Subscription
+    name: enterprise_subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $595 per month
+    userMultiplied: false
+  - label: Included Credits
+    name: enterprise_credits
+    type: quota
+    metric: credits
+    limit: 500000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Overage Credits
+    name: enterprise_overage
+    type: usage
+    metric: credits
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: approx $1.50 per 1,000 additional credits
+    userMultiplied: false
+  elements:
+  - name: All API Features
+  - name: 1,000 Requests Per Second
+  - name: Full Database Access
+  - name: Custom Volume via Sales
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,97 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: The Companies API
+providerId: thecompaniesapi
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: true
+tags:
+- Company Data
+- Data Enrichment
+- Firmographics
+- Web Intelligence
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of The Companies API spend. The service is billed on a monthly
+  subscription that bundles a fixed credit allowance (Startup 50k, Scaleup
+  250k, Enterprise 500k) with metered overage priced per 1,000 additional
+  credits. Work is denominated in credits, so cost tracks the volume and type
+  of search, enrichment, and bulk (Actions) calls an account makes. New
+  accounts receive 500 free credits. Annual billing yields two months free.
+notes: >-
+  Subscription prices, credit allowances, and overage rates captured from the
+  public pricing page on 2026-07-11; verify against the live page during
+  reconciliation. Per-operation credit costs are not fully enumerated here and
+  should be confirmed in the developer docs.
+sources:
+- https://www.thecompaniesapi.com/pricing
+- https://www.thecompaniesapi.com/api
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: The Companies API
+serviceCategory: Data and Analytics
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: The Companies API
+  ServiceCategory: Data and Analytics
+  ProviderName: The Companies API
+  PublisherName: The Companies API
+  InvoiceIssuerName: The Companies API
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: monthly_subscription
+  description: Flat monthly plan fee bundling a fixed credit allowance (Startup/Scaleup/Enterprise).
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: included_credits
+  description: Credits included in the monthly plan allowance and consumed by API calls.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: overage_credits
+  description: Credits consumed beyond the plan allowance, billed per 1,000 additional credits.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: free_credits
+  description: One-time 500 free credits granted to new accounts for evaluation.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track credit burn per API token and per endpoint (search vs enrichment vs Actions) to see where spend concentrates.
+- name: Allocation
+  description: Issue separate API tokens per team/workload and map credit consumption to internal cost centers.
+- name: Optimization
+  description: Batch large jobs through the Actions queue, cache enrichment results by domain, size the plan to actual monthly credit burn, and use annual billing (two months free) for steady workloads.
+- name: Accountability
+  description: Assign owners per token; review monthly credit consumption against the plan allowance to avoid overage surprises.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
