@@ -208,6 +208,8 @@ apis:
   description: Normalize and enrich raw job titles into structured seniority
     and department signals. Endpoint GET /v2/job-titles/enrich.
 common:
+- type: AgenticAccess
+  url: agentic-access/thecompaniesapi-agentic-access.yml
 - type: Authentication
   url: authentication/thecompaniesapi-authentication.yml
 - type: GitHubOrganization
