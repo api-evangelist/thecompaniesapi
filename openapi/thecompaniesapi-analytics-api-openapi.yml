@@ -1,0 +1,370 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions analytics API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: analytics
+paths:
+  /v2/companies/analytics:
+    get:
+      description: Fetch analytics data for search segmentations and lists.
+      operationId: fetchCompaniesAnalytics
+      tags:
+      - analytics
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: actionId
+        in: query
+      - schema:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.totalEmployees
+          - about.yearFounded
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - technologies.active
+          - technologies.categories
+        required: true
+        name: attribute
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: listId
+        in: query
+      - schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentationCondition'
+        required: false
+        name: query
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 10000
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sort
+        in: query
+      responses:
+        '200':
+          description: Fetch analytics data for search segmentations and lists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        count:
+                          type: number
+                        name:
+                          type: string
+                        percentageOfAll:
+                          type: number
+                        percentageOfTotal:
+                          type: number
+                      required:
+                      - count
+                      - name
+                      - percentageOfAll
+                      - percentageOfTotal
+                  meta:
+                    type: object
+                    properties:
+                      listId:
+                        type: number
+                      query:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SegmentationCondition'
+                      totalDatapoints:
+                        type: number
+                      totalDocuments:
+                        type: number
+                      totalValues:
+                        type: number
+                    required:
+                    - query
+                    - totalDatapoints
+                    - totalDocuments
+                    - totalValues
+                required:
+                - data
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/companies/analytics/export:
+    post:
+      description: Export analytics data for search segmentations and lists.
+      operationId: exportCompaniesAnalytics
+      tags:
+      - analytics
+      security:
+      - apiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actionId:
+                  type: number
+                attributes:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - about.businessType
+                    - about.industries
+                    - about.industry
+                    - about.totalEmployees
+                    - about.yearFounded
+                    - analytics.monthlyVisitors
+                    - apps
+                    - codes.naics
+                    - codes.sic
+                    - contacts
+                    - domain.tld
+                    - finances.revenue
+                    - finances.stockExchange
+                    - locations.headquarters.city.code
+                    - locations.headquarters.continent.code
+                    - locations.headquarters.country.code
+                    - locations.headquarters.county.code
+                    - locations.headquarters.state.code
+                    - meta.score
+                    - meta.syncedAt
+                    - socials
+                    - technologies.active
+                    - technologies.categories
+                format:
+                  type: string
+                  enum:
+                  - csv
+                  - json
+                  - txt
+                  - xls
+                  - xml
+                full:
+                  type: boolean
+                listId:
+                  type: number
+                query:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SegmentationCondition'
+                size:
+                  type: number
+                  minimum: 1
+                  maximum: 10000
+                sort:
+                  type: string
+                  enum:
+                  - asc
+                  - desc
+      responses:
+        '200':
+          description: Export analytics data for search segmentations and lists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        count:
+                          type: number
+                        name:
+                          type: string
+                        percentageOfAll:
+                          type: number
+                        percentageOfTotal:
+                          type: number
+                      required:
+                      - count
+                      - name
+                      - percentageOfAll
+                      - percentageOfTotal
+                  meta:
+                    type: object
+                    properties:
+                      listId:
+                        type: number
+                      query:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SegmentationCondition'
+                      totalDatapoints:
+                        type: number
+                      totalDocuments:
+                        type: number
+                      totalValues:
+                        type: number
+                    required:
+                    - query
+                    - totalDatapoints
+                    - totalDocuments
+                    - totalValues
+                required:
+                - data
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

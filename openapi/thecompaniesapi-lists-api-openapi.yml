@@ -1,0 +1,3935 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions lists API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: lists
+paths:
+  /v2/lists:
+    get:
+      description: Get and filter your lists.
+      operationId: fetchLists
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 500
+        required: false
+        name: size
+        in: query
+      responses:
+        '200':
+          description: Get and filter your lists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lists:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/List'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - lists
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+    post:
+      description: Create a new list.
+      operationId: createList
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dynamic:
+                  type: boolean
+                imported:
+                  type: boolean
+                mailFrequency:
+                  type: string
+                  enum:
+                  - disabled
+                  - daily
+                  - weekly
+                  - monthly
+                maxCompanies:
+                  type: number
+                name:
+                  type: string
+                  maxLength: 255
+                processInitialized:
+                  type: boolean
+                query:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SegmentationCondition'
+                similarDomains:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - name
+      responses:
+        '200':
+          description: Create a new list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/lists/{listId}:
+    patch:
+      description: Update a list.
+      operationId: updateList
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: listId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dynamic:
+                  type: boolean
+                lastSeen:
+                  type: boolean
+                mailFrequency:
+                  type: string
+                  enum:
+                  - disabled
+                  - daily
+                  - weekly
+                  - monthly
+                maxCompanies:
+                  type:
+                  - number
+                  - 'null'
+                  minimum: 0
+                  maximum: 1000000
+                name:
+                  type: string
+                  maxLength: 255
+                query:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SegmentationCondition'
+                resync:
+                  type: boolean
+      responses:
+        '200':
+          description: Update a list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - listNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - userCurrentTeamIsNotInstanceOwner
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+    delete:
+      description: Delete a list.
+      operationId: deleteList
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: listId
+        in: path
+      responses:
+        '200':
+          description: Delete a list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - listNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - userCurrentTeamIsNotInstanceOwner
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/lists/{listId}/companies:
+    get:
+      description: Get companies in a list with a segmentation query.
+      operationId: fetchCompaniesInList
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: listId
+        in: path
+      - schema:
+          type: number
+        required: false
+        name: actionId
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentationCondition'
+        required: false
+        name: query
+        in: query
+      - schema:
+          type: boolean
+        required: false
+        name: simplified
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 100
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+                enum:
+                - about.businessType
+                - about.industries
+                - about.industry
+                - about.name
+                - about.totalEmployees
+                - about.yearFounded
+                - analytics.monthlyVisitors
+                - apps
+                - codes.naics
+                - codes.sic
+                - contacts
+                - domain.domain
+                - domain.tld
+                - finances.revenue
+                - locations.headquarters.city.code
+                - locations.headquarters.country.code
+                - locations.headquarters.county.code
+                - locations.headquarters.state.code
+                - meta.score
+                - meta.syncedAt
+                - socials
+                - technologies.active
+                - urls
+              missing:
+                type: string
+                enum:
+                - _first
+                - _last
+              order:
+                type: string
+                enum:
+                - asc
+                - desc
+            required:
+            - key
+            - order
+        required: false
+        name: sortFields
+        in: query
+      - schema:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - locations.headquarters.city.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - technologies.active
+          - urls
+        required: false
+        name: sortKey
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sortOrder
+        in: query
+      responses:
+        '200':
+          description: Get companies in a list with a segmentation query.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  companies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyV2'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  query:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SegmentationCondition'
+                required:
+                - companies
+                - meta
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - listNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - userCurrentTeamIsNotInstanceOwner
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+    post:
+      description: Get companies in a list with a segmentation body.
+      operationId: fetchCompaniesInListPost
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: listId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actionId:
+                  type: number
+                page:
+                  type: number
+                query:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SegmentationCondition'
+                simplified:
+                  type: boolean
+                size:
+                  type: number
+                  minimum: 1
+                  maximum: 100
+                sortFields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        enum:
+                        - about.businessType
+                        - about.industries
+                        - about.industry
+                        - about.name
+                        - about.totalEmployees
+                        - about.yearFounded
+                        - analytics.monthlyVisitors
+                        - apps
+                        - codes.naics
+                        - codes.sic
+                        - contacts
+                        - domain.domain
+                        - domain.tld
+                        - finances.revenue
+                        - locations.headquarters.city.code
+                        - locations.headquarters.country.code
+                        - locations.headquarters.county.code
+                        - locations.headquarters.state.code
+                        - meta.score
+                        - meta.syncedAt
+                        - socials
+                        - technologies.active
+                        - urls
+                      missing:
+                        type: string
+                        enum:
+                        - _first
+                        - _last
+                      order:
+                        type: string
+                        enum:
+                        - asc
+                        - desc
+                    required:
+                    - key
+                    - order
+                sortKey:
+                  type: string
+                  enum:
+                  - about.businessType
+                  - about.industries
+                  - about.industry
+                  - about.name
+                  - about.totalEmployees
+                  - about.yearFounded
+                  - analytics.monthlyVisitors
+                  - apps
+                  - codes.naics
+                  - codes.sic
+                  - contacts
+                  - domain.domain
+                  - domain.tld
+                  - finances.revenue
+                  - locations.headquarters.city.code
+                  - locations.headquarters.country.code
+                  - locations.headquarters.county.code
+                  - locations.headquarters.state.code
+                  - meta.score
+                  - meta.syncedAt
+                  - socials
+                  - technologies.active
+                  - urls
+                sortOrder:
+                  type: string
+                  enum:
+                  - asc
+                  - desc
+      responses:
+        '200':
+          description: Get companies in a list with a segmentation body.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  companies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyV2'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  query:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SegmentationCondition'
+                required:
+                - companies
+                - meta
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - listNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - userCurrentTeamIsNotInstanceOwner
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/lists/{listId}/companies/{domain}:
+    get:
+      description: Get a company in a list.
+      operationId: fetchCompanyInList
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: listId
+        in: path
+      - schema:
+          type: string
+        required: true
+        name: domain
+        in: path
+      responses:
+        '200':
+          description: Get a company in a list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyV2'
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - listNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - userCurrentTeamIsNotInstanceOwner
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '404':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - companyNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/lists/{listId}/companies/toggle:
+    patch:
+      description: Toggle one or more companies in a list.
+      operationId: toggleCompaniesInList
+      tags:
+      - lists
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: listId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum:
+                  - attach
+                  - detach
+                companyIds:
+                  type: array
+                  items:
+                    type: number
+                domains:
+                  type: array
+                  items:
+                    type: string
+                refresh:
+                  type: boolean
+              required:
+              - action
+      responses:
+        '200':
+          description: Toggle one or more companies in a list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - listNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - userCurrentTeamIsNotInstanceOwner
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '404':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - companyNotFound
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        colorMode:
+          type: string
+          enum:
+          - dark
+          - light
+          - system
+        createdAt:
+          type:
+          - string
+          - 'null'
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        email:
+          type: string
+        emailFree:
+          type:
+          - boolean
+          - 'null'
+        emailVerified:
+          type:
+          - boolean
+          - 'null'
+        emailVerifiedResentAt:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        hasPassword:
+          type:
+          - boolean
+          - 'null'
+        id:
+          type: number
+        locale: {}
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+        referral:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+          enum:
+          - owner
+          - user
+      required:
+      - currentTeamId
+      - email
+      - emailFree
+      - emailVerified
+      - emailVerifiedResentAt
+      - fullName
+      - hasPassword
+      - id
+      - pictureUrl
+      description: A user of the platform.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
+    CompanyV2:
+      type: object
+      properties:
+        id:
+          type: string
+        about:
+          type: object
+          properties:
+            businessType:
+              type: string
+              enum:
+              - educational-institution
+              - government-agency
+              - nonprofit
+              - partnership
+              - privately-held
+              - public-company
+              - self-employed
+              - sole-proprietorship
+              description: The type of business the company is.
+            industries:
+              type: array
+              items:
+                type: string
+              description: The industries the company is in.
+            industry:
+              type: string
+              description: The main industry of the company.
+            languages:
+              type: array
+              items:
+                type: string
+              description: The languages the company supports.
+            name:
+              type: string
+              description: The name of the company.
+            nameAlts:
+              type: array
+              items:
+                type: string
+              description: The alternative names of the company.
+            nameLegal:
+              type: string
+              description: The legal name of the company.
+            totalEmployees:
+              type: string
+              enum:
+              - 1-10
+              - 10-50
+              - 50-200
+              - 200-500
+              - 500-1k
+              - 1k-5k
+              - 5k-10k
+              - over-10k
+              description: The total number of employees the company has.
+            totalEmployeesExact:
+              type: number
+              description: The exact total number of employees the company has.
+            yearEnded:
+              type: number
+              description: The year the company stopped its operations.
+            yearFounded:
+              type: number
+              description: The year the company was founded.
+            yearFoundedDate:
+              type: string
+              description: The date the company was founded.
+            yearFoundedPlace:
+              type: string
+              description: The place the company was founded.
+        analytics:
+          type: object
+          properties:
+            lighthouse:
+              type: object
+              properties:
+                accessibility:
+                  type: number
+                  description: The accessibility score (0-100).
+                bestPractices:
+                  type: number
+                  description: The best practices score (0-100).
+                performance:
+                  type: number
+                  description: The performance score (0-100).
+                seo:
+                  type: number
+                  description: The SEO score (0-100).
+                maxServerLatency:
+                  type: number
+                  description: The maximum server latency.
+                numFonts:
+                  type: number
+                  description: The number of fonts.
+                numRequests:
+                  type: number
+                  description: The number of requests.
+                numScripts:
+                  type: number
+                  description: The number of scripts.
+                numStylesheets:
+                  type: number
+                  description: The number of stylesheets.
+                numTasks:
+                  type: number
+                  description: The number of tasks.
+                cumulativeLayoutShift:
+                  type: object
+                  properties:
+                    count:
+                      type: number
+                    score:
+                      type: number
+                  description: The cumulative layout shift.
+                largestContentfulPaint:
+                  type: object
+                  properties:
+                    ms:
+                      type: number
+                    score:
+                      type: number
+                  description: The largest contentful paint.
+                timeToInteractive:
+                  type: object
+                  properties:
+                    ms:
+                      type: number
+                    score:
+                      type: number
+                  description: The time to interactive.
+                totalBlockingTime:
+                  type: object
+                  properties:
+                    ms:
+                      type: number
+                    score:
+                      type: number
+                  description: The total blocking time.
+              description: Lighthouse and Core Web Vitals analysis.
+            monthlyVisitors:
+              type: string
+              enum:
+              - under-10k
+              - 10k-50k
+              - 50k-100k
+              - 100k-500k
+              - 500k-1m
+              - 1m-10m
+              - 10m-50m
+              - 50m-100m
+              - 100m-500m
+              - 500m-1b
+              - over-1b
+              description: The total number of monthly visitors the company has.
+        apps:
+          type: object
+          properties:
+            amazon:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            android:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            chrome:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            ios:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            mac:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            meta:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            microsoft:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            playstation:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+            xbox:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the app.
+                  name:
+                    type: string
+                    description: The name of the app.
+                  rating:
+                    type: number
+                    description: The rating of the app.
+                  reviews:
+                    type: number
+                    description: The number of reviews the app has.
+                  type:
+                    type: string
+                    enum:
+                    - app
+                    - developer
+                    - extension
+                    description: The type of app the company owns.
+                  url:
+                    type: string
+                    description: The URL to the app.
+          description: The apps the company owns.
+        assets:
+          type: object
+          properties:
+            colorPrimary:
+              type: string
+              description: The primary color of the company.
+            cover:
+              type: object
+              properties:
+                height:
+                  type: number
+                  description: The height of the image.
+                src:
+                  type: string
+                  description: The source of the image.
+                width:
+                  type: number
+                  description: The width of the image.
+              description: The cover image of the company.
+            logoSquare:
+              type: object
+              properties:
+                height:
+                  type: number
+                  description: The height of the image.
+                src:
+                  type: string
+                  description: The source of the image.
+                width:
+                  type: number
+                  description: The width of the image.
+              description: The square logo of the company.
+        codes:
+          type: object
+          properties:
+            naics:
+              type: array
+              items:
+                type: string
+              description: The NAICS codes of the company.
+            sic:
+              type: array
+              items:
+                type: string
+              description: The SIC codes of the company.
+        companies:
+          type: object
+          properties:
+            acquisitions:
+              type: array
+              items:
+                type: object
+                properties:
+                  description:
+                    type: string
+                    description: The description of the acquisition.
+                  domain:
+                    type: string
+                    description: The domain of the acquisition.
+                  name:
+                    type: string
+                    description: The name of the acquisition.
+              description: The acquisitions the company has.
+            parent:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: The description of the parent company.
+                domain:
+                  type: string
+                  description: The domain of the parent company.
+                name:
+                  type: string
+                  description: The name of the parent company.
+              description: The parent company of the company.
+            subsidiaries:
+              type: array
+              items:
+                type: object
+                properties:
+                  description:
+                    type: string
+                    description: The description of the subsidiary.
+                  domain:
+                    type: string
+                    description: The domain of the subsidiary.
+                  name:
+                    type: string
+                    description: The name of the subsidiary.
+              description: The subsidiaries the company has.
+        contacts:
+          type: object
+          properties:
+            emails:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                    enum:
+                    - accounts
+                    - channels
+                    - general
+                    - marketing
+                    - reservations
+                    - sales
+                    - technical
+                    description: The category of the contact.
+                  value:
+                    type: string
+                    description: The value of the contact.
+              description: The emails the company has.
+            lines:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                    enum:
+                    - accounts
+                    - channels
+                    - general
+                    - marketing
+                    - reservations
+                    - sales
+                    - technical
+                    description: The category of the contact.
+                  value:
+                    type: string
+                    description: The value of the contact.
+              description: The lines the company has.
+            phones:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                    enum:
+                    - accounts
+                    - channels
+                    - general
+                    - marketing
+                    - reservations
+                    - sales
+                    - technical
+                    description: The category of the contact.
+                  value:
+                    type: string
+                    description: The value of the contact.
+              description: The phones the company has.
+            whatsapps:
+              type: array
+              items:
+                type: object
+                properties:
+                  category:
+                    type: string
+                    enum:
+                    - accounts
+                    - channels
+                    - general
+                    - marketing
+                    - reservations
+                    - sales
+                    - technical
+                    description: The category of the contact.
+                  value:
+                    type: string
+                    description: The value of the contact.
+              description: The WhatsApp contacts the company has.
+        contents:
+          type: object
+          properties:
+            podcasts:
+              type: object
+              properties:
+                apple:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of the podcast.
+                      name:
+                        type: string
+                        description: The name of the podcast.
+                      rating:
+                        type: number
+                        description: The rating of the podcast.
+                      reviews:
+                        type: number
+                        description: The number of reviews the podcast has.
+                      url:
+                        type: string
+                        description: The URL to the podcast.
+                  description: The Apple podcasts the company has.
+                spotify:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of the podcast.
+                      name:
+                        type: string
+                        description: The name of the podcast.
+                      rating:
+                        type: number
+                        description: The rating of the podcast.
+                      reviews:
+                        type: number
+                        description: The number of reviews the podcast has.
+                      url:
+                        type: string
+                        description: The URL to the podcast.
+                  description: The Spotify podcasts the company has.
+              description: The podcasts the company has.
+        descriptions:
+          type: object
+          properties:
+            knowledgeGraph:
+              type: string
+              description: The knowledge graph of the company.
+            linkedin:
+              type: string
+              description: The LinkedIn description of the company.
+            primary:
+              type: string
+              description: The primary description of the company.
+            tagline:
+              type: string
+              description: The tagline of the company.
+            website:
+              type: string
+              description: The website description of the company.
+            wikipedia:
+              type: string
+              description: The Wikipedia description of the company.
+        domain:
+          type: object
+          properties:
+            alias:
+              type: string
+              description: The alias used by the origin domain.
+            createdAt:
+              type: string
+              description: The date the domain was created.
+            domain:
+              type: string
+              pattern: (?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]
+            domainAlts:
+              type: array
+              items:
+                type: string
+              description: The alternative domains of the company.
+            domainName:
+              type: string
+              description: The name of the domain.
+            expiredAt:
+              type: string
+              description: The date the domain expired.
+            nsfw:
+              type: boolean
+              description: The NSFW state of the domain.
+            redirection:
+              type: string
+              description: The redirection of the domain.
+            registrantCountry:
+              type: string
+              description: The country of the registrant.
+            registrantPhone:
+              type: string
+              description: The phone of the registrant.
+            registrar:
+              type: string
+              description: The registrar of the domain.
+            root:
+              type: string
+              description: The root domain of the company.
+            state:
+              type: string
+              enum:
+              - broken
+              - for-sale
+              - operating
+              - redirected
+              description: The state of the domain.
+            status:
+              type: number
+              description: The status of the domain.
+            tld:
+              description: The TLD of the domain.
+            updatedAt:
+              type: string
+              description: The date the domain was updated.
+          required:
+          - domain
+        finances:
+          type: object
+          properties:
+            revenue:
+              type: string
+              enum:
+              - under-1m
+              - 1m-10m
+              - 10m-50m
+              - 50m-100m
+              - 100m-200m
+              - 200m-1b
+              - over-1b
+              description: The total revenue the company has.
+            stockExchange:
+              type: string
+              description: The stock exchange the company has.
+            stockSymbol:
+              type: string
+              description: The stock symbol the company has.
+        locations:
+          type: object
+          properties:
+            headquarters:
+              type: object
+              properties:
+                address:
+                  type: object
+                  properties:
+                    geopoint:
+                      type: object
+                      properties:
+                        lat:
+                          type: number
+                          description: The latitude of the geopoint.
+                        lon:
+                          type: number
+                          description: The longitude of the geopoint.
+                      required:
+                      - lat
+                      - lon
+                      description: The geopoint of the address.
+                    raw:
+                      type: string
+                      description: The raw complete address.
+                  description: The address of the location.
+                city:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The code of the city.
+                    geopoint:
+                      type: object
+                      properties:
+                        lat:
+                          type: number
+                          description: The latitude of the geopoint.
+                        lon:
+                          type: number
+                          description: The longitude of the geopoint.
+                      required:
+                      - lat
+                      - lon
+                      description: The geopoint of the city.
+                    name:
+                      type: string
+                      description: The name of the city.
+                    postcode:
+                      type: string
+                      description: The postcode of the city.
+                  description: The city of the location.
+                continent:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The code of the continent.
+                    geopoint:
+                      type: object
+                      properties:
+                        lat:
+                          type: number
+                          description: The latitude of the geopoint.
+                        lon:
+                          type: number
+                          description: The longitude of the geopoint.
+                      required:
+                      - lat
+                      - lon
+                      description: The geopoint of the continent.
+                    name:
+                      type: string
+                      description: The name of the continent.
+                  description: The continent of the location.
+                country:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The code of the country.
+                    geopoint:
+                      type: object
+                      properties:
+                        lat:
+                          type: number
+                          description: The latitude of the geopoint.
+                        lon:
+                          type: number
+                          description: The longitude of the geopoint.
+                      required:
+                      - lat
+                      - lon
+                      description: The geopoint of the country.
+                    name:
+                      type: string
+                      description: The name of the country.
+                  description: The country of the location.
+                county:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The code of the county.
+                    geopoint:
+                      type: object
+                      properties:
+                        lat:
+                          type: number
+                          description: The latitude of the geopoint.
+                        lon:
+                          type: number
+                          description: The longitude of the geopoint.
+                      required:
+                      - lat
+                      - lon
+                      description: The geopoint of the county.
+                    name:
+                      type: string
+                      description: The name of the county.
+                  description: The county of the location.
+                state:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The code of the state.
+                    geopoint:
+                      type: object
+                      properties:
+                        lat:
+                          type: number
+                          description: The latitude of the geopoint.
+                        lon:
+                          type: number
+                          description: The longitude of the geopoint.
+                      required:
+                      - lat
+                      - lon
+                      description: The geopoint of the state.
+                    name:
+                      type: string
+                      description: The name of the state.
+                  description: The state of the location.
+              description: The headquarters of the company.
+        meta:
+          type: object
+          properties:
+            ideated:
+              type: boolean
+              description: If the company was ideated.
+            listIds:
+              type: array
+              items:
+                type: number
+              description: The list ids the company is in.
+            mysqlId:
+              type: number
+              description: The MySQL ID of the company.
+            score:
+              type: number
+              description: The data score of the company, generated from the total amount of data available.
+            sources:
+              type: number
+              description: If the company has sources, if so how many sources.
+            syncedAt:
+              type: string
+              description: The date the data was last synced.
+            cost:
+              type: number
+              description: The cost of the company (not persisted).
+            credits:
+              type: number
+              description: The remaining credits of the team after requesting the company (not persisted).
+            freeRequest:
+              type: boolean
+              description: If the company was requested for free (not persisted).
+            new:
+              type: boolean
+              description: If the company is new (not persisted).
+            similarAttributes:
+              type: array
+              items:
+                type: object
+                properties:
+                  attribute:
+                    type: string
+                    description: The similar attribute name between the companies.
+                  value:
+                    type: string
+                    description: The similar attribute value between the companies.
+                required:
+                - attribute
+                - value
+              description: The similar attributes between the companies (not persisted).
+            similarity:
+              type: number
+              description: The similarity score between the company and the current query (not persisted).
+        people:
+          type: object
+          properties: {}
+        secondaries:
+          type: object
+          properties:
+            emailPatterns:
+              type: array
+              items:
+                type: object
+                properties:
+                  emailsCount:
+                    type: number
+                    description: The number of emails the pattern has.
+                  pattern:
+                    type: string
+                    description: The pattern of the email.
+                  usagePercentage:
+                    type: number
+                    description: The usage percentage of the pattern.
+              description: The email patterns the company has.
+        socials:
+          type: object
+          properties:
+            discord:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            dribbble:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            facebook:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            facebookGroup:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            github:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            instagram:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            linkedin:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            mastodon:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            medium:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            patreon:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            pinterest:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            reddit:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            slack:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            snapchat:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            stackoverflow:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            steam:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            substack:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            threads:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            tiktok:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            tumblr:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            twitch:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            twitter:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            vimeo:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            vkontakte:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            wellfound:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            xing:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            yelp:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+            youtube:
+              type: object
+              properties:
+                followers:
+                  type: number
+                  description: The number of followers the company has.
+                following:
+                  type: number
+                  description: The number of following the company has.
+                id:
+                  type: string
+                  description: The ID of the company.
+                idNumeric:
+                  type: string
+                  description: The numeric ID of the company.
+                likes:
+                  type: number
+                  description: The number of likes the company has.
+                members:
+                  type: number
+                  description: The number of members the company has.
+                monthlyViews:
+                  type: number
+                  description: The number of monthly views the company has.
+                posts:
+                  type: number
+                  description: The number of posts the company has.
+                rating:
+                  type: number
+                  description: The rating of the company.
+                reviews:
+                  type: number
+                  description: The number of reviews the company has.
+                talkingAbout:
+                  type: number
+                  description: The number of people talking about the company.
+                url:
+                  type: string
+                  description: The URL to the social media page of the company.
+                videos:
+                  type: number
+                  description: The number of videos the company has.
+                wereHere:
+                  type: number
+                  description: The number of people who were here.
+              required:
+              - url
+          description: The social media pages of the company.
+        technologies:
+          type: object
+          properties:
+            active:
+              type: array
+              items:
+                type: string
+              description: The active company technologies.
+            categories:
+              type: array
+              items:
+                type: string
+              description: The categories the company technologies are in.
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      type: string
+                    description: The categories of the technology.
+                  detectedAt:
+                    type: string
+                    description: The date the technology was detected.
+                  detectionTypes:
+                    type: array
+                    items:
+                      type: string
+                      enum:
+                      - cookies
+                      - dns
+                      - evaluate
+                      - evaluate-bundle
+                      - evaluate-version
+                      - headers
+                      - metas
+                      - scripts
+                      - tags
+                      - urls
+                      - variables
+                      description: The type of detection the company technology has.
+                    description: The detection types the technology has.
+                  slug:
+                    type: string
+                    description: The slug of the technology.
+                  version:
+                    type: string
+                    description: The version of the technology.
+                required:
+                - detectedAt
+                - detectionTypes
+                - slug
+              description: The details of the company technologies.
+          required:
+          - active
+          - categories
+          - details
+        urls:
+          type: object
+          properties:
+            about:
+              type: string
+              description: The URL to the about page of the company.
+            blog:
+              type: string
+              description: The URL to the blog of the company.
+            careers:
+              type: string
+              description: The URL to the careers page of the company.
+            contact:
+              type: string
+              description: The URL to the contact page of the company.
+            crunchbase:
+              type: string
+              description: The URL to the Crunchbase page of the company.
+            developers:
+              type: string
+              description: The URL to the developers page of the company.
+            docs:
+              type: string
+              description: The URL to the docs of the company.
+            events:
+              type: string
+              description: The URL to the events of the company.
+            glassdoor:
+              type: string
+              description: The URL to the Glassdoor page of the company.
+            partnership:
+              type: string
+              description: The URL to the partnership page of the company.
+            pricing:
+              type: string
+              description: The URL to the pricing page of the company.
+            privacy:
+              type: string
+              description: The URL to the privacy policy of the company.
+            registrar:
+              type: string
+              description: The URL to the registrar of the domain.
+            salesNavigator:
+              type: string
+              description: The URL to the Sales Navigator page of the company.
+            sitemap:
+              type: string
+              description: The URL to the sitemap of the company.
+            status:
+              type: string
+              description: The URL to the status page of the company.
+            terms:
+              type: string
+              description: The URL to the terms of service of the company.
+            updates:
+              type: string
+              description: The URL to the updates of the company.
+            website:
+              type: string
+              description: The URL to the website of the company.
+            wellfound:
+              type: string
+              description: The URL to the Wellfound page of the company.
+            wikidata:
+              type: string
+              description: The URL to the Wikidata page of the company.
+            wikipedia:
+              type: string
+              description: The URL to the Wikipedia page of the company.
+        vectors:
+          type: object
+          properties:
+            global:
+              type: array
+              items:
+                type: number
+              description: The global computed vector.
+        action:
+          type: object
+          properties:
+            answer:
+              type: object
+              properties:
+                explanation:
+                  type: string
+                  description: The explanation of the answer.
+                output:
+                  type: object
+                  additionalProperties: {}
+                  description: The output of the answer.
+                score:
+                  type: number
+                  description: The score of the answer.
+              description: The answer of the action.
+          description: The action results for the company.
+      description: Our complete schema for company data.
+    Team:
+      type: object
+      properties:
+        admin:
+          type:
+          - boolean
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        credits:
+          type: number
+        creditsPack:
+          type: number
+        id:
+          type: number
+        name:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+        stripeCustomerId:
+          type:
+          - string
+          - 'null'
+        stripeProductId:
+          type:
+          - string
+          - 'null'
+        stripeSubscribed:
+          type: boolean
+        stripeSubscriptionId:
+          type:
+          - string
+          - 'null'
+        stripeSubscriptionStatus:
+          type:
+          - string
+          - 'null'
+        websiteUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - admin
+      - country
+      - createdAt
+      - credits
+      - creditsPack
+      - id
+      - name
+      - stripeCustomerId
+      - stripeProductId
+      - stripeSubscribed
+      - stripeSubscriptionId
+      - stripeSubscriptionStatus
+      - websiteUrl
+      description: A collection of users that can access the same resources.
+    ListAnalytics:
+      type: object
+      properties:
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        listId:
+          type:
+          - number
+          - 'null'
+      description: Analytics collection of a list.
+    Action:
+      type: object
+      properties:
+        attempts:
+          type: number
+        cost:
+          type:
+          - number
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        data:
+          type: object
+          properties:
+            cleanedUp:
+              type: number
+            completed:
+              type: array
+              items:
+                type: string
+            completedDomains:
+              type: number
+            completedDomainsSample:
+              type: array
+              items:
+                type: string
+            count:
+              type: number
+            domain:
+              type: string
+            domains:
+              type: array
+              items:
+                type: string
+            domainsSample:
+              type: array
+              items:
+                type: string
+            elasticQuery: {}
+            failed:
+              type: array
+              items:
+                type: string
+            failedDomains:
+              type: number
+            failedDomainsSample:
+              type: array
+              items:
+                type: string
+            fields:
+              type: array
+              items:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  key:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                    - array|boolean
+                    - array|number
+                    - array|string
+                    - boolean
+                    - number
+                    - string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - key
+                - type
+            grounded:
+              type: boolean
+            job:
+              type: string
+              enum:
+              - ask-domain
+              - ask-list
+              - enrich-companies
+              - enrich-list
+              - cleanup-list
+            model:
+              type: string
+              enum:
+              - claude
+              - claude-mini
+              - cousteau
+              - cousteau2
+              - cousteau2-thinking
+              - gpt
+              - gpt-mini
+              - groq
+              - groq-mini
+              - llama4
+            query:
+              type: array
+              items:
+                $ref: '#/components/schemas/SegmentationCondition'
+            question:
+              type: string
+            team:
+              $ref: '#/components/schemas/Team'
+            totalDomains:
+              type: number
+            user:
+              $ref: '#/components/schemas/User'
+        id:
+          type: number
+        listId:
+          type: number
+        promptId:
+          type: number
+        result:
+          type: object
+          properties:
+            answers:
+              type: array
+              items:
+                $ref: '#/components/schemas/LLMAnswer'
+            cleanedUp:
+              type: number
+            domains:
+              type: array
+              items:
+                type: string
+        status:
+          type: string
+          enum:
+          - active
+          - completed
+          - failed
+          - pending
+        teamId:
+          type: number
+        type:
+          type: string
+          enum:
+          - companies:added
+          - jobs:request
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - status
+      description: An action tracks a request made to our job queue and its result.
+    LLMAnswer:
+      type: object
+      properties:
+        companyId:
+          type: number
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
+          type: boolean
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
+          type: number
+      required:
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
+    List:
+      type: object
+      properties:
+        analytics:
+          $ref: '#/components/schemas/ListAnalytics'
+        companyListId:
+          type:
+          - number
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        dynamic:
+          type:
+          - boolean
+          - 'null'
+        exporting:
+          type: boolean
+        exportingAt:
+          type:
+          - string
+          - 'null'
+        id:
+          type: number
+        imported:
+          type: boolean
+        mailFrequencies:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            enum:
+            - daily
+            - disabled
+            - monthly
+            - weekly
+        maxCompanies:
+          type:
+          - number
+          - 'null'
+        name:
+          type: string
+        processActive:
+          type: boolean
+        processDisabled:
+          type:
+          - boolean
+          - 'null'
+        processingAt:
+          type:
+          - string
+          - 'null'
+        processInitialized:
+          type: boolean
+        processMessage:
+          type:
+          - string
+          - 'null'
+        query:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentationCondition'
+        querySimilar:
+          type: array
+          items:
+            type: string
+        teamId:
+          type:
+          - string
+          - 'null'
+        unseenActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+        userId:
+          type:
+          - number
+          - 'null'
+        vectors:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+      required:
+      - createdAt
+      - dynamic
+      - exporting
+      - exportingAt
+      - id
+      - imported
+      - maxCompanies
+      - name
+      - processActive
+      - processingAt
+      - processInitialized
+      - processMessage
+      - querySimilar
+      description: A collection of companies saved or imported by a team.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

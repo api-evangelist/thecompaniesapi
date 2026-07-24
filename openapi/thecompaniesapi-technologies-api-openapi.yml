@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions technologies API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: technologies
+paths:
+  /v2/technologies:
+    get:
+      description: Search technologies.
+      operationId: searchTechnologies
+      tags:
+      - technologies
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 100
+        required: false
+        name: size
+        in: query
+      responses:
+        '200':
+          description: Search technologies.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  technologies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Technology'
+                required:
+                - meta
+                - technologies
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    Technology:
+      type: object
+      properties:
+        categories:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        editor:
+          type: string
+        free:
+          type:
+          - boolean
+          - 'null'
+        id:
+          type: number
+        name:
+          type: string
+        nameSynonyms:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        paid:
+          type:
+          - boolean
+          - 'null'
+        slug:
+          type: string
+        updatedAt:
+          type:
+          - string
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+        websiteUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - companiesCount
+      - editor
+      - free
+      - id
+      - name
+      - nameSynonyms
+      - paid
+      - slug
+      - updatedAt
+      - usageCount
+      - websiteUrl
+      description: A technology description from our platform.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

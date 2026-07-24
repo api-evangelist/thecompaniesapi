@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions industries API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: industries
+paths:
+  /v2/industries:
+    get:
+      description: Search industries.
+      operationId: searchIndustries
+      tags:
+      - industries
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 100
+        required: false
+        name: size
+        in: query
+      responses:
+        '200':
+          description: Search industries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  industries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        companiesCount:
+                          type:
+                          - number
+                          - 'null'
+                        name:
+                          type: string
+                        slug: {}
+                      required:
+                      - companiesCount
+                      - name
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - industries
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/industries/similar:
+    get:
+      description: Get similar industries from one or many industries.
+      operationId: searchIndustriesSimilar
+      tags:
+      - industries
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: array
+          items:
+            type: string
+        required: true
+        name: industries
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 100
+        required: false
+        name: size
+        in: query
+      responses:
+        '200':
+          description: Get similar industries from one or many industries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  industries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        companiesCount:
+                          type:
+                          - number
+                          - 'null'
+                        name:
+                          type: string
+                        slug: {}
+                      required:
+                      - companiesCount
+                      - name
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - industries
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

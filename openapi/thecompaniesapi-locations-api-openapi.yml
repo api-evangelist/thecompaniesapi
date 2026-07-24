@@ -1,0 +1,828 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions locations API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: locations
+paths:
+  /v2/locations/cities:
+    get:
+      description: Search cities.
+      operationId: searchCities
+      tags:
+      - locations
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: string
+        required: false
+        name: filters
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 20
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - counts.companies
+        required: false
+        name: sortKey
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sortOrder
+        in: query
+      responses:
+        '200':
+          description: Search cities.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NominatimCity'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - cities
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/locations/counties:
+    get:
+      description: Search counties.
+      operationId: searchCounties
+      tags:
+      - locations
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 20
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - counts.companies
+        required: false
+        name: sortKey
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sortOrder
+        in: query
+      responses:
+        '200':
+          description: Search counties.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  counties:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NominatimCounty'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - counties
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/locations/countries:
+    get:
+      description: Search countries.
+      operationId: searchCountries
+      tags:
+      - locations
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: string
+        required: false
+        name: filters
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 20
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - counts.companies
+        required: false
+        name: sortKey
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sortOrder
+        in: query
+      responses:
+        '200':
+          description: Search countries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  countries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NominatimCountry'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - countries
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/locations/states:
+    get:
+      description: Search states.
+      operationId: searchStates
+      tags:
+      - locations
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 20
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - counts.companies
+        required: false
+        name: sortKey
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sortOrder
+        in: query
+      responses:
+        '200':
+          description: Search states.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                  states:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NominatimState'
+                required:
+                - meta
+                - states
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/locations/continents:
+    get:
+      description: Search continents.
+      operationId: searchContinents
+      tags:
+      - locations
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+          minimum: 1
+          maximum: 20
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - counts.companies
+        required: false
+        name: sortKey
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        required: false
+        name: sortOrder
+        in: query
+      responses:
+        '200':
+          description: Search continents.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  continents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NominatimContinent'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - continents
+                - meta
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    NominatimCounty:
+      type: object
+      properties:
+        citiesCount:
+          type:
+          - number
+          - 'null'
+        code:
+          type: string
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        linkedinQuery:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nominatimCountryId:
+          type:
+          - number
+          - 'null'
+        nominatimStateId:
+          type:
+          - number
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - citiesCount
+      - code
+      - companiesCount
+      - id
+      - latitude
+      - longitude
+      - name
+      - usageCount
+      description: A county from the Nominatim API.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    NominatimCountry:
+      type: object
+      properties:
+        citiesCount:
+          type:
+          - number
+          - 'null'
+        code:
+          type: string
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        continent:
+          type:
+          - string
+          - 'null'
+          enum:
+          - Africa
+          - Antarctica
+          - Asia
+          - Europe
+          - North America
+          - Oceania
+          - South America
+        continentCode:
+          type:
+          - string
+          - 'null'
+          enum:
+          - af
+          - an
+          - as
+          - eu
+          - na
+          - oc
+          - sa
+        countiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nameEs:
+          type: string
+        nameFr:
+          type: string
+        nameNative:
+          type: string
+        population:
+          type:
+          - number
+          - 'null'
+        statesCount:
+          type:
+          - number
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - citiesCount
+      - code
+      - companiesCount
+      - continent
+      - continentCode
+      - countiesCount
+      - id
+      - latitude
+      - longitude
+      - name
+      - nameEs
+      - nameFr
+      - nameNative
+      - population
+      - statesCount
+      - usageCount
+      description: A country from the Nominatim API.
+    NominatimState:
+      type: object
+      properties:
+        citiesCount:
+          type:
+          - number
+          - 'null'
+        code:
+          type: string
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        countiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        linkedinQuery:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nominatimCountryId:
+          type:
+          - number
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - citiesCount
+      - code
+      - companiesCount
+      - countiesCount
+      - id
+      - latitude
+      - longitude
+      - name
+      - usageCount
+      description: A state from the Nominatim API.
+    NominatimContinent:
+      type: object
+      properties:
+        citiesCount:
+          type:
+          - number
+          - 'null'
+        code:
+          type: string
+          enum:
+          - af
+          - an
+          - as
+          - eu
+          - na
+          - oc
+          - sa
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        countiesCount:
+          type:
+          - number
+          - 'null'
+        countriesCount:
+          type:
+          - number
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nameEs:
+          type: string
+        nameFr:
+          type: string
+        statesCount:
+          type:
+          - number
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - citiesCount
+      - code
+      - companiesCount
+      - countiesCount
+      - countriesCount
+      - icon
+      - id
+      - latitude
+      - longitude
+      - name
+      - nameEs
+      - nameFr
+      - statesCount
+      - usageCount
+      description: A continent from the Nominatim API.
+    NominatimCity:
+      type: object
+      properties:
+        code:
+          type: string
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        linkedinQuery:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nominatimCountryId:
+          type:
+          - number
+          - 'null'
+        nominatimCountyId:
+          type:
+          - number
+          - 'null'
+        nominatimStateId:
+          type:
+          - number
+          - 'null'
+        postcode:
+          type:
+          - string
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - code
+      - companiesCount
+      - id
+      - latitude
+      - longitude
+      - name
+      - postcode
+      - usageCount
+      description: A city from the Nominatim API.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

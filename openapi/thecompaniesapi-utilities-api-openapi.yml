@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions utilities API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: utilities
+paths:
+  /:
+    get:
+      description: Get the health status of the API.
+      operationId: fetchApiHealth
+      tags:
+      - utilities
+      responses:
+        '200':
+          description: Get the health status of the API.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  healthy:
+                    type: boolean
+                  nodeName:
+                    type: string
+                  report:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        displayName:
+                          type: string
+                        health:
+                          type: object
+                          properties:
+                            healthy:
+                              type: boolean
+                          required:
+                          - healthy
+                      required:
+                      - displayName
+                      - health
+                required:
+                - healthy
+                - nodeName
+                - report
+  /v2/openapi:
+    get:
+      description: Get the current OpenAPI specification.
+      operationId: fetchOpenApi
+      tags:
+      - utilities
+      responses:
+        '200':
+          description: Get the current OpenAPI specification.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

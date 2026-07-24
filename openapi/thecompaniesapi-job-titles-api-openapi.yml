@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions job-titles API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: job-titles
+paths:
+  /v2/job-titles/enrich:
+    get:
+      description: Enrich job titles.
+      operationId: enrichJobTitles
+      tags:
+      - job-titles
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: string
+        required: false
+        name: name
+        in: query
+      responses:
+        '200':
+          description: Enrich job titles.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/JobTitle'
+                - type: object
+                  additionalProperties: {}
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    JobTitle:
+      type: object
+      properties:
+        department:
+          type:
+          - string
+          - 'null'
+        departmentSecondary:
+          type:
+          - string
+          - 'null'
+        id:
+          type: number
+        linkedinCount:
+          type:
+          - number
+          - 'null'
+        name:
+          type: string
+        nameEs:
+          type:
+          - string
+          - 'null'
+        nameFr:
+          type:
+          - string
+          - 'null'
+        seniorityLevel:
+          type:
+          - string
+          - 'null'
+        seniorityLevelSecondary:
+          type:
+          - string
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - department
+      - departmentSecondary
+      - name
+      - nameEs
+      - nameFr
+      - seniorityLevel
+      - seniorityLevelSecondary
+      description: A job title and its related informations.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs

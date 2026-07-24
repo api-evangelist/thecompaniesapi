@@ -1,0 +1,798 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: support@thecompaniesapi.com
+    name: The Companies API
+    url: https://www.thecompaniesapi.com
+  description: An enrichment platform to search and retrieve information about companies
+  termsOfService: https://www.thecompaniesapi.com/product/terms
+  title: The Companies actions API
+  version: 2.0.0
+servers:
+- description: Production server
+  url: https://api.thecompaniesapi.com
+tags:
+- name: actions
+paths:
+  /v2/actions:
+    get:
+      description: Get and filter your actions.
+      operationId: fetchActions
+      tags:
+      - actions
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: boolean
+        required: false
+        name: full
+        in: query
+      - schema:
+          type: array
+          items:
+            type: number
+        required: false
+        name: ids
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: listId
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: page
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: size
+        in: query
+      - schema:
+          type: string
+          enum:
+          - active
+          - completed
+          - failed
+          - pending
+        required: false
+        name: status
+        in: query
+      - schema:
+          type: number
+        required: false
+        name: teamId
+        in: query
+      - schema:
+          type: string
+          enum:
+          - jobs:request
+          - companies:added
+        required: false
+        name: type
+        in: query
+      responses:
+        '200':
+          description: Get and filter your actions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Action'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+                required:
+                - actions
+                - meta
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - invalidListId
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+    post:
+      description: Request or estimate a new action.
+      operationId: requestAction
+      tags:
+      - actions
+      security:
+      - apiKey: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domains:
+                  type: array
+                  items:
+                    type: string
+                  maxItems: 100000
+                estimate:
+                  type: boolean
+                fields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description:
+                        type: string
+                      key:
+                        type: string
+                      type:
+                        type: string
+                        enum:
+                        - array|boolean
+                        - array|number
+                        - array|string
+                        - boolean
+                        - number
+                        - string
+                      values:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - key
+                    - type
+                job:
+                  type: string
+                  enum:
+                  - ask-domain
+                  - ask-list
+                  - enrich-companies
+                  - enrich-list
+                  - cleanup-list
+                listId:
+                  type: number
+                names:
+                  type: array
+                  items:
+                    type: string
+                promptId:
+                  type: number
+                query:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SegmentationCondition'
+                question:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - jobs:request
+                  - companies:added
+              required:
+              - type
+      responses:
+        '200':
+          description: Request or estimate a new action.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Action'
+                required:
+                - actions
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - invalidListId
+                    - typeMissing
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '403':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - invalidPromptId
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+  /v2/actions/{actionId}/retry:
+    post:
+      description: Ask for a retry of failed action.
+      operationId: retryAction
+      tags:
+      - actions
+      security:
+      - apiKey: []
+      parameters:
+      - schema:
+          type: number
+        required: true
+        name: actionId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        '200':
+          description: Ask for a retry of failed action.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  action:
+                    $ref: '#/components/schemas/Action'
+                required:
+                - action
+        '400':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - invalidActionId
+                    - actionTypeInvalid
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+        '401':
+          description: The error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  details: {}
+                  messages:
+                    type: string
+                    enum:
+                    - tokenNotFound
+                    - invalidApiSecret
+                    - missingApiSecret
+                    - userNotAuthenticated
+                  status:
+                    type: number
+                    minimum: 400
+                    maximum: 511
+                required:
+                - messages
+                - status
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        colorMode:
+          type: string
+          enum:
+          - dark
+          - light
+          - system
+        createdAt:
+          type:
+          - string
+          - 'null'
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        email:
+          type: string
+        emailFree:
+          type:
+          - boolean
+          - 'null'
+        emailVerified:
+          type:
+          - boolean
+          - 'null'
+        emailVerifiedResentAt:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        hasPassword:
+          type:
+          - boolean
+          - 'null'
+        id:
+          type: number
+        locale: {}
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+        referral:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+          enum:
+          - owner
+          - user
+      required:
+      - currentTeamId
+      - email
+      - emailFree
+      - emailVerified
+      - emailVerifiedResentAt
+      - fullName
+      - hasPassword
+      - id
+      - pictureUrl
+      description: A user of the platform.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
+    Team:
+      type: object
+      properties:
+        admin:
+          type:
+          - boolean
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        credits:
+          type: number
+        creditsPack:
+          type: number
+        id:
+          type: number
+        name:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+        stripeCustomerId:
+          type:
+          - string
+          - 'null'
+        stripeProductId:
+          type:
+          - string
+          - 'null'
+        stripeSubscribed:
+          type: boolean
+        stripeSubscriptionId:
+          type:
+          - string
+          - 'null'
+        stripeSubscriptionStatus:
+          type:
+          - string
+          - 'null'
+        websiteUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - admin
+      - country
+      - createdAt
+      - credits
+      - creditsPack
+      - id
+      - name
+      - stripeCustomerId
+      - stripeProductId
+      - stripeSubscribed
+      - stripeSubscriptionId
+      - stripeSubscriptionStatus
+      - websiteUrl
+      description: A collection of users that can access the same resources.
+    Action:
+      type: object
+      properties:
+        attempts:
+          type: number
+        cost:
+          type:
+          - number
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        data:
+          type: object
+          properties:
+            cleanedUp:
+              type: number
+            completed:
+              type: array
+              items:
+                type: string
+            completedDomains:
+              type: number
+            completedDomainsSample:
+              type: array
+              items:
+                type: string
+            count:
+              type: number
+            domain:
+              type: string
+            domains:
+              type: array
+              items:
+                type: string
+            domainsSample:
+              type: array
+              items:
+                type: string
+            elasticQuery: {}
+            failed:
+              type: array
+              items:
+                type: string
+            failedDomains:
+              type: number
+            failedDomainsSample:
+              type: array
+              items:
+                type: string
+            fields:
+              type: array
+              items:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  key:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                    - array|boolean
+                    - array|number
+                    - array|string
+                    - boolean
+                    - number
+                    - string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - key
+                - type
+            grounded:
+              type: boolean
+            job:
+              type: string
+              enum:
+              - ask-domain
+              - ask-list
+              - enrich-companies
+              - enrich-list
+              - cleanup-list
+            model:
+              type: string
+              enum:
+              - claude
+              - claude-mini
+              - cousteau
+              - cousteau2
+              - cousteau2-thinking
+              - gpt
+              - gpt-mini
+              - groq
+              - groq-mini
+              - llama4
+            query:
+              type: array
+              items:
+                $ref: '#/components/schemas/SegmentationCondition'
+            question:
+              type: string
+            team:
+              $ref: '#/components/schemas/Team'
+            totalDomains:
+              type: number
+            user:
+              $ref: '#/components/schemas/User'
+        id:
+          type: number
+        listId:
+          type: number
+        promptId:
+          type: number
+        result:
+          type: object
+          properties:
+            answers:
+              type: array
+              items:
+                $ref: '#/components/schemas/LLMAnswer'
+            cleanedUp:
+              type: number
+            domains:
+              type: array
+              items:
+                type: string
+        status:
+          type: string
+          enum:
+          - active
+          - completed
+          - failed
+          - pending
+        teamId:
+          type: number
+        type:
+          type: string
+          enum:
+          - companies:added
+          - jobs:request
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - status
+      description: An action tracks a request made to our job queue and its result.
+    LLMAnswer:
+      type: object
+      properties:
+        companyId:
+          type: number
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
+          type: boolean
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
+          type: number
+      required:
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
+  securitySchemes:
+    apiKey:
+      description: The API key to use for authentication, you can get it from your API tokens page.
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: The Companies API Documentation
+  url: https://www.thecompaniesapi.com/docs
