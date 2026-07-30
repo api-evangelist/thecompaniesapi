@@ -11,7 +11,20 @@ description: The Companies API is a company data and enrichment platform offerin
   Requests are authenticated with an API token passed in the Authorization header,
   billing is credit-based, and the full OpenAPI 3.1 description is published at
   /v2/openapi.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Freemium · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/thecompaniesapi.png
 tags:
 - Company Data
 - Data Enrichment
@@ -24,189 +37,174 @@ created: '2026-07-11'
 modified: '2026-07-11'
 specificationVersion: '0.19'
 apis:
-- aid: thecompaniesapi:thecompaniesapi-company-search-api
-  name: The Companies API Company Search API
-  tags:
-  - Company Search
-  - Firmographics
-  - B2B Data
-  - Segmentation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Search and segment the 50M+ company database with structured
-    segmentation queries, natural-language prompts, or company name. Endpoints
-    include GET/POST /v2/companies (search by segmentation), GET
-    /v2/companies/by-name, GET /v2/companies/by-prompt, GET/POST
-    /v2/companies/count (count matches), and GET /v2/companies/similar
-    (lookalike companies from one or more domains).
-- aid: thecompaniesapi:thecompaniesapi-company-enrichment-api
-  name: The Companies API Company Enrichment API
-  tags:
-  - Data Enrichment
-  - Company Data
-  - Web Intelligence
-  - Firmographics
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Retrieve 100+ data points on a single company by its domain,
-    a work email, or a social-media profile. Endpoints include GET
-    /v2/companies/{domain}, GET /v2/companies/by-email, GET
-    /v2/companies/by-social, GET /v2/companies/{domain}/context (full
-    company context), GET /v2/companies/{domain}/email-patterns, and POST
-    /v2/companies/{domain}/ask (ask a natural-language question about a company).
-- aid: thecompaniesapi:thecompaniesapi-company-analytics-api
-  name: The Companies API Company Analytics API
-  tags:
-  - Analytics
-  - Firmographics
-  - B2B Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Aggregate analytics over search segmentations and saved lists -
-    market sizing and distribution across firmographic attributes. Endpoints
-    include GET /v2/companies/analytics and POST /v2/companies/analytics/export.
-- aid: thecompaniesapi:thecompaniesapi-industries-api
-  name: The Companies API Industries API
-  tags:
-  - Industries
-  - Reference Data
-  - Classification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Reference data for industry classification used across the
-    company dataset. Endpoints include GET /v2/industries (search industries)
-    and GET /v2/industries/similar (find related industries from one or more
-    inputs) for building and normalizing segmentation filters.
-- aid: thecompaniesapi:thecompaniesapi-technologies-api
-  name: The Companies API Technologies API
-  tags:
-  - Technographics
-  - Reference Data
-  - Web Intelligence
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Reference data for the technologies (technographics) detected on
-    company websites, used to build technology-based segments. Endpoint GET
-    /v2/technologies searches the technology catalog.
-- aid: thecompaniesapi:thecompaniesapi-locations-api
-  name: The Companies API Locations API
-  tags:
-  - Reference Data
-  - Locations
-  - Geographic
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Geographic reference data for normalizing and filtering
-    companies by location. Endpoints include GET /v2/locations/cities,
-    /v2/locations/counties, /v2/locations/states, /v2/locations/countries,
-    and /v2/locations/continents.
-- aid: thecompaniesapi:thecompaniesapi-lists-api
-  name: The Companies API Lists API
-  tags:
-  - Lists
-  - Data Management
-  - B2B Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.thecompaniesapi.com/api
-  baseURL: https://api.thecompaniesapi.com/v2
-  properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Create and manage saved lists of companies for building and
-    maintaining target datasets. Endpoints include GET/POST /v2/lists,
-    PATCH/DELETE /v2/lists/{listId}, GET/POST /v2/lists/{listId}/companies,
-    PATCH /v2/lists/{listId}/companies/toggle, and GET
-    /v2/lists/{listId}/companies/{domain}.
 - aid: thecompaniesapi:thecompaniesapi-actions-api
-  name: The Companies API Actions API
-  tags:
-  - Async
-  - Bulk Enrichment
-  - Jobs
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  name: The Companies API actions API
+  description: The actions API from The Companies API — 2 operation(s) for actions.
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - actions
   properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Queue, estimate, and track asynchronous jobs for bulk
-    enrichment and search workloads. Endpoints include GET /v2/actions
-    (list/filter jobs), POST /v2/actions (request or estimate a job), and
-    POST /v2/actions/{actionId}/retry.
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-actions-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-analytics-api
+  name: The Companies API analytics API
+  description: The analytics API from The Companies API — 2 operation(s) for analytics.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-companies-api
+  name: The Companies API companies API
+  description: The companies API from The Companies API — 13 operation(s) for companies.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - companies
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-companies-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-industries-api
+  name: The Companies API industries API
+  description: The industries API from The Companies API — 2 operation(s) for industries.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - industries
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-industries-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
 - aid: thecompaniesapi:thecompaniesapi-job-titles-api
-  name: The Companies API Job Titles Enrichment API
-  tags:
-  - Data Enrichment
-  - Job Titles
-  - Reference Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  name: The Companies API job-titles API
+  description: The job-titles API from The Companies API — 1 operation(s) for job-titles.
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - job-titles
   properties:
-  - url: https://www.thecompaniesapi.com/api
-    type: Documentation
-  - url: https://thecompaniesapi.dev/api
-    type: APIReference
-  - url: openapi/thecompaniesapi-openapi.yml
-    type: OpenAPI
-  description: Normalize and enrich raw job titles into structured seniority
-    and department signals. Endpoint GET /v2/job-titles/enrich.
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-job-titles-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-lists-api
+  name: The Companies API lists API
+  description: The lists API from The Companies API — 5 operation(s) for lists.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - lists
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-lists-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-locations-api
+  name: The Companies API locations API
+  description: The locations API from The Companies API — 5 operation(s) for locations.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - locations
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-locations-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-prompts-api
+  name: The Companies API prompts API
+  description: The prompts API from The Companies API — 4 operation(s) for prompts.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - prompts
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-prompts-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-teams-api
+  name: The Companies API teams API
+  description: The teams API from The Companies API — 1 operation(s) for teams.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - teams
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-teams-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-technologies-api
+  name: The Companies API technologies API
+  description: The technologies API from The Companies API — 1 operation(s) for technologies.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - technologies
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-technologies-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-users-api
+  name: The Companies API users API
+  description: The users API from The Companies API — 1 operation(s) for users.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
+- aid: thecompaniesapi:thecompaniesapi-utilities-api
+  name: The Companies API utilities API
+  description: The utilities API from The Companies API — 2 operation(s) for utilities.
+  humanURL: https://www.thecompaniesapi.com/api
+  baseURL: https://api.thecompaniesapi.com/v2
+  tags:
+  - utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/thecompaniesapi-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://www.thecompaniesapi.com/api
+  - type: APIReference
+    url: https://thecompaniesapi.dev/api
 common:
 - type: AgenticAccess
   url: agentic-access/thecompaniesapi-agentic-access.yml
