@@ -1,0 +1,36 @@
+{
+  "provider": "thecompaniesapi",
+  "sources": [
+    "thecompaniesapi-actions-api-openapi.yml",
+    "thecompaniesapi-analytics-api-openapi.yml",
+    "thecompaniesapi-companies-api-openapi.yml",
+    "thecompaniesapi-industries-api-openapi.yml",
+    "thecompaniesapi-job-titles-api-openapi.yml",
+    "thecompaniesapi-lists-api-openapi.yml",
+    "thecompaniesapi-locations-api-openapi.yml",
+    "thecompaniesapi-prompts-api-openapi.yml",
+    "thecompaniesapi-teams-api-openapi.yml",
+    "thecompaniesapi-technologies-api-openapi.yml",
+    "thecompaniesapi-users-api-openapi.yml",
+    "thecompaniesapi-utilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "thecompaniesapi-actions-api-openapi.yml",
+    "thecompaniesapi-analytics-api-openapi.yml",
+    "thecompaniesapi-companies-api-openapi.yml",
+    "thecompaniesapi-industries-api-openapi.yml",
+    "thecompaniesapi-job-titles-api-openapi.yml",
+    "thecompaniesapi-lists-api-openapi.yml",
+    "thecompaniesapi-locations-api-openapi.yml",
+    "thecompaniesapi-prompts-api-openapi.yml",
+    "thecompaniesapi-teams-api-openapi.yml",
+    "thecompaniesapi-technologies-api-openapi.yml",
+    "thecompaniesapi-users-api-openapi.yml",
+    "thecompaniesapi-utilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
