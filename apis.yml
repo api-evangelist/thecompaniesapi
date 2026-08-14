@@ -2,15 +2,13 @@ aid: thecompaniesapi
 url: https://raw.githubusercontent.com/api-evangelist/thecompaniesapi/refs/heads/main/apis.yml
 name: The Companies API
 kind: company
-description: The Companies API is a company data and enrichment platform offering
-  programmatic access to firmographic, technographic, and web-intelligence data on
-  50M+ companies. Its REST API (base https://api.thecompaniesapi.com, all resources
-  under /v2) covers company search and segmentation, company enrichment by domain,
-  email, or social profile, similar-company lookup, industry and technology reference
-  data, location reference data, saved lists, and asynchronous bulk actions.
-  Requests are authenticated with an API token passed in the Authorization header,
-  billing is credit-based, and the full OpenAPI 3.1 description is published at
-  /v2/openapi.
+description: The Companies API is a company data and enrichment platform offering programmatic access
+  to firmographic, technographic, and web-intelligence data on 50M+ companies. Its REST API (base https://api.thecompaniesapi.com,
+  all resources under /v2) covers company search and segmentation, company enrichment by domain, email,
+  or social profile, similar-company lookup, industry and technology reference data, location reference
+  data, saved lists, and asynchronous bulk actions. Requests are authenticated with an API token passed
+  in the Authorization header, billing is credit-based, and the full OpenAPI 3.1 description is published
+  at /v2/openapi.
 accessModel:
   pricing: freemium
   onboarding: open
@@ -34,7 +32,7 @@ tags:
 - Reference Data
 - Company Search
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-08-14'
 specificationVersion: '0.19'
 apis:
 - aid: thecompaniesapi:thecompaniesapi-actions-api
@@ -50,7 +48,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-actions-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-analytics-api
   name: The Companies API analytics API
   description: The analytics API from The Companies API — 2 operation(s) for analytics.
@@ -64,7 +64,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-analytics-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-companies-api
   name: The Companies API companies API
   description: The companies API from The Companies API — 13 operation(s) for companies.
@@ -78,7 +80,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-companies-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-industries-api
   name: The Companies API industries API
   description: The industries API from The Companies API — 2 operation(s) for industries.
@@ -92,7 +96,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-industries-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-job-titles-api
   name: The Companies API job-titles API
   description: The job-titles API from The Companies API — 1 operation(s) for job-titles.
@@ -106,7 +112,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-job-titles-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-lists-api
   name: The Companies API lists API
   description: The lists API from The Companies API — 5 operation(s) for lists.
@@ -120,7 +128,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-lists-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-locations-api
   name: The Companies API locations API
   description: The locations API from The Companies API — 5 operation(s) for locations.
@@ -134,7 +144,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-locations-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-prompts-api
   name: The Companies API prompts API
   description: The prompts API from The Companies API — 4 operation(s) for prompts.
@@ -148,7 +160,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-prompts-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-teams-api
   name: The Companies API teams API
   description: The teams API from The Companies API — 1 operation(s) for teams.
@@ -162,7 +176,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-teams-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-technologies-api
   name: The Companies API technologies API
   description: The technologies API from The Companies API — 1 operation(s) for technologies.
@@ -176,7 +192,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-technologies-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-users-api
   name: The Companies API users API
   description: The users API from The Companies API — 1 operation(s) for users.
@@ -190,7 +208,9 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-users-api-overlay.yaml
 - aid: thecompaniesapi:thecompaniesapi-utilities-api
   name: The Companies API utilities API
   description: The utilities API from The Companies API — 2 operation(s) for utilities.
@@ -204,8 +224,12 @@ apis:
   - type: Documentation
     url: https://www.thecompaniesapi.com/api
   - type: APIReference
-    url: https://thecompaniesapi.dev/api
+    url: https://www.thecompaniesapi.com/api
+  - type: Overlay
+    url: overlays/thecompaniesapi-utilities-api-overlay.yaml
 common:
+- type: DomainSecurity
+  url: security/thecompaniesapi-domain-security.yml
 - type: AgenticAccess
   url: agentic-access/thecompaniesapi-agentic-access.yml
 - type: Authentication
@@ -224,6 +248,57 @@ common:
   url: rate-limits/thecompaniesapi-rate-limits.yml
 - type: FinOps
   url: finops/thecompaniesapi-finops.yml
+- type: Packages
+  url: packages/thecompaniesapi-packages.yml
+- type: SDKs
+  url: packages/thecompaniesapi-packages.yml
+- type: LLMsTxt
+  url: llms/thecompaniesapi-llms.txt
+- type: Conformance
+  url: conformance/thecompaniesapi-conformance.yml
+- type: ErrorCatalog
+  url: errors/thecompaniesapi-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/thecompaniesapi-lifecycle.yml
+- type: StatusPage
+  url: https://status.thecompaniesapi.com/en/
+- type: Conventions
+  url: conventions/thecompaniesapi-conventions.yml
+- type: ChangeLog
+  url: changelog/thecompaniesapi-changelog.yml
+- type: DataModel
+  url: data-model/thecompaniesapi-data-model.yml
+- type: Webhooks
+  url: asyncapi/thecompaniesapi-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Roadmap
+  url: https://updates.thecompaniesapi.com/roadmap
+- type: DeveloperPortal
+  url: https://www.thecompaniesapi.com/api
+- type: APIReference
+  url: https://www.thecompaniesapi.com/api
+- type: GettingStarted
+  url: https://www.thecompaniesapi.com/api
+- type: Support
+  url: mailto:support@thecompaniesapi.com
+- type: HelpCenter
+  url: https://www.thecompaniesapi.com/product/faq
+- type: Pricing
+  url: https://www.thecompaniesapi.com/pricing
+- type: Login
+  url: https://www.thecompaniesapi.com/auth/login
+- type: TermsOfService
+  url: https://www.thecompaniesapi.com/product/terms
+- type: PrivacyPolicy
+  url: https://www.thecompaniesapi.com/product/privacy
+- type: Collection
+  url: collections/thecompaniesapi.opencollection.json
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 30
+  pass: local-v1
