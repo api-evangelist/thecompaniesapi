@@ -1,0 +1,58 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.thecompaniesapi.com/api + https://updates.thecompaniesapi.com/changelog + https://status.thecompaniesapi.com/en/
+versioning:
+  scheme: uri-path
+  current: v2
+  evidence: >-
+    Every resource is served under https://api.thecompaniesapi.com/v2/… and info.version in the
+    published OpenAPI is 2.0.0. There is no version header, no date-based version pinning and
+    no documented version-negotiation mechanism.
+  policy_url: null
+  note: >-
+    No written versioning policy is published. The move from v1 to v2 is visible only in the
+    path; the provider does not document how long a major version is supported, how breaking
+    changes are announced, or whether v1 is still served.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header support documented, and zero
+    operations in the OpenAPI carry `deprecated: true`. Searched /api, the error and rate-limit
+    references, the terms of service, the Featurebase roadmap and the dated changelog — nothing
+    on deprecation. Recorded as an honest absence; no `Deprecation` pointer is wired.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No SLA or uptime commitment is published on the pricing page or in the terms. The
+    Enterprise tier is a published $595/month plan rather than a negotiated contract, and no
+    availability target is attached to it.
+status_page:
+  url: https://status.thecompaniesapi.com/en/
+  http_status: 200
+  linked_from: site footer on every page ("Status")
+  note: Hosted status page; also exposed programmatically as the fetchApiHealth operation (GET /).
+health_endpoint:
+  operation: fetchApiHealth
+  path: GET /
+  spec: openapi/thecompaniesapi-utilities-api-openapi.yml
+  note: >-
+    An unauthenticated health operation is declared in the OpenAPI at the server root, giving
+    agents a machine-readable liveness check alongside the human status page.
+changelog:
+  url: https://updates.thecompaniesapi.com/changelog
+  platform: Featurebase
+  latest_entry: '2025-06-06'
+  artifact: changelog/thecompaniesapi-changelog.yml
+roadmap:
+  url: https://updates.thecompaniesapi.com/roadmap
+  platform: Featurebase
+  note: Public roadmap board; feature requests carry statuses such as "In Review".
+deprecated_operations: []
+release_cadence:
+  observed: >-
+    Nine dated release entries between 2024-08-22 and 2025-06-06. Nothing has shipped to the
+    public changelog in the fourteen months since, and the whole SDK estate last released in
+    July 2025 — the strongest currency signal available on this provider.

@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "6d26f411-e571-45c1-a32d-aa091987f1a8",
+      "name": "industries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "205c90eb-bace-4a7e-a12a-f01efbb54232",
+          "name": "search Industries",
+          "request": {
+            "name": "search Industries",
+            "description": {
+              "content": "Search industries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "industries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a63c79ac-c864-49ff-bd45-a37531c1e842",
+              "name": "Search industries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "industries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"industries\": [\n    {\n      \"companiesCount\": 4787.427984144843,\n      \"name\": \"string\",\n      \"slug\": \"\"\n    },\n    {\n      \"companiesCount\": 7153.159755856875,\n      \"name\": \"string\",\n      \"slug\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"cost\": 7122.446564429618,\n    \"credits\": 8321.325412109669,\n    \"currentPage\": 6385.744716525174,\n    \"firstPage\": 2587.810628761037,\n    \"freeRequest\": false,\n    \"lastPage\": 51.792867326417856,\n    \"perPage\": 8882.263014482825,\n    \"total\": 229.30161155414908,\n    \"maxScrollResultsReached\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ed8a073-6f2c-4aec-8037-10ef687c196d",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "industries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 409.36288844766585,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5836890-7d63-47a6-acf1-950a0ffba4ca",
+          "name": "search Industries Similar",
+          "request": {
+            "name": "search Industries Similar",
+            "description": {
+              "content": "Get similar industries from one or many industries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "industries",
+                "similar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "industries",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "industries",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef2be7db-eeb0-4ccf-be25-9030f5f8def3",
+              "name": "Get similar industries from one or many industries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "industries",
+                    "similar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "industries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"industries\": [\n    {\n      \"companiesCount\": 4787.427984144843,\n      \"name\": \"string\",\n      \"slug\": \"\"\n    },\n    {\n      \"companiesCount\": 7153.159755856875,\n      \"name\": \"string\",\n      \"slug\": \"\"\n    }\n  ],\n  \"meta\": {\n    \"cost\": 7122.446564429618,\n    \"credits\": 8321.325412109669,\n    \"currentPage\": 6385.744716525174,\n    \"firstPage\": 2587.810628761037,\n    \"freeRequest\": false,\n    \"lastPage\": 51.792867326417856,\n    \"perPage\": 8882.263014482825,\n    \"total\": 229.30161155414908,\n    \"maxScrollResultsReached\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "124ed4ed-30ec-4bde-b6ec-bebd679b16df",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "industries",
+                    "similar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "industries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 409.36288844766585,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a843522e-0aa0-416b-800c-2e5db43a2546",
+    "name": "The Companies actions industries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

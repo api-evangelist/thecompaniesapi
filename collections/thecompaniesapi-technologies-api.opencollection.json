@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The Companies actions technologies API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "technologies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchTechnologies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/technologies",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search technologies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

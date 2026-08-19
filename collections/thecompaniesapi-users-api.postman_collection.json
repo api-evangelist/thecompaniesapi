@@ -1,0 +1,172 @@
+{
+  "item": [
+    {
+      "id": "7444cde8-e1c8-4278-8c8b-ba902580e3db",
+      "name": "users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc46e9cc-f760-4727-9f21-9aca3b29f464",
+          "name": "fetch User",
+          "request": {
+            "name": "fetch User",
+            "description": {
+              "content": "Get current user information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2150b0bc-e1ef-4fb2-b0e4-cbe42aa614cf",
+              "name": "Get current user information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currentTeamId\": 8963.456353155027,\n  \"email\": \"string\",\n  \"emailFree\": false,\n  \"emailVerified\": false,\n  \"emailVerifiedResentAt\": \"string\",\n  \"fullName\": \"string\",\n  \"hasPassword\": true,\n  \"id\": 9033.055229662492,\n  \"pictureUrl\": \"string\",\n  \"colorMode\": \"system\",\n  \"createdAt\": \"string\",\n  \"locale\": \"\",\n  \"referral\": \"string\",\n  \"role\": \"user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b433dd4-ed61-45aa-abe6-0ddc9e42f34f",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"missingApiSecret\",\n  \"status\": 502.1997811055441,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cbd8c431-4cd2-43aa-85f3-111c99bf01be",
+    "name": "The Companies actions users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

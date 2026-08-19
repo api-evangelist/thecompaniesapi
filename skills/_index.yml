@@ -1,0 +1,27 @@
+generated: '2026-08-14'
+method: generated
+source: >-
+  openapi/_original/thecompaniesapi-openapi.yml (live copy https://api.thecompaniesapi.com/v2/openapi)
+  + https://www.thecompaniesapi.com/api + conventions/, errors/ and rate-limits/ artifacts in this repo
+note: >-
+  The Companies API publishes no AGENTS.md, no skill files and no agent guidance of its own
+  (searched the docs, the GitHub organisation and the changelog). These four skills are
+  GENERATED from the published OpenAPI and the public reference. Every operationId referenced
+  was verified verbatim against the specs in openapi/.
+skills:
+- file: thecompaniesapi-enrich-company-from-identifier.md
+  name: Enrich a company from a domain, email or social profile
+  api: openapi/thecompaniesapi-companies-api-openapi.yml
+  operations: [fetchCompany, fetchCompanyByEmail, fetchCompanyBySocial, fetchCompanyContext, fetchCompanyEmailPatterns]
+- file: thecompaniesapi-build-and-size-a-segment.md
+  name: Build, size and page a company segment
+  api: openapi/thecompaniesapi-companies-api-openapi.yml
+  operations: [searchCompaniesByPrompt, promptToSegmentation, countCompanies, countCompaniesPost, searchCompanies, searchCompaniesPost, searchCompaniesByName, searchSimilarCompanies]
+- file: thecompaniesapi-manage-company-lists.md
+  name: Create and maintain saved company lists
+  api: openapi/thecompaniesapi-lists-api-openapi.yml
+  operations: [fetchLists, createList, updateList, deleteList, fetchCompaniesInList, fetchCompaniesInListPost, fetchCompanyInList, toggleCompaniesInList, fetchCompaniesAnalytics, exportCompaniesAnalytics]
+- file: thecompaniesapi-run-bulk-work-as-actions.md
+  name: Run bulk work through the Actions queue
+  api: openapi/thecompaniesapi-actions-api-openapi.yml
+  operations: [requestAction, fetchActions, retryAction, fetchTeam]

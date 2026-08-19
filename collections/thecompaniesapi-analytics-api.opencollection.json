@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The Companies actions analytics API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "fetchCompaniesAnalytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/analytics",
+            "params": [
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "attribute",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch analytics data for search segmentations and lists."
+        },
+        {
+          "info": {
+            "name": "exportCompaniesAnalytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/companies/analytics/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export analytics data for search segmentations and lists."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

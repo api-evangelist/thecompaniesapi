@@ -1,0 +1,83 @@
+generated: '2026-08-14'
+method: searched
+source: https://updates.thecompaniesapi.com/changelog
+platform: Featurebase
+scheme: dated-release-notes
+current_version: '2.0.0'
+current_version_source: info.version in https://api.thecompaniesapi.com/v2/openapi
+feed: none
+note: >-
+  The changelog is a Featurebase "Releases" board with dated entries, reachable from the site
+  footer as "Updates". No RSS/Atom feed is served (/rss, /feed and /atom.xml all 404). The
+  most recent release entry is dated 2025-06-06, so the public release stream has been quiet
+  for fourteen months as of this capture. Entries are narrative and do not label breaking vs
+  additive changes; no entry in the captured window announces a breaking change.
+entries:
+- date: '2025-06-06'
+  title: New JavaScript & TypeScript SDK for API integration
+  breaking: false
+  additions:
+  - Official TypeScript SDK with type-safe responses
+  - Built-in methods for all major endpoints
+  - Works with Node.js, Vite and Next.js
+  highlights: Shipped as @thecompaniesapi/sdk on npm.
+- date: '2025-05-20'
+  title: Enrich a company with fresh data in real time
+  breaking: false
+  additions:
+  - refresh parameter on fetchCompany and fetchCompanyByEmail triggers a live crawl of the company website and social profiles
+  highlights: Real-time enrichment costs 10 extra credits per call.
+- date: '2025-05-05'
+  title: Search companies using natural language
+  breaking: false
+  additions:
+  - Plain-text company search available on the landing page and through the API (searchCompaniesByPrompt)
+  highlights: Aimed at market research, list building and prospecting.
+- date: '2025-05-03'
+  title: Buy credits on demand
+  breaking: false
+  additions:
+  - Purchase additional credits from the dashboard without changing plan
+  highlights: >-
+    $2.50 (Startup) / $1.75 (Scaleup) / $1.50 (Enterprise) per 1,000 credits. A subscription
+    is required; purchased credits do not expire.
+- date: '2025-03-06'
+  title: Ask any question about a company (with AI)
+  breaking: false
+  additions:
+  - askCompany accepts a domain plus a question and returns a structured answer
+  - Choice of a small or large model; custom response structure via the fields parameter
+  highlights: Costs 10 credits per call.
+- date: '2025-02-14'
+  title: Fetch the context of a company using our AI
+  breaking: false
+  additions:
+  - fetchCompanyContext returns an AI-generated summary of what a company does, who it serves and its key offerings
+  highlights: Positioned for personalisation, outbound and investor research.
+- date: '2025-02-11'
+  title: Access all analytics for your company lists
+  breaking: false
+  additions:
+  - GET /companies/analytics — aggregated data for any company search or list
+  - POST /companies/analytics/export — export analytics as CSV, JSON, XLS and other formats
+  highlights: >-
+    Group by business type, traffic, industry, NAICS/SIC; analyse up to 10,000 companies in a
+    single call. Documented as free to use.
+- date: '2024-10-24'
+  title: Make your company lists dynamic
+  breaking: false
+  additions:
+  - Lists can be marked dynamic and update in real time as matching companies are detected
+  - Webhooks can be attached to act on those updates
+  highlights: The clearest published description of what the webhook surface is for.
+- date: '2024-09-06'
+  title: Filter companies by domain extension (TLDs)
+  breaking: false
+  additions:
+  - Search companies by domain extension from the interface or the API
+- date: '2024-08-22'
+  title: Explore our API use cases
+  breaking: false
+  additions:
+  - Dedicated use-case section covering signup enrichment, company search engines, lead scoring and company autocomplete
+  highlights: Published at https://www.thecompaniesapi.com/use-cases

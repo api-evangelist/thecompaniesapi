@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The Companies actions utilities API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "fetchApiHealth",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/"
+          },
+          "docs": "Get the health status of the API."
+        },
+        {
+          "info": {
+            "name": "fetchOpenApi",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/openapi"
+          },
+          "docs": "Get the current OpenAPI specification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

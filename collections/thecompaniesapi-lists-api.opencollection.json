@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The Companies actions lists API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "fetchLists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/lists",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get and filter your lists."
+        },
+        {
+          "info": {
+            "name": "createList",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new list."
+        },
+        {
+          "info": {
+            "name": "updateList",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.thecompaniesapi.com/v2/lists/:listId",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a list."
+        },
+        {
+          "info": {
+            "name": "deleteList",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.thecompaniesapi.com/v2/lists/:listId",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a list."
+        },
+        {
+          "info": {
+            "name": "fetchCompaniesInList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/lists/:listId/companies",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get companies in a list with a segmentation query."
+        },
+        {
+          "info": {
+            "name": "fetchCompaniesInListPost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/lists/:listId/companies",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get companies in a list with a segmentation body."
+        },
+        {
+          "info": {
+            "name": "fetchCompanyInList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/lists/:listId/companies/:domain",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a company in a list."
+        },
+        {
+          "info": {
+            "name": "toggleCompaniesInList",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.thecompaniesapi.com/v2/lists/:listId/companies/toggle",
+            "params": [
+              {
+                "name": "listId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Toggle one or more companies in a list."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The Companies actions job-titles API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "job-titles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "enrichJobTitles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/job-titles/enrich",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enrich job titles."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

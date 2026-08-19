@@ -1,0 +1,71 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.thecompaniesapi.com/api/webhooks
+spec_type: none
+asyncapi: null
+note: >-
+  The Companies API documents a webhook surface but publishes no AsyncAPI document and no
+  event catalog. The webhooks reference page describes the mechanism in prose and then defers
+  to the authenticated dashboard: subscriptions are created in account settings, where the
+  customer picks the events to subscribe to and the URL to receive the payload. The event
+  names, the payload schema, the signing/verification scheme and the retry policy are NOT
+  published anywhere on the public surface — they are only visible to a signed-in account.
+  Nothing here is derived or guessed; the absences below are the finding.
+  Probed for a spec: /asyncapi.yaml, /asyncapi.json and the GitHub organisation — no
+  AsyncAPI document exists. A `Webhooks` pointer is wired (the provider does advertise the
+  surface); no `AsyncAPI` pointer is wired, because no event spec is published.
+surface:
+  advertised: true
+  docs: https://www.thecompaniesapi.com/api/webhooks
+  http_status: 200
+  management: authenticated dashboard — account settings ("You can manage your webhooks in your settings")
+  subscription_model: >-
+    "You can define the events you want to subscribe to and the URL where we'll send the
+    payload." Event selection and delivery URL are both configured per webhook.
+  transport: HTTP POST to a customer-supplied URL
+purpose:
+  stated: >-
+    "The Companies API uses webhooks to notify you about changes or when an operation ends
+    (for example, whenever a new company profile is enriched)."
+  use_cases:
+  - Receiving the results of the provider's enrichment algorithms
+  - Syncing a customer database
+  - Triggering internal workflows
+  - Keeping a CRM automatically up to date
+related_capability:
+  feature: dynamic lists
+  source: https://updates.thecompaniesapi.com/changelog (2024-10-24)
+  description: >-
+    Lists can be marked dynamic so they update in real time whenever a newly detected company
+    matches the list criteria; the changelog names webhooks as the way to act on those
+    updates. This is the most concrete published description of what an event carries.
+  examples_given:
+  - Get notified when a new company starts using a specific tool
+  - Push new matches to a CRM for outbound prospecting
+  - Monitor shifts in a target market as they happen
+related_operations:
+  note: >-
+    The synchronous half of the same async story is the Actions queue, which is fully
+    specified in the OpenAPI and can be polled instead of waiting on a webhook.
+  operations:
+  - openapi/thecompaniesapi-actions-api-openapi.yml#requestAction
+  - openapi/thecompaniesapi-actions-api-openapi.yml#fetchActions
+  - openapi/thecompaniesapi-actions-api-openapi.yml#retryAction
+gaps:
+  event_catalog: not published
+  payload_schema: not published
+  signature_verification: not documented
+  retry_policy: not documented
+  replay: not documented
+  webhooks_in_openapi: false
+  openapi_webhooks_note: >-
+    The OpenAPI is 3.1.0, which supports a top-level `webhooks` object, but the published
+    document declares none — the event surface is entirely absent from the machine-readable
+    contract.
+probes:
+- url: https://www.thecompaniesapi.com/api/webhooks
+  status: 200
+- url: https://www.thecompaniesapi.com/asyncapi.yaml
+  status: 404
+- url: https://api.thecompaniesapi.com/asyncapi.json
+  status: 404

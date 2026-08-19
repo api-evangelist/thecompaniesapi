@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: The Companies API
 providerId: thecompaniesapi
 created: '2026-07-11'
-modified: '2026-07-11'
+modified: '2026-08-14'
 reconciled: true
 tags:
 - Company Data
@@ -13,26 +13,30 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: >-
-  The Companies API applies two independent controls. First, a per-second
-  request rate limit (RPS) that is tied to the subscription plan - Startup 50
-  RPS, Scaleup 250 RPS, Enterprise 1,000 RPS. Second, a monthly credit
-  allowance that meters how much work an account can perform; each call spends
-  credits and, once the included allowance is exhausted, overage credits are
-  billed per 1,000. Long-running and bulk workloads are dispatched through the
-  asynchronous Actions job queue so they do not have to be issued as a burst of
-  synchronous requests.
-notes: >-
-  RPS values captured from the public pricing page on 2026-07-11 and should be
-  reconciled against the live page. Some third-party summaries quote different
-  RPS numbers for the middle tiers; verify against the provider before relying
-  on exact figures.
+description: The Companies API applies two independent controls. First, a per-second request rate limit
+  (RPS) that is tied to the subscription plan - Startup 50 RPS, Scaleup 250 RPS, Enterprise 1,000 RPS.
+  Second, a monthly credit allowance that meters how much work an account can perform; each call spends
+  credits and, once the included allowance is exhausted, overage credits are billed per 1,000. Long-running
+  and bulk workloads are dispatched through the asynchronous Actions job queue so they do not have to
+  be issued as a burst of synchronous requests.
+notes: 'Reconciled against the live rate-limit reference and pricing page on 2026-08-14. The RPS figures
+  are confirmed by both pages: Startup 50, Scaleup 250, Enterprise 1,000 requests per second. RESPONSE
+  HEADERS: none. The API returns no X-RateLimit-*, no RateLimit-* and no Retry-After header on any response
+  — probed live and searched the published reference, which says only "your requests will temporarily
+  be blocked with a 429 Too Many Requests response. You can retry after a short delay." A client therefore
+  has no runtime signal for its remaining request budget and must pace itself from the documented plan
+  number. 429 is also declared on ZERO of the 44 operations in the published OpenAPI, so a generated client
+  will not model the throttle path at all. The credit balance IS returned at runtime (meta.credits / meta.cost
+  on every response), so the quota that actually binds is observable even though the rate limit is not.'
 sources:
 - https://www.thecompaniesapi.com/pricing
 - https://www.thecompaniesapi.com/api
 - https://api.thecompaniesapi.com/v2/openapi
 responseCodes:
   throttled: 429
+  creditsExhausted: 403
+  note: 429 is the throttle. Credit exhaustion is a different failure and arrives as 403 noCreditsRemaining,
+    not 429.
 limits:
 - name: Requests Per Second (Startup)
   scope: account
@@ -61,11 +65,23 @@ limits:
   notes: Granted to new accounts for evaluation, no credit card required.
 policies:
 - name: Credit Metering
-  description: Work is metered in credits rather than by a flat request quota; different operations can cost different amounts of credits.
+  description: Work is metered in credits rather than by a flat request quota; different operations can
+    cost different amounts of credits.
 - name: Asynchronous Actions
-  description: Bulk and long-running jobs run through the Actions queue (POST /v2/actions) and are polled over REST, smoothing demand against the per-second limit.
+  description: Bulk and long-running jobs run through the Actions queue (POST /v2/actions) and are polled
+    over REST, smoothing demand against the per-second limit.
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+generated: '2026-08-14'
+method: searched
+source: https://www.thecompaniesapi.com/api/rate-limits
+limit_count: 5
+responseHeaders:
+  documented: []
+  observed: []
+  retry_after: false
+  note: No rate-limit signalling headers are documented or returned. Credit accounting is returned in
+    the response body as meta.cost, meta.credits and meta.freeRequest.

@@ -1,0 +1,191 @@
+{
+  "item": [
+    {
+      "id": "47ed11f9-5d73-474f-8717-134e6b4a77fe",
+      "name": "job-titles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a4a21a7d-37e7-4008-bfe8-8a87bd312e00",
+          "name": "enrich Job Titles",
+          "request": {
+            "name": "enrich Job Titles",
+            "description": {
+              "content": "Enrich job titles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "job-titles",
+                "enrich"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "994c4978-5590-4983-9f32-9336feadb729",
+              "name": "Enrich job titles.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job-titles",
+                    "enrich"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"department\": \"string\",\n  \"departmentSecondary\": \"string\",\n  \"name\": \"string\",\n  \"nameEs\": \"string\",\n  \"nameFr\": \"string\",\n  \"seniorityLevel\": \"string\",\n  \"seniorityLevelSecondary\": \"string\",\n  \"id\": 7766.9854013188415,\n  \"linkedinCount\": 7177.236580126287,\n  \"usageCount\": 4893.221482190548\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "801b4454-814d-4593-b962-8aa77c476a8e",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "job-titles",
+                    "enrich"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"invalidApiSecret\",\n  \"status\": 442.56468499850706,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8bb7d95b-7401-4fd0-b134-1710924a79ce",
+    "name": "The Companies actions job-titles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

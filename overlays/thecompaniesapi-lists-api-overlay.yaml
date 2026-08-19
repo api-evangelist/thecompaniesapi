@@ -1,0 +1,65 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for The Companies API — lists-api
+  version: 1.0.0
+extends: openapi/thecompaniesapi-lists-api-openapi.yml
+x-generated: '2026-08-14'
+x-method: generated
+x-source: apis.yml + repo artifacts; live spec https://api.thecompaniesapi.com/v2/openapi
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: thecompaniesapi
+    x-apievangelist-artifacts:
+      authentication: authentication/thecompaniesapi-authentication.yml
+      conventions: conventions/thecompaniesapi-conventions.yml
+      errors: errors/thecompaniesapi-problem-types.yml
+      lifecycle: lifecycle/thecompaniesapi-lifecycle.yml
+      rate_limits: rate-limits/thecompaniesapi-rate-limits.yml
+      plans: plans/thecompaniesapi-plans-pricing.yml
+      data_model: data-model/thecompaniesapi-data-model.yml
+    x-apievangelist-contract-source: https://api.thecompaniesapi.com/v2/openapi
+- target: $.info
+  description: 'Record the auth detail the published spec omits: the Authorization header value must be
+    prefixed "Basic ".'
+  update:
+    x-auth-note: 'Authorization: Basic <api-token>. A token sent without the "Basic " prefix returns 401
+      missingApiSecret. The alternative ?token=<api-token> query parameter is documented but places the
+      credential in the URL.'
+- target: $.info
+  description: Record the credit-metering contract, which is the real quota rather than the per-second
+    rate limit.
+  update:
+    x-metering:
+      unit: credits
+      response_fields:
+      - meta.cost
+      - meta.credits
+      - meta.freeRequest
+      exhaustion: 403 noCreditsRemaining
+      throttle: 429 (documented, declared on no operation)
+      docs: https://www.thecompaniesapi.com/pricing
+- target: $.info
+  description: Record that no idempotency contract exists, so agents do not assume safe retries on writes.
+  update:
+    x-idempotency:
+      supported: false
+      header: null
+      note: No idempotency key in the spec or the docs; the only mention is the 409 row of the published
+        status table, and 409 is declared on no operation.
+- target: $.servers
+  description: Annotate the single production server.
+  update:
+  - url: https://api.thecompaniesapi.com
+    description: Production server
+    x-environment: production
+    x-sandbox-available: false
+x-operations-covered:
+- createList
+- deleteList
+- fetchCompaniesInList
+- fetchCompaniesInListPost
+- fetchCompanyInList
+- fetchLists
+- toggleCompaniesInList
+- updateList

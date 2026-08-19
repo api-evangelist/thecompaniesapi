@@ -1,0 +1,1113 @@
+{
+  "item": [
+    {
+      "id": "419fe985-8e85-44b1-811a-cc1a1f7f0ba8",
+      "name": "locations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e75699f5-bc25-4916-a575-54e0a7aefede",
+          "name": "search Cities",
+          "request": {
+            "name": "search Cities",
+            "description": {
+              "content": "Search cities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                "cities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1139eaec-bc29-45a2-82f8-e8b3d8cc5dbf",
+              "name": "Search cities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cities\": [\n    {\n      \"code\": \"string\",\n      \"companiesCount\": 4612.525328044235,\n      \"id\": 6467.72371322979,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"postcode\": \"string\",\n      \"usageCount\": 5406.934481689562,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\",\n      \"linkedinQuery\": \"string\",\n      \"nominatimCountryId\": 5653.846048671762,\n      \"nominatimCountyId\": 1492.5392664974956,\n      \"nominatimStateId\": 3608.574341717363\n    },\n    {\n      \"code\": \"string\",\n      \"companiesCount\": 1699.293602455143,\n      \"id\": 409.57350603910703,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"postcode\": \"string\",\n      \"usageCount\": 2660.9371229634826,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\",\n      \"linkedinQuery\": \"string\",\n      \"nominatimCountryId\": 1653.733474296537,\n      \"nominatimCountyId\": 56.06845507955205,\n      \"nominatimStateId\": 7294.62688977792\n    }\n  ],\n  \"meta\": {\n    \"cost\": 4414.306104755309,\n    \"credits\": 3436.3320079415703,\n    \"currentPage\": 8825.349247264046,\n    \"firstPage\": 5025.031603547903,\n    \"freeRequest\": true,\n    \"lastPage\": 5482.512947107393,\n    \"perPage\": 3107.0036245984465,\n    \"total\": 862.0072632522857,\n    \"maxScrollResultsReached\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3d97cb5-6b8c-41dd-ba02-c48dfc5dc36c",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "cities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 427.8293025640448,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41015387-805b-4316-af78-ad425e682e41",
+          "name": "search Counties",
+          "request": {
+            "name": "search Counties",
+            "description": {
+              "content": "Search counties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                "counties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8a212a7c-9782-4def-91dd-1bb5e4bc59d3",
+              "name": "Search counties.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "counties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"counties\": [\n    {\n      \"citiesCount\": 2622.3790025424078,\n      \"code\": \"string\",\n      \"companiesCount\": 1951.5223212611354,\n      \"id\": 5511.870198380043,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"usageCount\": 9040.059191559172,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\",\n      \"linkedinQuery\": \"string\",\n      \"nominatimCountryId\": 5978.15726674103,\n      \"nominatimStateId\": 7210.489046074352\n    },\n    {\n      \"citiesCount\": 5180.463047485779,\n      \"code\": \"string\",\n      \"companiesCount\": 5320.568953066055,\n      \"id\": 5242.265420514406,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"usageCount\": 3508.014324898129,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\",\n      \"linkedinQuery\": \"string\",\n      \"nominatimCountryId\": 5853.475518358291,\n      \"nominatimStateId\": 9786.962523088694\n    }\n  ],\n  \"meta\": {\n    \"cost\": 6743.733733832268,\n    \"credits\": 5009.152528168226,\n    \"currentPage\": 4020.4284659914792,\n    \"firstPage\": 7564.101081786823,\n    \"freeRequest\": false,\n    \"lastPage\": 8776.345056126242,\n    \"perPage\": 1746.9103002139884,\n    \"total\": 2252.0679872805104,\n    \"maxScrollResultsReached\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae87eb56-1d84-42ef-857d-65450c6754e2",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "counties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 427.8293025640448,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d977bb4-feb4-45ae-af26-707a631e8347",
+          "name": "search Countries",
+          "request": {
+            "name": "search Countries",
+            "description": {
+              "content": "Search countries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                "countries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb1daa3a-aaa6-4c58-82d4-1b875ad32b49",
+              "name": "Search countries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"countries\": [\n    {\n      \"citiesCount\": 7807.219110599107,\n      \"code\": \"string\",\n      \"companiesCount\": 8150.430958827604,\n      \"continent\": \"South America\",\n      \"continentCode\": \"sa\",\n      \"countiesCount\": 5638.039335064677,\n      \"id\": 6137.04723527036,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"nameEs\": \"string\",\n      \"nameFr\": \"string\",\n      \"nameNative\": \"string\",\n      \"population\": 4612.2579142304185,\n      \"statesCount\": 476.65281869186725,\n      \"usageCount\": 6277.592518748771,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\"\n    },\n    {\n      \"citiesCount\": 4803.8374566946195,\n      \"code\": \"string\",\n      \"companiesCount\": 5488.083957016916,\n      \"continent\": \"Asia\",\n      \"continentCode\": \"af\",\n      \"countiesCount\": 2645.0825220135944,\n      \"id\": 8697.81163090827,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"nameEs\": \"string\",\n      \"nameFr\": \"string\",\n      \"nameNative\": \"string\",\n      \"population\": 1253.4549414109185,\n      \"statesCount\": 6677.26208077216,\n      \"usageCount\": 2404.1806514997065,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"cost\": 2723.5014296879976,\n    \"credits\": 8284.166384931632,\n    \"currentPage\": 3420.79039776353,\n    \"firstPage\": 6561.355876971734,\n    \"freeRequest\": false,\n    \"lastPage\": 5899.332181197725,\n    \"perPage\": 1379.8901516320639,\n    \"total\": 7929.140059823007,\n    \"maxScrollResultsReached\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef19901-1a53-47b3-955a-99d13916337a",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "countries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 427.8293025640448,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3498c689-0fb4-4502-a2dd-da38cfee8303",
+          "name": "search States",
+          "request": {
+            "name": "search States",
+            "description": {
+              "content": "Search states.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                "states"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1028350a-1d18-460c-807f-351d6e39dcea",
+              "name": "Search states.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"cost\": 1603.7062975741278,\n    \"credits\": 1230.4684384435805,\n    \"currentPage\": 4096.57671816569,\n    \"firstPage\": 4380.570091258687,\n    \"freeRequest\": true,\n    \"lastPage\": 1293.520027755184,\n    \"perPage\": 9692.702659863971,\n    \"total\": 7498.0633332258685,\n    \"maxScrollResultsReached\": true\n  },\n  \"states\": [\n    {\n      \"citiesCount\": 1466.7951706837011,\n      \"code\": \"string\",\n      \"companiesCount\": 608.8639735440171,\n      \"countiesCount\": 8207.229464355833,\n      \"id\": 3606.5529798685457,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"usageCount\": 6447.615940222115,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\",\n      \"linkedinQuery\": \"string\",\n      \"nominatimCountryId\": 2243.4892827431017\n    },\n    {\n      \"citiesCount\": 2040.7306140189585,\n      \"code\": \"string\",\n      \"companiesCount\": 815.6754367496221,\n      \"countiesCount\": 6662.574699581513,\n      \"id\": 1370.183959524356,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"usageCount\": 3937.523597473639,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\",\n      \"linkedinQuery\": \"string\",\n      \"nominatimCountryId\": 8750.448839395027\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd16aaf4-228f-477a-b3c2-287e9af230cf",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "states"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 427.8293025640448,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d0ff050-0eda-4465-ba0e-2827f476d796",
+          "name": "search Continents",
+          "request": {
+            "name": "search Continents",
+            "description": {
+              "content": "Search continents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "locations",
+                "continents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortKey",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "11448a5d-de3d-4139-83d2-ee190c623931",
+              "name": "Search continents.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "continents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"continents\": [\n    {\n      \"citiesCount\": 7143.818016410654,\n      \"code\": \"af\",\n      \"companiesCount\": 6401.481176766059,\n      \"countiesCount\": 9406.8091584359,\n      \"countriesCount\": 9527.435871870699,\n      \"icon\": \"string\",\n      \"id\": 5289.734844895523,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"nameEs\": \"string\",\n      \"nameFr\": \"string\",\n      \"statesCount\": 452.6794007998336,\n      \"usageCount\": 7060.796927706622,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\"\n    },\n    {\n      \"citiesCount\": 7071.508927000901,\n      \"code\": \"eu\",\n      \"companiesCount\": 7569.523402964247,\n      \"countiesCount\": 4774.805423442732,\n      \"countriesCount\": 8893.029757981598,\n      \"icon\": \"string\",\n      \"id\": 211.54375326533193,\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"nameEs\": \"string\",\n      \"nameFr\": \"string\",\n      \"statesCount\": 5031.403054710368,\n      \"usageCount\": 7672.468049801987,\n      \"linkedinHeadline\": \"string\",\n      \"linkedinId\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"cost\": 6500.528639073296,\n    \"credits\": 893.5041911416564,\n    \"currentPage\": 233.14917068107178,\n    \"firstPage\": 8858.109096962178,\n    \"freeRequest\": false,\n    \"lastPage\": 9289.907446839488,\n    \"perPage\": 6928.528032881911,\n    \"total\": 7061.284568816913,\n    \"maxScrollResultsReached\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5792983f-9bab-47d2-a5e3-02e325f48e29",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "locations",
+                    "continents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 427.8293025640448,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ac376d89-0f12-4b6d-a825-d6a71b037f1d",
+    "name": "The Companies actions locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

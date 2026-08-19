@@ -1,0 +1,78 @@
+# The Companies API
+
+> A company data and enrichment platform with programmatic access to firmographic, technographic and web-intelligence data on 50M+ companies. One REST API, OpenAPI 3.1, everything under `https://api.thecompaniesapi.com/v2`. Authenticate with a permanent API token sent as `Authorization: Basic <token>`. Work is metered in credits, not requests: every response carries `meta.cost` (credits spent) and `meta.credits` (credits remaining).
+
+generated: 2026-08-14
+method: generated
+source: apis.yml + repo artifacts; the provider serves no /llms.txt (https://www.thecompaniesapi.com/llms.txt returned 404 on 2026-08-14)
+
+## Start here
+
+- [API reference](https://www.thecompaniesapi.com/api): the developer documentation index.
+- [Authentication](https://www.thecompaniesapi.com/api/authentication): API tokens are permanent and never expire. Send `Authorization: Basic MY-API-TOKEN`, or `?token=MY-API-TOKEN` for quick tests. The OpenAPI does not record the `Basic ` prefix — send it anyway or you get `401 missingApiSecret`.
+- [Errors](https://www.thecompaniesapi.com/api/errors): status codes and error classes.
+- [Rate limits](https://www.thecompaniesapi.com/api/rate-limits): 50 / 250 / 1,000 requests per second by plan; 429 on exhaustion; no rate-limit response headers are returned.
+- [Pricing](https://www.thecompaniesapi.com/pricing): credit-based plans; 500 free credits on signup, no card required.
+- [Status](https://status.thecompaniesapi.com/en/) and the machine-readable health check `GET /` (`fetchApiHealth`).
+
+## Machine-readable contract
+
+- [Live OpenAPI 3.1](https://api.thecompaniesapi.com/v2/openapi): served unauthenticated, 37 paths, 44 operations. Also reachable as the `fetchOpenApi` operation.
+- Per-resource specs in this repo: `openapi/thecompaniesapi-companies-api-openapi.yml`, `-lists-api-`, `-actions-api-`, `-analytics-api-`, `-industries-api-`, `-technologies-api-`, `-locations-api-`, `-job-titles-api-`, `-prompts-api-`, `-teams-api-`, `-users-api-`, `-utilities-api-openapi.yml`.
+- Postman and OpenCollection exports in `collections/`.
+
+## Core operations
+
+- `fetchCompany` — `GET /v2/companies/{domain}`. Enrich a company from its domain. 1 credit. `?simplified=true` returns a reduced profile for free. `?refresh=true` triggers a live crawl and AI enrichment for 10 extra credits. No company found returns an empty object and charges nothing.
+- `fetchCompanyByEmail` — `GET /v2/companies/by-email`. Resolve an email address to the company behind it.
+- `fetchCompanyBySocial` — `GET /v2/companies/by-social`. Resolve a social profile URL to a company.
+- `searchCompanies` — `GET /v2/companies` (and `searchCompaniesPost` for a body). Segment the database with an array of `{attribute, operator, sign, values}` conditions. Paged with `page` and `size`.
+- `searchCompaniesByPrompt` — `GET /v2/companies/by-prompt`. Describe the companies you want in plain language.
+- `searchCompaniesByName` — `GET /v2/companies/by-name`. Name search, suited to autocomplete.
+- `searchSimilarCompanies` — `GET /v2/companies/similar`. Lookalikes from one or more domains.
+- `countCompanies` — `GET /v2/companies/count`. Size a segment before paying to page it.
+- `askCompany` — `POST /v2/companies/{domain}/ask`. Ask a question about a company; 10 credits; use `fields` to fix the answer shape.
+- `fetchCompanyContext` — `GET /v2/companies/{domain}/context`. AI summary of what a company does.
+- `fetchCompanyEmailPatterns` — `GET /v2/companies/{domain}/email-patterns`.
+- `fetchCompaniesAnalytics` / `exportCompaniesAnalytics` — aggregate a segment or a list; export as CSV/JSON/XLS.
+- `fetchLists`, `createList`, `updateList`, `deleteList`, `fetchCompaniesInList`, `toggleCompaniesInList` — saved company lists, optionally dynamic.
+- `requestAction`, `fetchActions`, `retryAction` — the asynchronous job queue. Use it for bulk work instead of bursting synchronous calls; `requestAction` can estimate cost before committing credits.
+- `searchIndustries`, `searchIndustriesSimilar`, `searchTechnologies`, `enrichJobTitles`, `searchCities`, `searchStates`, `searchCounties`, `searchCountries`, `searchContinents` — reference data.
+- `fetchUser`, `fetchTeam`, `updateTeam` — account state; `Team.credits` is the balance.
+
+## Rules an agent should follow
+
+- Read `meta.credits` after every call. The binding quota is credits, not requests; exhaustion arrives as `403 noCreditsRemaining`, not `429`.
+- Call `countCompanies` before paging a large segment, and move anything bulk to `requestAction`.
+- Prefer `simplified=true` when you only need identity fields — it is free.
+- There is no idempotency key. A retried `POST /v2/actions` queues a second job and spends credits again.
+- There is no request-id header, so keep your own correlation.
+- Back off exponentially on 429; no `Retry-After` is sent.
+
+## Repo artifacts
+
+- `authentication/thecompaniesapi-authentication.yml` — auth profile.
+- `conventions/thecompaniesapi-conventions.yml` — pagination, credit metering, error envelope, tracing, rate-limit signalling.
+- `errors/thecompaniesapi-problem-types.yml` — the full error-code registry and the docs/spec envelope divergence.
+- `data-model/thecompaniesapi-data-model.yml` — entity graph.
+- `lifecycle/thecompaniesapi-lifecycle.yml` — versioning, status page, release cadence.
+- `changelog/thecompaniesapi-changelog.yml` — dated releases.
+- `packages/thecompaniesapi-packages.yml` — the five first-party SDKs and their published versions.
+- `asyncapi/thecompaniesapi-webhooks.yml` — the webhook surface and what is not published about it.
+- `plans/thecompaniesapi-plans-pricing.yml`, `rate-limits/thecompaniesapi-rate-limits.yml`, `finops/thecompaniesapi-finops.yml`.
+- `skills/` — packaged agent skills for the marquee flows.
+
+## Optional
+
+- [Changelog](https://updates.thecompaniesapi.com/changelog) — Featurebase releases board; latest entry 2025-06-06.
+- [Roadmap](https://updates.thecompaniesapi.com/roadmap) — public feature board.
+- [Use cases](https://www.thecompaniesapi.com/use-cases) — signup enrichment, company search, lead scoring, autocomplete.
+- [GitHub organisation](https://github.com/thecompaniesapi) — the five SDK repositories and an n8n node.
+- [Terms](https://www.thecompaniesapi.com/product/terms) · [Privacy](https://www.thecompaniesapi.com/product/privacy) · [FAQ](https://www.thecompaniesapi.com/product/faq)
+
+## Not published
+
+- No MCP server (on the roadmap, status "In Review").
+- No A2A agent card, no `/.well-known/` documents of any kind, no `security.txt`.
+- No AsyncAPI document; webhook event names and payloads are visible only inside the dashboard.
+- No sandbox or test environment, no CLI, no embeddable UI components, no public Postman workspace.

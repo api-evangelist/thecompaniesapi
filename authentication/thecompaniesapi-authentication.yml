@@ -1,19 +1,61 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/thecompaniesapi-openapi.yml
+generated: '2026-08-14'
+method: searched
+source: https://www.thecompaniesapi.com/api/authentication (docs) + openapi/thecompaniesapi-actions-api-openapi.yml,
+  openapi/thecompaniesapi-analytics-api-openapi.yml, openapi/thecompaniesapi-companies-api-openapi.yml,
+  openapi/thecompaniesapi-industries-api-openapi.yml, openapi/thecompaniesapi-job-titles-api-openapi.yml,
+  openapi/thecompaniesapi-lists-api-openapi.yml, openapi/thecompaniesapi-locations-api-openapi.yml, openapi/thecompaniesapi-prompts-api-openapi.yml,
+  openapi/thecompaniesapi-teams-api-openapi.yml, openapi/thecompaniesapi-technologies-api-openapi.yml,
+  openapi/thecompaniesapi-users-api-openapi.yml, openapi/thecompaniesapi-utilities-api-openapi.yml
 summary:
   types:
-  - http
+  - apiKey
+  api_key_in:
+  - header
 schemes:
 - name: apiKey
   type: apiKey
   in: header
-  headerName: Authorization
-  description: 'API token passed in the Authorization header. Create and manage
-    tokens on your API tokens page in the account settings. New accounts receive
-    500 free credits (no credit card required) to start. Modeled note: the OpenAPI
-    declares an apiKey scheme on the Authorization header; confirm whether a
-    "Bearer " prefix is required against the live docs.'
+  parameter: Authorization
+  description: API token passed in the Authorization header, value prefixed "Basic ". Tokens are permanent
+    and managed on the API tokens page in account settings.
   sources:
-  - openapi/thecompaniesapi-openapi.yml
-  - https://www.thecompaniesapi.com/api
+  - openapi/thecompaniesapi-actions-api-openapi.yml
+  - openapi/thecompaniesapi-analytics-api-openapi.yml
+  - openapi/thecompaniesapi-companies-api-openapi.yml
+  - openapi/thecompaniesapi-industries-api-openapi.yml
+  - openapi/thecompaniesapi-job-titles-api-openapi.yml
+  - openapi/thecompaniesapi-lists-api-openapi.yml
+  - openapi/thecompaniesapi-locations-api-openapi.yml
+  - openapi/thecompaniesapi-prompts-api-openapi.yml
+  - openapi/thecompaniesapi-teams-api-openapi.yml
+  - openapi/thecompaniesapi-technologies-api-openapi.yml
+  - openapi/thecompaniesapi-users-api-openapi.yml
+  - openapi/thecompaniesapi-utilities-api-openapi.yml
+  - https://www.thecompaniesapi.com/api/authentication
+  value_format: Basic <api-token>
+  docs: https://www.thecompaniesapi.com/api/authentication
+docs: https://www.thecompaniesapi.com/api/authentication
+note: 'The published OpenAPI declares only `apiKey in header: Authorization` with no value format. The
+  authentication documentation is explicit that the header value must be prefixed "Basic " — `Authorization:
+  Basic MY-API-TOKEN`. A client generated from the spec alone sends a bare token and receives 401 missingApiSecret.
+  Despite the keyword, this is NOT RFC 7617 HTTP Basic: the value is a raw token, not a base64 user:pass
+  pair. Tokens are documented as permanent and never expiring, managed on the API tokens page in account
+  settings. New accounts receive 500 free credits with no credit card.'
+token_lifetime: permanent — documented as never expiring
+alternatives:
+- name: token query parameter
+  in: query
+  parameter: token
+  example: https://api.thecompaniesapi.com/v2/companies/{domain}?token=MY-API-TOKEN
+  docs: https://www.thecompaniesapi.com/api/authentication
+  note: Documented as "mostly used to quickly test an endpoint". Not declared in the OpenAPI. Places the
+    credential in the URL where it lands in logs, referrers and browser history — an agent should use
+    the header.
+oauth2: false
+scopes: null
+scopes_note: No OAuth2 and no scope surface; a token carries full account privileges ("Your API tokens
+  carry many privileges, so keep them secure!").
+rotation:
+  documented: false
+  note: Tokens can be created and deleted from the settings page; no rotation policy, expiry or key-versioning
+    scheme is published.

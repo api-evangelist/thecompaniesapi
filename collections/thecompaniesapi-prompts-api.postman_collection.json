@@ -1,0 +1,975 @@
+{
+  "item": [
+    {
+      "id": "42a6c0e4-1a83-4f6b-9d18-29decd708b5f",
+      "name": "prompts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aabf4402-5b22-48d3-adcd-88128f7b50fd",
+          "name": "fetch Prompts",
+          "request": {
+            "name": "fetch Prompts",
+            "description": {
+              "content": "Fetch prompts history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "prompts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyId",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "feature",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "listId",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ea394be6-c989-4fcd-b716-ac1a75353044",
+              "name": "Fetch prompts history.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feature",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "listId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"cost\": 2629.7036508413817,\n    \"credits\": 1391.6715273967627,\n    \"currentPage\": 5269.569408855627,\n    \"firstPage\": 5493.70470097008,\n    \"freeRequest\": true,\n    \"lastPage\": 2333.5759440361903,\n    \"perPage\": 4327.928690162278,\n    \"total\": 2576.600122233512,\n    \"maxScrollResultsReached\": false\n  },\n  \"prompts\": [\n    {\n      \"context\": \"api\",\n      \"id\": 5431.9781611393855,\n      \"prompt\": \"string\",\n      \"promptKey\": \"string\",\n      \"companyId\": 8327.870936736144,\n      \"createdAt\": \"string\",\n      \"data\": {\n        \"all\": true,\n        \"count\": 688.9721852017639,\n        \"domains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"explain\": false,\n        \"fields\": [\n          {\n            \"key\": \"string\",\n            \"type\": \"string\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"type\": \"boolean\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"model\": \"large\",\n        \"names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"query\": [\n          {\n            \"attribute\": \"about.yearFounded\",\n            \"operator\": \"or\",\n            \"sign\": \"lower\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          },\n          {\n            \"attribute\": \"contacts\",\n            \"operator\": \"and\",\n            \"sign\": \"lower\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          }\n        ],\n        \"question\": \"string\",\n        \"segmentation\": false\n      },\n      \"feature\": \"cleanup\",\n      \"hits\": 5676.742761810328,\n      \"model\": \"small\",\n      \"response\": {\n        \"all\": false,\n        \"cost\": 1422.054706069955,\n        \"count\": 6019.92818064495,\n        \"domain\": \"string\",\n        \"error\": \"string\",\n        \"action\": {\n          \"promptId\": 1107.6979947100185,\n          \"status\": \"pending\",\n          \"type\": \"jobs:request\",\n          \"cost\": 2130.46157025911,\n          \"data\": {\n            \"answer\": {\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"output\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"explanation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fields\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"grounded\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"fields\": [\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"job\": \"ask-list\",\n            \"question\": \"string\",\n            \"domains\": [\n              \"string\",\n              \"string\"\n            ],\n            \"query\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"listId\": 9211.491755538567\n        },\n        \"answer\": {\n          \"output\": {\n            \"key_0\": {}\n          },\n          \"score\": 4160.507617347173,\n          \"explanation\": \"string\"\n        }\n      },\n      \"updatedAt\": \"string\"\n    },\n    {\n      \"context\": \"analytics\",\n      \"id\": 9549.097743096387,\n      \"prompt\": \"string\",\n      \"promptKey\": \"string\",\n      \"companyId\": 7198.878162079703,\n      \"createdAt\": \"string\",\n      \"data\": {\n        \"all\": true,\n        \"count\": 3706.381593503321,\n        \"domains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"explain\": true,\n        \"fields\": [\n          {\n            \"key\": \"string\",\n            \"type\": \"array|number\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"type\": \"array|boolean\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"model\": \"large\",\n        \"names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"query\": [\n          {\n            \"attribute\": \"domain.domain\",\n            \"operator\": \"or\",\n            \"sign\": \"equals\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": false\n          },\n          {\n            \"attribute\": \"socials\",\n            \"operator\": \"and\",\n            \"sign\": \"lower\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          }\n        ],\n        \"question\": \"string\",\n        \"segmentation\": false\n      },\n      \"feature\": \"ask\",\n      \"hits\": 7469.095362003294,\n      \"model\": \"large\",\n      \"response\": {\n        \"all\": false,\n        \"cost\": 8052.791726625309,\n        \"count\": 5052.409897153683,\n        \"domain\": \"string\",\n        \"error\": \"string\",\n        \"action\": {\n          \"promptId\": 9997.879214970355,\n          \"status\": \"pending\",\n          \"type\": \"jobs:request\",\n          \"cost\": 8977.089155203876,\n          \"data\": {\n            \"answer\": {\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"output\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"explanation\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fields\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"grounded\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"fields\": [\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"key\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"description\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"values\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"job\": \"ask-list\",\n            \"question\": \"string\",\n            \"domains\": [\n              \"string\",\n              \"string\"\n            ],\n            \"query\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"listId\": 633.1564366737385\n        },\n        \"answer\": {\n          \"output\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"score\": 9978.714032911172,\n          \"explanation\": \"string\"\n        }\n      },\n      \"updatedAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57f32ef3-95a5-43fd-9933-64e93f780da8",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feature",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "listId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"invalidApiSecret\",\n  \"status\": 421.85800489606197,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb009065-5011-4c10-873b-bfc028a6723e",
+          "name": "delete Prompt",
+          "request": {
+            "name": "delete Prompt",
+            "description": {
+              "content": "Delete a prompt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "prompts",
+                ":promptId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "promptId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb64e67d-f288-4d40-a096-1a1166fe5aca",
+              "name": "Delete a prompt.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    ":promptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "promptId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"context\": \"documentation\",\n  \"id\": 3832.95319151814,\n  \"prompt\": \"string\",\n  \"promptKey\": \"string\",\n  \"companyId\": 4446.873039832172,\n  \"createdAt\": \"string\",\n  \"data\": {\n    \"all\": true,\n    \"count\": 1282.8410646086706,\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"explain\": true,\n    \"fields\": [\n      {\n        \"key\": \"string\",\n        \"type\": \"array|number\",\n        \"description\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"key\": \"string\",\n        \"type\": \"array|number\",\n        \"description\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"model\": \"small\",\n    \"names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"query\": [\n      {\n        \"attribute\": \"about.yearFounded\",\n        \"operator\": \"or\",\n        \"sign\": \"exactEquals\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": false\n      },\n      {\n        \"attribute\": \"analytics.monthlyVisitors\",\n        \"operator\": \"or\",\n        \"sign\": \"lower\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": false\n      }\n    ],\n    \"question\": \"string\",\n    \"segmentation\": false\n  },\n  \"feature\": \"product\",\n  \"hits\": 2899.92285162892,\n  \"model\": \"small\",\n  \"response\": {\n    \"all\": false,\n    \"cost\": 7973.129198746099,\n    \"count\": 7074.676628596458,\n    \"domain\": \"string\",\n    \"error\": \"string\",\n    \"action\": {\n      \"promptId\": 7128.952126044174,\n      \"status\": \"pending\",\n      \"type\": \"jobs:request\",\n      \"cost\": 5732.685731317767,\n      \"data\": {\n        \"answer\": {\n          \"companyId\": 4984.788697526632,\n          \"output\": {\n            \"key_0\": {}\n          },\n          \"question\": \"string\",\n          \"score\": 5296.334476871148,\n          \"explanation\": \"string\",\n          \"fields\": [\n            {\n              \"key\": \"string\",\n              \"type\": \"array|string\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"string\",\n              \"type\": \"array|boolean\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            }\n          ],\n          \"grounded\": false\n        },\n        \"fields\": [\n          {\n            \"key\": \"string\",\n            \"type\": \"boolean\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"type\": \"number\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"job\": \"ask-list\",\n        \"question\": \"string\",\n        \"domains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"query\": [\n          {\n            \"attribute\": \"locations.headquarters.continent.code\",\n            \"operator\": \"and\",\n            \"sign\": \"lower\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          },\n          {\n            \"attribute\": \"about.industry\",\n            \"operator\": \"or\",\n            \"sign\": \"greater\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          }\n        ]\n      },\n      \"listId\": 4834.282033972481\n    },\n    \"answer\": {\n      \"output\": {\n        \"key_0\": {}\n      },\n      \"score\": 8917.384249461606,\n      \"explanation\": \"string\"\n    }\n  },\n  \"updatedAt\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7558b6f9-bc0e-43e4-a308-75a9eeb5c088",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    ":promptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "promptId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"promptNotFound\",\n  \"status\": 443.47614120866257,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e99b3c4b-0fb1-4da0-8138-aacb1ab32fcf",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    ":promptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "promptId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"invalidApiSecret\",\n  \"status\": 421.85800489606197,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2de06be-dbfa-48e0-b642-e22c125cbf36",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    ":promptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "promptId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userCurrentTeamIsNotInstanceOwner\",\n  \"status\": 444.12793012949277,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "239d0260-8f08-4928-8eb1-acc250a3881a",
+          "name": "product Prompt",
+          "request": {
+            "name": "product Prompt",
+            "description": {
+              "content": "Query the product prompt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "prompts",
+                "product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"companyId\": \"<number>\",\n  \"context\": \"<string>\",\n  \"feature\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "069d36be-fd72-4cc1-81b3-cf9450d91828",
+              "name": "Query the product prompt.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    "product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"companyId\": \"<number>\",\n  \"context\": \"<string>\",\n  \"feature\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"cost\": 4746.85545803234,\n    \"credits\": 3352.81714455252,\n    \"currentPage\": 5755.8851651883015,\n    \"firstPage\": 4527.383764027526,\n    \"freeRequest\": true,\n    \"lastPage\": 8987.961642833763,\n    \"perPage\": 9974.39123782426,\n    \"total\": 9217.597922860994,\n    \"maxScrollResultsReached\": true\n  },\n  \"prompt\": {\n    \"context\": \"list\",\n    \"id\": 9581.723301526847,\n    \"prompt\": \"string\",\n    \"promptKey\": \"string\",\n    \"companyId\": 361.94558395927555,\n    \"createdAt\": \"string\",\n    \"data\": {\n      \"all\": true,\n      \"count\": 91.13228845203159,\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"explain\": true,\n      \"fields\": [\n        {\n          \"key\": \"string\",\n          \"type\": \"number\",\n          \"description\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key\": \"string\",\n          \"type\": \"array|number\",\n          \"description\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"model\": \"small\",\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"query\": [\n        {\n          \"attribute\": \"about.industries\",\n          \"operator\": \"and\",\n          \"sign\": \"notEquals\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"blockedOperator\": true\n        },\n        {\n          \"attribute\": \"contacts\",\n          \"operator\": \"and\",\n          \"sign\": \"notEquals\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"blockedOperator\": true\n        }\n      ],\n      \"question\": \"string\",\n      \"segmentation\": false\n    },\n    \"feature\": \"enrich\",\n    \"hits\": 3525.5060315794053,\n    \"model\": \"small\",\n    \"response\": {\n      \"all\": true,\n      \"cost\": 6054.310141756496,\n      \"count\": 4061.9294226476563,\n      \"domain\": \"string\",\n      \"error\": \"string\",\n      \"action\": {\n        \"promptId\": 3022.3848491759786,\n        \"status\": \"pending\",\n        \"type\": \"jobs:request\",\n        \"cost\": 7344.170820026694,\n        \"data\": {\n          \"answer\": {\n            \"companyId\": 9516.222658811444,\n            \"output\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"question\": \"string\",\n            \"score\": 8141.516851726762,\n            \"explanation\": \"string\",\n            \"fields\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"grounded\": true\n          },\n          \"fields\": [\n            {\n              \"key\": \"string\",\n              \"type\": \"boolean\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"string\",\n              \"type\": \"array|number\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            }\n          ],\n          \"job\": \"ask-list\",\n          \"question\": \"string\",\n          \"domains\": [\n            \"string\",\n            \"string\"\n          ],\n          \"query\": [\n            {\n              \"attribute\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"operator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sign\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"blockedOperator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"attribute\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"operator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sign\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"blockedOperator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"listId\": 2152.5137316762243\n      },\n      \"answer\": {\n        \"output\": {\n          \"key_0\": {}\n        },\n        \"score\": 2176.934671947669,\n        \"explanation\": \"string\"\n      }\n    },\n    \"updatedAt\": \"string\"\n  },\n  \"response\": {\n    \"all\": false,\n    \"cost\": 1088.826681513435,\n    \"count\": 3305.633598650721,\n    \"domain\": \"string\",\n    \"error\": \"string\",\n    \"action\": {\n      \"promptId\": 2506.8360290950354,\n      \"status\": \"pending\",\n      \"type\": \"jobs:request\",\n      \"cost\": 1999.1730763222693,\n      \"data\": {\n        \"answer\": {\n          \"companyId\": 1593.990473089517,\n          \"output\": {\n            \"key_0\": {}\n          },\n          \"question\": \"string\",\n          \"score\": 6165.627083138014,\n          \"explanation\": \"string\",\n          \"fields\": [\n            {\n              \"key\": \"string\",\n              \"type\": \"boolean\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"string\",\n              \"type\": \"boolean\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            }\n          ],\n          \"grounded\": false\n        },\n        \"fields\": [\n          {\n            \"key\": \"string\",\n            \"type\": \"array|number\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"key\": \"string\",\n            \"type\": \"array|string\",\n            \"description\": \"string\",\n            \"values\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"job\": \"ask-list\",\n        \"question\": \"string\",\n        \"domains\": [\n          \"string\",\n          \"string\"\n        ],\n        \"query\": [\n          {\n            \"attribute\": \"about.totalEmployees\",\n            \"operator\": \"or\",\n            \"sign\": \"exactEquals\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          },\n          {\n            \"attribute\": \"technologies.active\",\n            \"operator\": \"and\",\n            \"sign\": \"notEquals\",\n            \"values\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"blockedOperator\": true\n          }\n        ]\n      },\n      \"listId\": 1680.657426381007\n    },\n    \"answer\": {\n      \"output\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      },\n      \"score\": 6268.901951919212,\n      \"explanation\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb43ccb1-7cf2-4d32-a8ed-46a230a5f4c4",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    "product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"companyId\": \"<number>\",\n  \"context\": \"<string>\",\n  \"feature\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"invalidApiSecret\",\n  \"status\": 421.85800489606197,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a351f2d8-5c4b-4019-9dec-207d5545c6d9",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    "product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"companyId\": \"<number>\",\n  \"context\": \"<string>\",\n  \"feature\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"noCreditsRemaining\",\n  \"status\": 414.1248468279853,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33a20276-4135-4131-8921-f73816c407df",
+          "name": "prompt To Segmentation",
+          "request": {
+            "name": "prompt To Segmentation",
+            "description": {
+              "content": "Convert a query to a segmentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "prompts",
+                "segmentation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"context\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cbdee8c-fd56-4c2a-b66c-d41173e89b20",
+              "name": "Convert a query to a segmentation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    "segmentation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"context\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"cost\": 4204.452195045697,\n    \"credits\": 8955.704957836635,\n    \"currentPage\": 3074.1041086559785,\n    \"firstPage\": 8751.071173808707,\n    \"freeRequest\": false,\n    \"lastPage\": 6797.442394409513,\n    \"perPage\": 9223.818826508941,\n    \"total\": 7117.467887439515,\n    \"maxScrollResultsReached\": false\n  },\n  \"prompt\": {\n    \"context\": \"api\",\n    \"id\": 3462.2630783544782,\n    \"prompt\": \"string\",\n    \"promptKey\": \"string\",\n    \"companyId\": 6086.468091212402,\n    \"createdAt\": \"string\",\n    \"data\": {\n      \"all\": false,\n      \"count\": 2757.0177917799,\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"explain\": false,\n      \"fields\": [\n        {\n          \"key\": \"string\",\n          \"type\": \"array|string\",\n          \"description\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key\": \"string\",\n          \"type\": \"array|boolean\",\n          \"description\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"model\": \"small\",\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"query\": [\n        {\n          \"attribute\": \"locations.headquarters.country.code\",\n          \"operator\": \"and\",\n          \"sign\": \"notEquals\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"blockedOperator\": false\n        },\n        {\n          \"attribute\": \"finances.stockExchange\",\n          \"operator\": \"or\",\n          \"sign\": \"equals\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"blockedOperator\": true\n        }\n      ],\n      \"question\": \"string\",\n      \"segmentation\": false\n    },\n    \"feature\": \"search\",\n    \"hits\": 4781.349679470306,\n    \"model\": \"large\",\n    \"response\": {\n      \"all\": true,\n      \"cost\": 5133.316011674178,\n      \"count\": 1548.1564204433207,\n      \"domain\": \"string\",\n      \"error\": \"string\",\n      \"action\": {\n        \"promptId\": 3276.7440685008573,\n        \"status\": \"pending\",\n        \"type\": \"jobs:request\",\n        \"cost\": 4636.304028643368,\n        \"data\": {\n          \"answer\": {\n            \"companyId\": 9185.337977885256,\n            \"output\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"question\": \"string\",\n            \"score\": 5324.043506123713,\n            \"explanation\": \"string\",\n            \"fields\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"grounded\": false\n          },\n          \"fields\": [\n            {\n              \"key\": \"string\",\n              \"type\": \"number\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"string\",\n              \"type\": \"array|string\",\n              \"description\": \"string\",\n              \"values\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            }\n          ],\n          \"job\": \"ask-list\",\n          \"question\": \"string\",\n          \"domains\": [\n            \"string\",\n            \"string\"\n          ],\n          \"query\": [\n            {\n              \"attribute\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"operator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sign\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"blockedOperator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"attribute\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"operator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sign\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"blockedOperator\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"listId\": 4722.719564308021\n      },\n      \"answer\": {\n        \"output\": {\n          \"key_0\": {}\n        },\n        \"score\": 4872.7989575371985,\n        \"explanation\": \"string\"\n      }\n    },\n    \"updatedAt\": \"string\"\n  },\n  \"response\": {\n    \"all\": true,\n    \"cost\": 5628.139516461704,\n    \"count\": 716.4596903661702,\n    \"domain\": \"string\",\n    \"error\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"listId\": 2187.632576668268,\n    \"query\": [\n      {\n        \"attribute\": \"codes.naics\",\n        \"operator\": \"and\",\n        \"sign\": \"lower\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": false\n      },\n      {\n        \"attribute\": \"meta.score\",\n        \"operator\": \"or\",\n        \"sign\": \"exactEquals\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdf09056-76a4-4aa7-84ea-16a68c12702e",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "prompts",
+                    "segmentation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prompt\": \"<string>\",\n  \"context\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"model\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"invalidApiSecret\",\n  \"status\": 421.85800489606197,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3cc80623-80cc-4852-89c2-0ec206adfd79",
+    "name": "The Companies actions prompts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+generated: '2026-08-14'
+method: probed
+source: live HTTPS GET of each /.well-known/ path on every host in apis.yml and the OpenAPI servers[]
+note: >-
+  Every /.well-known/ path probed on both hosts returned 404. The Companies API serves no
+  discovery surface at /.well-known/ — no security.txt, no OIDC/OAuth metadata (the API is
+  authenticated with a permanent API token, not OAuth), no api-catalog, no ai-plugin.json and
+  no A2A agent card. This file records a measured ABSENCE. No WellKnown, SecurityTxt or
+  AgentCard pointer is wired in apis.yml, because none of these documents is served.
+  Note the two hosts fail differently: www.thecompaniesapi.com (Nuxt) returns a JSON 404
+  envelope, api.thecompaniesapi.com returns an HTML "Cannot GET" 404 — neither is a document.
+hosts:
+- host: https://www.thecompaniesapi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.thecompaniesapi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+adjacent_discovery:
+  note: >-
+    The provider does publish a machine-readable contract, just not under /.well-known/.
+    The live OpenAPI 3.1 document is served unauthenticated at the path below and is also
+    documented as an API operation (fetchOpenApi).
+  documents:
+  - path: /v2/openapi
+    host: https://api.thecompaniesapi.com
+    status: 200
+    content_type: application/json
+    kind: OpenAPI 3.1.0
+  - path: /robots.txt
+    host: https://www.thecompaniesapi.com
+    status: 200
+    kind: robots.txt
+  - path: /sitemap.xml
+    host: https://www.thecompaniesapi.com
+    status: 200
+    kind: sitemap index

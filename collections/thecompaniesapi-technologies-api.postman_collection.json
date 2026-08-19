@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "95798026-7578-4b8b-883b-062f0fb1f7ea",
+      "name": "technologies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82ac89bf-b7d0-49da-920f-005243f63334",
+          "name": "search Technologies",
+          "request": {
+            "name": "search Technologies",
+            "description": {
+              "content": "Search technologies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "technologies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35f5ae6b-e35c-4345-9fe1-d7a86d6f7922",
+              "name": "Search technologies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "technologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"cost\": 4438.819464563371,\n    \"credits\": 5749.537463471601,\n    \"currentPage\": 1422.5232719711878,\n    \"firstPage\": 5465.796733703381,\n    \"freeRequest\": true,\n    \"lastPage\": 5818.525329144565,\n    \"perPage\": 751.4772577023155,\n    \"total\": 2744.164680432157,\n    \"maxScrollResultsReached\": false\n  },\n  \"technologies\": [\n    {\n      \"companiesCount\": 7502.200663888488,\n      \"editor\": \"string\",\n      \"free\": true,\n      \"id\": 5410.238990727095,\n      \"name\": \"string\",\n      \"nameSynonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"paid\": true,\n      \"slug\": \"string\",\n      \"updatedAt\": \"string\",\n      \"usageCount\": 9485.708829509926,\n      \"websiteUrl\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"string\"\n    },\n    {\n      \"companiesCount\": 1709.3982540213538,\n      \"editor\": \"string\",\n      \"free\": true,\n      \"id\": 8796.727274124005,\n      \"name\": \"string\",\n      \"nameSynonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"paid\": true,\n      \"slug\": \"string\",\n      \"updatedAt\": \"string\",\n      \"usageCount\": 8715.381015899779,\n      \"websiteUrl\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ad8bb5e-8e4b-4954-90ec-5bd52dae9391",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "technologies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"missingApiSecret\",\n  \"status\": 480.86462417710095,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e6216274-6d92-4a15-916c-eb90c0aa50d5",
+    "name": "The Companies actions technologies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,445 @@
+{
+  "item": [
+    {
+      "id": "518cad53-b2dd-4604-b58d-7f968cc2e0f2",
+      "name": "analytics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2473e6db-9987-4d29-bfa5-aadb266873fd",
+          "name": "fetch Companies Analytics",
+          "request": {
+            "name": "fetch Companies Analytics",
+            "description": {
+              "content": "Fetch analytics data for search segmentations and lists.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "companies",
+                "analytics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "actionId",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "attribute",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "listId",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "{\"attribute\":\"<string>\",\"operator\":\"<string>\",\"sign\":\"<string>\",\"values\":[\"<string>\",\"<string>\"],\"blockedOperator\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "{\"attribute\":\"<string>\",\"operator\":\"<string>\",\"sign\":\"<string>\",\"values\":[\"<string>\",\"<string>\"],\"blockedOperator\":\"<boolean>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "729b5fee-559f-4a8c-868d-a8bf1a0bdc41",
+              "name": "Fetch analytics data for search segmentations and lists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "companies",
+                    "analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "actionId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "attribute",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "query",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"count\": 3034.0928073813443,\n      \"name\": \"string\",\n      \"percentageOfAll\": 5207.299037008564,\n      \"percentageOfTotal\": 9104.50472302783\n    },\n    {\n      \"count\": 7013.449565497763,\n      \"name\": \"string\",\n      \"percentageOfAll\": 3857.4829434823087,\n      \"percentageOfTotal\": 7705.450307811501\n    }\n  ],\n  \"meta\": {\n    \"query\": [\n      {\n        \"attribute\": \"locations.headquarters.state.code\",\n        \"operator\": \"and\",\n        \"sign\": \"equals\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": true\n      },\n      {\n        \"attribute\": \"finances.revenue\",\n        \"operator\": \"and\",\n        \"sign\": \"greater\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": true\n      }\n    ],\n    \"totalDatapoints\": 3941.4103803376456,\n    \"totalDocuments\": 1178.2153785869475,\n    \"totalValues\": 5160.333469798028,\n    \"listId\": 8210.412823705125\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5d3bae9-0dc3-4199-b24d-2fc6530c8ee0",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "companies",
+                    "analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "actionId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "attribute",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "query",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 447.55194098805106,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd0e0a90-20a9-44a9-813d-d461e92eb072",
+          "name": "export Companies Analytics",
+          "request": {
+            "name": "export Companies Analytics",
+            "description": {
+              "content": "Export analytics data for search segmentations and lists.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "companies",
+                "analytics",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actionId\": \"<number>\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"format\": \"<string>\",\n  \"full\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"query\": [\n    {\n      \"attribute\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"sign\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"blockedOperator\": \"<boolean>\"\n    },\n    {\n      \"attribute\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"sign\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"blockedOperator\": \"<boolean>\"\n    }\n  ],\n  \"size\": \"<number>\",\n  \"sort\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28e5e9ab-83b5-4dca-8160-e69738ccfd38",
+              "name": "Export analytics data for search segmentations and lists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "companies",
+                    "analytics",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actionId\": \"<number>\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"format\": \"<string>\",\n  \"full\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"query\": [\n    {\n      \"attribute\": \"about.industry\",\n      \"operator\": \"or\",\n      \"sign\": \"greater\",\n      \"values\": [\n        \"string\",\n        \"string\"\n      ],\n      \"blockedOperator\": false\n    },\n    {\n      \"attribute\": \"codes.naics\",\n      \"operator\": \"and\",\n      \"sign\": \"notEquals\",\n      \"values\": [\n        \"string\",\n        \"string\"\n      ],\n      \"blockedOperator\": true\n    }\n  ],\n  \"size\": \"<number>\",\n  \"sort\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"count\": 3034.0928073813443,\n      \"name\": \"string\",\n      \"percentageOfAll\": 5207.299037008564,\n      \"percentageOfTotal\": 9104.50472302783\n    },\n    {\n      \"count\": 7013.449565497763,\n      \"name\": \"string\",\n      \"percentageOfAll\": 3857.4829434823087,\n      \"percentageOfTotal\": 7705.450307811501\n    }\n  ],\n  \"meta\": {\n    \"query\": [\n      {\n        \"attribute\": \"locations.headquarters.state.code\",\n        \"operator\": \"and\",\n        \"sign\": \"equals\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": true\n      },\n      {\n        \"attribute\": \"finances.revenue\",\n        \"operator\": \"and\",\n        \"sign\": \"greater\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"blockedOperator\": true\n      }\n    ],\n    \"totalDatapoints\": 3941.4103803376456,\n    \"totalDocuments\": 1178.2153785869475,\n    \"totalValues\": 5160.333469798028,\n    \"listId\": 8210.412823705125\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "698c78f7-5f1e-436a-a875-88d871f3f420",
+              "name": "The error message",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "companies",
+                    "analytics",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actionId\": \"<number>\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"format\": \"<string>\",\n  \"full\": \"<boolean>\",\n  \"listId\": \"<number>\",\n  \"query\": [\n    {\n      \"attribute\": \"about.industry\",\n      \"operator\": \"or\",\n      \"sign\": \"greater\",\n      \"values\": [\n        \"string\",\n        \"string\"\n      ],\n      \"blockedOperator\": false\n    },\n    {\n      \"attribute\": \"codes.naics\",\n      \"operator\": \"and\",\n      \"sign\": \"notEquals\",\n      \"values\": [\n        \"string\",\n        \"string\"\n      ],\n      \"blockedOperator\": true\n    }\n  ],\n  \"size\": \"<number>\",\n  \"sort\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": \"userNotAuthenticated\",\n  \"status\": 447.55194098805106,\n  \"details\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thecompaniesapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f4de79f-d219-4b4c-86b8-7525328d605b",
+    "name": "The Companies actions analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "An enrichment platform to search and retrieve information about companies\n\nContact Support:\n Name: The Companies API\n Email: support@thecompaniesapi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,698 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "The actions companies API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "searchCompanies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies",
+            "params": [
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "domainsToExclude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "linkedinToExclude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search companies using a segmentation query."
+        },
+        {
+          "info": {
+            "name": "searchCompaniesPost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search companies using a segmentation query."
+        },
+        {
+          "info": {
+            "name": "fetchCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single company data by its domain."
+        },
+        {
+          "info": {
+            "name": "searchCompaniesByName",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/by-name",
+            "params": [
+              {
+                "name": "countries",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exactWordsMatch",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listsToExclude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search companies by name."
+        },
+        {
+          "info": {
+            "name": "searchCompaniesByPrompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/by-prompt",
+            "params": [
+              {
+                "name": "listsToExclude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "similarity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search companies by prompt."
+        },
+        {
+          "info": {
+            "name": "searchSimilarCompanies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/similar",
+            "params": [
+              {
+                "name": "domains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "proximityExact",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "proximityTerm",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get similar companies from one or many domains."
+        },
+        {
+          "info": {
+            "name": "countCompanies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/count",
+            "params": [
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchFields",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the count of companies using a segmentation query."
+        },
+        {
+          "info": {
+            "name": "countCompaniesPost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/companies/count",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the count of companies using a segmentation body."
+        },
+        {
+          "info": {
+            "name": "fetchCompanyByEmail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/by-email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a company data by email."
+        },
+        {
+          "info": {
+            "name": "fetchCompanyBySocial",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/by-social",
+            "params": [
+              {
+                "name": "angellist",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dribbble",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "facebook",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "github",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "instagram",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "linkedin",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pinterest",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "simplified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "snapchat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "souncloud",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tiktok",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "twitter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wellfound",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "youtube",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a company data by social media."
+        },
+        {
+          "info": {
+            "name": "fetchCompanyEmailPatterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain/email-patterns",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "emailsCount",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "precision",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get email patterns for a company by its domain."
+        },
+        {
+          "info": {
+            "name": "askCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain/ask",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ask a question about a company by its domain."
+        },
+        {
+          "info": {
+            "name": "fetchCompanyContext",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/:domain/context",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the full context of a company by its domain."
+        },
+        {
+          "info": {
+            "name": "fetchCompaniesAnalytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thecompaniesapi.com/v2/companies/analytics",
+            "params": [
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "attribute",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch analytics data for search segmentations and lists."
+        },
+        {
+          "info": {
+            "name": "exportCompaniesAnalytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.thecompaniesapi.com/v2/companies/analytics/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export analytics data for search segmentations and lists."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

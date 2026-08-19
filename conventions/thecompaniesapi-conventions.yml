@@ -1,0 +1,153 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://www.thecompaniesapi.com/api/authentication, /api/errors, /api/rate-limits,
+  /api/webhooks, /api/enrich-company-from-domain, and openapi/_original/thecompaniesapi-openapi.yml
+summary: >-
+  A single-version REST API under /v2 on one production host, authenticated with a permanent
+  API token, metered in credits rather than requests, paginated with page/size and a rich meta
+  envelope that reports the credit cost of the call itself. Long-running work is pushed to an
+  asynchronous Actions queue and results can be delivered by webhook. There is no idempotency
+  contract, no request-id header, no field-expansion syntax and no rate-limit response headers.
+authentication:
+  style: api-key
+  header: Authorization
+  format: 'Basic <api-token>'
+  query_parameter: token
+  query_parameter_note: >-
+    ?token=<api-token> is documented as an alternative, "mostly used to quickly test an
+    endpoint". It puts the credential in the URL, so it will land in logs, referrers and
+    browser history — an agent should prefer the header.
+  expiry: none
+  docs: https://www.thecompaniesapi.com/api/authentication
+  spec_divergence: >-
+    The OpenAPI declares the scheme as apiKey in header "Authorization" with no format hint.
+    The docs are explicit that the value must be prefixed "Basic ". A client generated from
+    the spec alone will send a bare token and receive 401 missingApiSecret.
+  artifact: authentication/thecompaniesapi-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No idempotency key header or parameter appears anywhere in the 44-operation OpenAPI, and
+    the docs never document one. The ONLY mention of idempotency in the entire published
+    surface is the 409 row of the HTTP status table on /api/errors — "The request conflicts
+    with another request (perhaps due to using the same idempotent key)" — which reads as
+    boilerplate: 409 is not declared on a single operation in the spec.
+  natural_idempotence:
+  - operation: toggleCompaniesInList
+    note: >-
+      The pricing FAQ states a company cannot be added twice to a list it already belongs to
+      and saving the same company twice does not cost a second credit — a resource-level
+      dedupe, not a request-level idempotency contract.
+  note: >-
+    No `Idempotency` pointer is wired in apis.yml. Writes here are list mutations, team
+    updates and queued actions; a retried POST /v2/actions will queue a second action and
+    spend credits again.
+pagination:
+  style: page-number
+  request_params:
+  - name: page
+    in: query
+    type: number
+  - name: size
+    in: query
+    type: number
+  response_envelope: meta
+  response_fields:
+  - currentPage
+  - firstPage
+  - lastPage
+  - perPage
+  - total
+  - maxScrollResultsReached
+  cursor: false
+  note: >-
+    Collection responses return {items…, meta, query}. maxScrollResultsReached signals that
+    deep paging has hit a ceiling, which is the documented reason to move a large read to the
+    Actions queue or the analytics export instead.
+  source: components.schemas.PaginationMeta
+metering:
+  unit: credits
+  in_response: true
+  response_fields:
+  - name: meta.cost
+    meaning: credits this call consumed
+  - name: meta.credits
+    meaning: credits remaining on the account after the call
+  - name: meta.freeRequest
+    meaning: true when the call was served free of charge
+  documented_costs:
+  - operation: fetchCompany
+    cost: 1 credit per request
+  - operation: fetchCompany
+    modifier: refresh=true
+    cost: +10 credits (triggers a live crawl and AI enrichment)
+  - operation: fetchCompany
+    modifier: simplified=true
+    cost: 0 credits (returns a reduced profile)
+  - operation: askCompany
+    cost: 10 credits
+  - operation: fetchCompaniesAnalytics
+    cost: documented as free
+  free_paths:
+  - No company found on fetchCompany returns an empty object and charges nothing.
+  - simplified=true returns a free reduced profile.
+  note: >-
+    Credit metering is the real quota contract of this API — the per-second rate limit only
+    shapes burst. An agent must read meta.credits, not just HTTP status, to know it can keep
+    going; exhaustion surfaces as 403 noCreditsRemaining, not 429.
+  artifact: finops/thecompaniesapi-finops.yml
+field_selection:
+  expansion: false
+  sparse_fields: false
+  partial:
+  - name: simplified
+    applies_to: [fetchCompany, fetchCompanyByEmail, fetchCompanyBySocial]
+    note: Boolean toggle to a reduced free profile; not a general field-selection syntax.
+  - name: fields
+    applies_to: [askCompany]
+    note: Defines the shape of the AI answer, not a projection of the company record.
+  - name: searchFields / sortFields / sortKey / sortOrder
+    applies_to: [searchCompanies, searchCompaniesPost, fetchCompaniesInList]
+    note: Control which attributes are searched and sorted, not which are returned.
+request_tracing:
+  request_id_header: none
+  note: >-
+    No X-Request-Id, correlation id or trace header is documented or returned. There is no
+    published way for a caller to quote a specific failed request back to support beyond the
+    error body.
+versioning:
+  style: uri-path
+  current: v2
+  artifact: lifecycle/thecompaniesapi-lifecycle.yml
+error_envelope:
+  spec_shape: '{messages: <enum string>, status: <number>, details: <any>}'
+  docs_shape: '{error: {code, message, type}}'
+  rfc9457: false
+  divergence: true
+  artifact: errors/thecompaniesapi-problem-types.yml
+rate_limit_signaling:
+  response_headers: none
+  documented_headers: []
+  exhaustion_status: 429
+  retry_after: not documented
+  note: >-
+    Limits are published per plan (50 / 250 / 1,000 RPS) but the API returns no
+    X-RateLimit-*, RateLimit-* or Retry-After header that a client could read. The docs say
+    only "retry after a short delay" and recommend exponential backoff, so an agent has to
+    guess its own budget.
+  artifact: rate-limits/thecompaniesapi-rate-limits.yml
+asynchrony:
+  queue: Actions
+  submit: POST /v2/actions (requestAction)
+  poll: GET /v2/actions (fetchActions)
+  retry: POST /v2/actions/{actionId}/retry (retryAction)
+  estimate: requestAction is documented as "request or estimate a new action", so cost can be estimated before committing credits.
+  delivery: webhook (see asyncapi/thecompaniesapi-webhooks.yml) or polling
+  note: The intended path for bulk enrichment and export rather than bursting synchronous calls.
+content:
+  request: application/json
+  response: application/json
+  export_formats: [CSV, JSON, XLS]
+  export_operation: exportCompaniesAnalytics

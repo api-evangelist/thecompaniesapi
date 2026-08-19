@@ -1,0 +1,192 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/_original/thecompaniesapi-openapi.yml (components.schemas, 21 schemas; live copy https://api.thecompaniesapi.com/v2/openapi)
+note: >-
+  Entity graph derived from the published OpenAPI $ref links and id-reference fields. Two
+  distinct domains sit in one specification: a REFERENCE domain (companies, industries,
+  technologies, locations, job titles) that is read-only global data the provider curates,
+  and an ACCOUNT domain (user, team, list, action, prompt) that is per-tenant state the caller
+  mutates. Identifiers are numeric integers except Company, which is keyed by domain name in
+  every path — the domain IS the primary key an integrator uses, and CompanyV2.id is a string.
+  There is no key-prefix convention (no cus_/acct_-style prefixes).
+identifiers:
+  style: numeric-integer
+  exceptions:
+  - entity: Company
+    key: domain
+    note: >-
+      Every company path is /v2/companies/{domain}; the API is addressed by domain name, and
+      by email or social URL through dedicated resolve operations. CompanyV2.id is a string.
+  - entity: Team
+    key: id (number), but Team.teamId appears as a string on List
+    note: Type inconsistency recorded as found — List.teamId is ['string','null'] while Team.id is number.
+domains:
+- name: reference
+  description: Read-only global data curated by the provider; searchable, not mutable.
+  entities: [Company, Industry, Technology, JobTitle, City, County, State, Country, Continent, EmailPattern]
+- name: account
+  description: Per-tenant state owned by the caller's team.
+  entities: [User, Team, List, ListAnalytics, Action, Prompt]
+- name: query
+  description: Shared query and response vocabulary.
+  entities: [SegmentationCondition, PaginationMeta, LLMAnswer]
+entities:
+- name: CompanyV2
+  key: domain
+  description: The company profile — the central record of the API, with 80+ datapoints grouped into 21 top-level objects.
+  groups: [about, analytics, apps, assets, codes, companies, contacts, contents, descriptions, domain, finances, locations, meta, people, secondaries, socials, technologies, urls, vectors, action]
+  operations: [fetchCompany, fetchCompanyByEmail, fetchCompanyBySocial, searchCompanies, searchCompaniesPost, searchCompaniesByName, searchCompaniesByPrompt, searchSimilarCompanies, countCompanies, countCompaniesPost, askCompany, fetchCompanyContext, fetchCompanyEmailPatterns]
+- name: List
+  key: id
+  description: A saved, optionally dynamic, collection of companies owned by a team.
+  operations: [fetchLists, createList, updateList, deleteList, fetchCompaniesInList, fetchCompaniesInListPost, fetchCompanyInList, toggleCompaniesInList]
+- name: ListAnalytics
+  key: id
+  description: Aggregate counts attached to a list.
+- name: Action
+  key: id
+  description: An asynchronous job (bulk enrichment, export) with status, attempts, cost and result.
+  operations: [requestAction, fetchActions, retryAction]
+- name: Prompt
+  key: id
+  description: A stored natural-language prompt and its AI response, reusable across searches.
+  operations: [fetchPrompts, promptToSegmentation, productPrompt, deletePrompt]
+- name: Team
+  key: id
+  description: The billing tenant — carries the credit balance, credit pack and Stripe subscription state.
+  operations: [fetchTeam, updateTeam]
+- name: User
+  key: id
+  description: The authenticated person, bound to a current team.
+  operations: [fetchUser]
+- name: Technology
+  key: id
+  description: Reference record for a detected technology, with company and usage counts.
+  operations: [searchTechnologies]
+- name: JobTitle
+  key: name
+  description: Normalised job title with department and seniority classification.
+  operations: [enrichJobTitles]
+- name: EmailPattern
+  key: id
+  description: An observed email address pattern for a company, with a usage percentage.
+  operations: [fetchCompanyEmailPatterns]
+- name: NominatimCity
+  key: id
+  description: City reference record (Nominatim-derived).
+  operations: [searchCities]
+- name: NominatimCounty
+  key: id
+  operations: [searchCounties]
+- name: NominatimState
+  key: id
+  operations: [searchStates]
+- name: NominatimCountry
+  key: id
+  operations: [searchCountries]
+- name: NominatimContinent
+  key: id
+  operations: [searchContinents]
+- name: SegmentationCondition
+  key: null
+  description: One filter clause — {attribute, operator, sign, values}. The query language of the whole search surface.
+- name: PaginationMeta
+  key: null
+  description: Shared collection envelope carrying paging plus the credit cost and remaining balance of the call.
+- name: LLMAnswer
+  key: null
+  description: Structured AI answer — {companyId, question, output, score, explanation, grounded, fields}.
+- name: PageContentsPage
+  key: null
+  description: Crawled page content used by the AI context operations.
+- name: PageContentsLink
+  key: null
+- name: PageContentsIdeated
+  key: null
+relationships:
+- from: List
+  to: ListAnalytics
+  type: has_one
+  via: analytics
+  evidence: $ref components.schemas.ListAnalytics
+- from: List
+  to: SegmentationCondition
+  type: has_many
+  via: query
+  evidence: array of $ref components.schemas.SegmentationCondition
+- from: List
+  to: Action
+  type: has_many
+  via: unseenActions
+  evidence: array of $ref components.schemas.Action
+- from: List
+  to: Team
+  type: belongs_to
+  via: teamId
+- from: List
+  to: User
+  type: belongs_to
+  via: userId
+- from: List
+  to: CompanyV2
+  type: has_many
+  via: /v2/lists/{listId}/companies
+  evidence: fetchCompaniesInList, fetchCompanyInList, toggleCompaniesInList
+- from: ListAnalytics
+  to: List
+  type: belongs_to
+  via: listId
+- from: Action
+  to: List
+  type: belongs_to
+  via: listId
+- from: Action
+  to: Prompt
+  type: belongs_to
+  via: promptId
+- from: Action
+  to: Team
+  type: belongs_to
+  via: teamId
+- from: Prompt
+  to: CompanyV2
+  type: belongs_to
+  via: companyId
+- from: LLMAnswer
+  to: CompanyV2
+  type: belongs_to
+  via: companyId
+- from: User
+  to: Team
+  type: belongs_to
+  via: currentTeamId
+- from: CompanyV2
+  to: Action
+  type: has_one
+  via: action
+  evidence: CompanyV2.action carries the in-flight enrichment job for the profile
+- from: CompanyV2
+  to: EmailPattern
+  type: has_many
+  via: /v2/companies/{domain}/email-patterns
+- from: CompanyV2
+  to: Technology
+  type: has_many
+  via: technologies
+  evidence: CompanyV2.technologies group; searchable through the technologies reference API
+- from: CompanyV2
+  to: CompanyV2
+  type: has_many
+  via: companies
+  evidence: parent/subsidiary and similar-company links (searchSimilarCompanies)
+- from: searchCompanies
+  to: SegmentationCondition
+  type: has_many
+  via: query
+  evidence: request and response both carry the segmentation array
+- from: collection responses
+  to: PaginationMeta
+  type: has_one
+  via: meta
+  evidence: shared across every paged operation
+render: null

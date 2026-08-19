@@ -1,0 +1,148 @@
+generated: '2026-08-14'
+method: derived
+status: candidate
+source: openapi/_original/thecompaniesapi-openapi.yml (live copy https://api.thecompaniesapi.com/v2/openapi)
+summary: >-
+  The Companies API ships NO Model Context Protocol server. MCP is an open, unshipped item on
+  the provider's own public roadmap — https://updates.thecompaniesapi.com/p/model-context-protocol-mcp-integration
+  is a Featurebase post on the "Features & Integrations" board with Status "In Review", one
+  upvoter, authored by Julien Le Coupanec. Every plausible endpoint was probed and none exists.
+  The tools[] below are a CANDIDATE surface DERIVED from the published OpenAPI operations —
+  what an MCP server for this API could expose, not something the provider operates. For that
+  reason NO `type: MCPServer` pointer is wired into apis.yml: wiring one would credit the
+  provider with an agent surface it does not run.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+search_result:
+  official_hosted_server: none
+  provider_signal: >-
+    Roadmap item "Model Context Protocol (MCP) Integration", status "In Review", dated
+    over a year ago. No shipped release entry mentions MCP in the dated changelog at
+    https://updates.thecompaniesapi.com/changelog (most recent release 2025-06-06).
+  probes:
+  - url: https://api.thecompaniesapi.com/mcp
+    method: POST tools/list
+    status: 404
+  - url: https://www.thecompaniesapi.com/mcp
+    method: POST tools/list
+    status: 404
+  - url: https://mcp.thecompaniesapi.com/mcp
+    method: POST tools/list
+    status: 0
+    note: host does not resolve
+  registries_checked:
+  - npm (@thecompaniesapi scope, @modelcontextprotocol scope)
+  - PyPI
+  - github.com/thecompaniesapi (7 public repos, none MCP-related)
+  note: >-
+    The TypeScript SDK package @thecompaniesapi/sdk carries "mcp" in its npm keywords, but the
+    published package contains no MCP server, no bin entry and no MCP dependency — it is a
+    plain openapi-fetch client. The keyword is aspirational, not a shipped surface.
+server:
+  name: thecompaniesapi
+  transport: null
+  url: null
+auth:
+  type: apiKey
+  header: Authorization
+  format: 'Basic <api-token>'
+  alternative: '?token=<api-token> query parameter'
+tools:
+- name: enrich_company_from_domain
+  description: Enrich a company profile from its domain name.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#fetchCompany
+- name: enrich_company_from_email
+  description: Resolve an email address to the company profile behind it.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#fetchCompanyByEmail
+- name: enrich_company_from_social
+  description: Resolve a social network profile URL to a company profile.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#fetchCompanyBySocial
+- name: search_companies
+  description: Search and segment companies with a structured segmentation query.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#searchCompanies
+- name: search_companies_by_prompt
+  description: Search companies from a natural-language description.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#searchCompaniesByPrompt
+- name: search_companies_by_name
+  description: Search companies by company name.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#searchCompaniesByName
+- name: search_similar_companies
+  description: Find companies similar to one or more domains.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#searchSimilarCompanies
+- name: count_companies
+  description: Count the companies matching a segmentation query.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#countCompanies
+- name: ask_company
+  description: Ask a natural-language question about a company and get a structured answer.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#askCompany
+- name: fetch_company_context
+  description: Fetch the AI-generated context summary for a company.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#fetchCompanyContext
+- name: fetch_company_email_patterns
+  description: Fetch the observed email address patterns for a company.
+  source_operation: openapi/thecompaniesapi-companies-api-openapi.yml#fetchCompanyEmailPatterns
+- name: fetch_companies_analytics
+  description: Fetch aggregated analytics for a search segmentation or a saved list.
+  source_operation: openapi/thecompaniesapi-analytics-api-openapi.yml#fetchCompaniesAnalytics
+- name: export_companies_analytics
+  description: Export analytics for a segmentation or list.
+  source_operation: openapi/thecompaniesapi-analytics-api-openapi.yml#exportCompaniesAnalytics
+- name: search_industries
+  description: Search the industry reference data.
+  source_operation: openapi/thecompaniesapi-industries-api-openapi.yml#searchIndustries
+- name: search_similar_industries
+  description: Find industries similar to one or more industries.
+  source_operation: openapi/thecompaniesapi-industries-api-openapi.yml#searchIndustriesSimilar
+- name: search_technologies
+  description: Search the technology reference data.
+  source_operation: openapi/thecompaniesapi-technologies-api-openapi.yml#searchTechnologies
+- name: enrich_job_titles
+  description: Normalise and enrich a job title into department and seniority.
+  source_operation: openapi/thecompaniesapi-job-titles-api-openapi.yml#enrichJobTitles
+- name: search_cities
+  description: Search the city reference data.
+  source_operation: openapi/thecompaniesapi-locations-api-openapi.yml#searchCities
+- name: search_countries
+  description: Search the country reference data.
+  source_operation: openapi/thecompaniesapi-locations-api-openapi.yml#searchCountries
+- name: search_states
+  description: Search the state reference data.
+  source_operation: openapi/thecompaniesapi-locations-api-openapi.yml#searchStates
+- name: search_counties
+  description: Search the county reference data.
+  source_operation: openapi/thecompaniesapi-locations-api-openapi.yml#searchCounties
+- name: search_continents
+  description: Search the continent reference data.
+  source_operation: openapi/thecompaniesapi-locations-api-openapi.yml#searchContinents
+- name: fetch_lists
+  description: List the saved company lists on the account.
+  source_operation: openapi/thecompaniesapi-lists-api-openapi.yml#fetchLists
+- name: create_list
+  description: Create a saved company list.
+  source_operation: openapi/thecompaniesapi-lists-api-openapi.yml#createList
+- name: fetch_companies_in_list
+  description: Fetch the companies inside a saved list.
+  source_operation: openapi/thecompaniesapi-lists-api-openapi.yml#fetchCompaniesInList
+- name: toggle_companies_in_list
+  description: Add or remove companies from a saved list.
+  source_operation: openapi/thecompaniesapi-lists-api-openapi.yml#toggleCompaniesInList
+- name: request_action
+  description: Request or estimate an asynchronous bulk action.
+  source_operation: openapi/thecompaniesapi-actions-api-openapi.yml#requestAction
+- name: fetch_actions
+  description: Poll the status of asynchronous actions.
+  source_operation: openapi/thecompaniesapi-actions-api-openapi.yml#fetchActions
+- name: fetch_user
+  description: Fetch the authenticated user.
+  source_operation: openapi/thecompaniesapi-users-api-openapi.yml#fetchUser
+- name: fetch_team
+  description: Fetch the team, including its remaining credit balance.
+  source_operation: openapi/thecompaniesapi-teams-api-openapi.yml#fetchTeam
+- name: fetch_api_health
+  description: Check API health.
+  source_operation: openapi/thecompaniesapi-utilities-api-openapi.yml#fetchApiHealth

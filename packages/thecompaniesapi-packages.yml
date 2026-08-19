@@ -1,0 +1,103 @@
+generated: '2026-08-14'
+method: searched
+source: https://github.com/thecompaniesapi + npm/PyPI/Packagist/RubyGems/Go module registry metadata
+note: >-
+  The Companies API publishes five first-party SDKs plus an n8n community node from its own
+  GitHub organisation (github.com/thecompaniesapi). Every package is generated from the same
+  OpenAPI 3.1 document served at https://api.thecompaniesapi.com/v2/openapi. Registry metadata
+  was read unauthenticated on 2026-08-14. CURRENCY FINDING: every published SDK last shipped in
+  July 2025 (the TypeScript SDK on 2025-07-27, the rest between 2025-07-22 and 2025-07-27), so
+  the whole client-library estate is roughly thirteen months behind the live API. The Python
+  repository also carries version 1.0.4 in pyproject.toml while PyPI still serves 1.0.2, so the
+  last two Python releases were never published. A Java (Maven Central) and a Rust (crates.io)
+  SDK are announced on the provider's own updates board but neither was found on its registry.
+packages:
+- language: typescript
+  registry: npm
+  name: "@thecompaniesapi/sdk"
+  url: https://www.npmjs.com/package/@thecompaniesapi/sdk
+  repository: https://github.com/thecompaniesapi/sdk-typescript
+  install: npm install @thecompaniesapi/sdk
+  official: true
+  license: MIT
+  version: 1.2.18
+  published: '2025-07-27'
+- language: python
+  registry: pypi
+  name: thecompaniesapi
+  url: https://pypi.org/project/thecompaniesapi/
+  repository: https://github.com/thecompaniesapi/sdk-python
+  install: pip install thecompaniesapi
+  official: true
+  license: MIT
+  version: 1.0.2
+  published: '2025-07-23'
+  note: >-
+    pyproject.toml on the main branch declares 1.0.4; PyPI's latest release is 1.0.2, so two
+    tagged versions were never published to the registry.
+- language: php
+  registry: packagist
+  name: thecompaniesapi/sdk-php
+  url: https://packagist.org/packages/thecompaniesapi/sdk-php
+  repository: https://github.com/thecompaniesapi/sdk-php
+  install: composer require thecompaniesapi/sdk-php
+  official: true
+  license: MIT
+  version: v1.0.1
+  published: '2025-07-22'
+- language: ruby
+  registry: rubygems
+  name: thecompaniesapi
+  url: https://rubygems.org/gems/thecompaniesapi
+  repository: https://github.com/thecompaniesapi/sdk-ruby
+  install: gem install thecompaniesapi
+  official: true
+  license: MIT
+  version: 1.0.1
+  published: '2025-07-23'
+- language: go
+  registry: go-modules
+  name: github.com/thecompaniesapi/sdk-go
+  url: https://pkg.go.dev/github.com/thecompaniesapi/sdk-go
+  repository: https://github.com/thecompaniesapi/sdk-go
+  install: go get github.com/thecompaniesapi/sdk-go
+  official: true
+  license: MIT
+  version: v1.0.1
+  published: '2025-07-23'
+  note: Generated with oapi-codegen from the provider's own OpenAPI document.
+- language: typescript
+  registry: npm
+  name: n8n-nodes-thecompaniesapi
+  url: https://www.npmjs.com/package/n8n-nodes-thecompaniesapi
+  repository: https://github.com/thecompaniesapi/n8n-nodes-thecompaniesapi
+  install: npm install n8n-nodes-thecompaniesapi
+  official: true
+  license: MIT
+  version: 1.0.1
+  published: '2025-07-25'
+  kind: workflow-node
+  note: n8n community node package, not a general-purpose client library.
+announced_not_found:
+- language: java
+  registry: maven-central
+  status: not-published
+  note: >-
+    Announced on https://updates.thecompaniesapi.com/ as an in-progress SDK for Maven Central.
+    No coordinate under a thecompaniesapi group was found on Maven Central and there is no
+    sdk-java repository in the GitHub organisation.
+- language: rust
+  registry: crates.io
+  status: not-published
+  note: >-
+    Announced on https://updates.thecompaniesapi.com/ as an in-progress SDK for crates.io.
+    No crate was found and there is no sdk-rust repository in the GitHub organisation.
+registries_checked:
+- npm
+- pypi
+- packagist
+- rubygems
+- go-modules (proxy.golang.org)
+- maven-central
+- crates.io
+- nuget

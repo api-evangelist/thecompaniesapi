@@ -1,0 +1,102 @@
+generated: '2026-08-14'
+method: derived
+source: >-
+  openapi/_original/thecompaniesapi-openapi.yml, https://www.thecompaniesapi.com/api/errors,
+  /api/authentication, /api/rate-limits, /pricing, /product/privacy
+note: >-
+  Cross-cutting standards assertion for a company-data enrichment API. The provider makes no
+  certification claim anywhere on its public surface — there is no trust centre, no security
+  page, no SOC 2 / ISO 27001 / PCI / HIPAA mention, and the privacy policy names no regulation.
+  The single compliance statement published is a pricing-page FAQ line ("all data on The
+  Companies API is public, GDPR-compliant and visible on the Internet by anyone"), which is an
+  assertion about the lawfulness of the data, not an audited compliance programme. No
+  `Compliance` pointer is wired for that one sentence.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    OpenAPI 3.1.0 published unauthenticated at https://api.thecompaniesapi.com/v2/openapi and
+    also declared as an operation (fetchOpenApi). 37 paths, 44 operations, every operation has
+    a unique operationId, a summary and tags, 21 reusable components.schemas.
+- id: rest
+  conforms: true
+  evidence: Resource-oriented paths under /v2, standard HTTP verbs (GET/POST/PATCH/DELETE), JSON payloads.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    All errors are application/json with a provider-specific envelope ({messages, status,
+    details} in the spec; {error:{code,message,type}} in the docs). No application/problem+json
+    media type appears anywhere in the specification.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    The only securityScheme is apiKey in the Authorization header. No OAuth flows are declared
+    and /.well-known/oauth-authorization-server 404s on both hosts.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on both hosts.
+- id: http-basic
+  conforms: false
+  evidence: >-
+    The documented header value is literally "Basic <api-token>", which borrows the RFC 7617
+    scheme keyword but is NOT HTTP Basic — the token is not a base64 user:pass pair. Recorded
+    so a client library is not configured with a real Basic auth helper.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on both www and api hosts.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support documented; zero deprecated operations in the spec.
+- id: rfc6585-429
+  conforms: true
+  evidence: >-
+    429 Too Many Requests is the documented throttle status on /api/rate-limits and in the
+    error reference, though it is not declared on any operation in the OpenAPI and no
+    Retry-After header is documented.
+- id: ratelimit-headers-draft
+  conforms: false
+  evidence: No RateLimit-* or X-RateLimit-* response headers are documented or returned.
+- id: json-api
+  conforms: false
+  evidence: Responses use bespoke envelopes ({companies, meta, query}), not the JSON:API media type or document structure.
+- id: odata
+  conforms: false
+  evidence: No OData query syntax; filtering uses a proprietary segmentation-condition array.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    Webhooks are advertised at /api/webhooks but no AsyncAPI document is published and the
+    3.1 OpenAPI declares no top-level webhooks object.
+- id: mcp
+  conforms: false
+  evidence: >-
+    No MCP server. The provider's own roadmap carries "Model Context Protocol (MCP)
+    Integration" with status "In Review".
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on both hosts.
+- id: llms-txt
+  conforms: false
+  evidence: /llms.txt returns 404 on www.thecompaniesapi.com.
+- id: pagination
+  conforms: true
+  evidence: >-
+    Consistent page/size request parameters and a shared PaginationMeta response schema
+    (currentPage, firstPage, lastPage, perPage, total) reused across collection operations.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No idempotency key header or parameter in the spec or the docs. The only mention is the
+    409 row of the docs status table, and 409 is declared on zero operations.
+- id: gdpr
+  conforms: claimed
+  evidence: >-
+    Pricing-page FAQ: "all data on The Companies API is public, GDPR-compliant and visible on
+    the Internet by anyone." The privacy policy at /product/privacy does not mention GDPR,
+    CCPA, a DPA, sub-processors, data-subject erasure or a privacy contact address. A claim,
+    not a documented programme — recorded as `claimed` rather than true.
+  source: https://www.thecompaniesapi.com/pricing
+certifications: []
+certifications_note: >-
+  No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or CSA STAR claim was found. trust.
+  thecompaniesapi.com does not resolve; /trust, /security and /compliance all 404.

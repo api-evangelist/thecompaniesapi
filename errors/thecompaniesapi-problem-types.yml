@@ -1,0 +1,177 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.thecompaniesapi.com/api/errors
+derived_from: openapi/_original/thecompaniesapi-openapi.yml (live copy https://api.thecompaniesapi.com/v2/openapi)
+format: custom
+note: >-
+  The Companies API does NOT use RFC 9457 problem+json. Every error is returned as
+  application/json with a provider-specific envelope. IMPORTANT DIVERGENCE, recorded as found:
+  the published error reference at /api/errors and the machine-readable OpenAPI describe two
+  DIFFERENT envelopes for the same API. The docs document an `error` object carrying
+  {code, message, type}, where `type` is one of six coarse classes. The OpenAPI declares, on
+  every 4xx response of every operation, an object carrying {messages, status, details} where
+  `messages` is a string ENUM of fine-grained machine-readable reasons. Both are captured
+  below; an agent should read `messages` (spec-backed, per-operation) and treat the docs'
+  `error.type` classes as the human-facing grouping. Neither envelope is versioned and no
+  error type URIs are published, so `type:` URIs are absent by design rather than omitted.
+envelopes:
+- id: openapi-envelope
+  source: openapi
+  content_type: application/json
+  shape:
+    messages: string (enum, see problems[] below) — the machine-readable reason
+    status: number (400-511) — the HTTP status echoed in the body
+    details: any — optional additional context, unconstrained in the spec
+  required: [messages, status]
+  applies_to: every declared 400/401/403/404 response across all 44 operations
+- id: docs-envelope
+  source: https://www.thecompaniesapi.com/api/errors
+  content_type: application/json
+  shape:
+    error.code: 'string — "For some errors that could be handled programmatically, a number indicating the error code reported" (example given: 403)'
+    error.message: 'string — human-readable detail (example given: "Missing API token")'
+    error.type: 'string — one of the six classes in error_types[]'
+  applies_to: documented as the general error object; not reflected in the OpenAPI responses
+error_types:
+- type: apiConnectionError
+  description: Failure to connect to The Companies API.
+- type: apiError
+  description: >-
+    Any other type of problem (e.g. a temporary problem with The Companies API's servers).
+    Documented as extremely uncommon.
+- type: authenticationError
+  description: Failure to properly authenticate the request.
+- type: invalidRequestError
+  description: The request has invalid parameters.
+- type: noCreditsRemaining
+  description: No remaining credits to make this request.
+- type: rateLimitError
+  description: Too many requests hit the API too quickly; exponential backoff is recommended.
+status_codes:
+- status: 200
+  title: OK
+  description: The request was successful.
+- status: 400
+  title: Bad Request
+  description: The request was unacceptable, often due to missing a required parameter.
+- status: 401
+  title: Unauthorized
+  description: No valid API token provided.
+- status: 402
+  title: Request Failed
+  description: The parameters were valid, but the request failed.
+- status: 403
+  title: Forbidden
+  description: The API token doesn't have permission to perform the request.
+- status: 404
+  title: Not Found
+  description: The requested resource doesn't exist.
+- status: 409
+  title: Conflict
+  description: >-
+    The request conflicts with another request (per the docs, "perhaps due to using the same
+    idempotent key"). No idempotency key header or parameter is documented anywhere else in
+    the reference, and none appears in the OpenAPI, so this is the only mention of idempotency
+    the provider publishes. Not declared on any operation in the spec.
+- status: 429
+  title: Too Many Requests
+  description: Too many requests hit the API too quickly. Exponential backoff is recommended.
+  remediation: Back off exponentially; per-second limits are set by plan (50 / 250 / 1,000 RPS).
+- status: 500
+  title: Server Error
+  description: Something went wrong on the provider's end; documented as rare and monitored with PostHog.
+- status: 502
+  title: Bad Gateway
+  description: Server-side error.
+- status: 503
+  title: Service Unavailable
+  description: Server-side error.
+- status: 504
+  title: Gateway Timeout
+  description: Server-side error.
+problems:
+- status: 400
+  code: actionTypeInvalid
+  title: Action type invalid
+  operations: [retryAction]
+- status: 400
+  code: companyNameEmpty
+  title: Company name empty
+  operations: [searchCompaniesByName]
+- status: 400
+  code: invalidActionId
+  title: Invalid action id
+  operations: [retryAction]
+- status: 400
+  code: invalidListId
+  title: Invalid list id
+  operations: [fetchActions, requestAction]
+- status: 400
+  code: listNotFound
+  title: List not found
+  operations: [deleteList, fetchCompaniesInList, fetchCompaniesInListPost, fetchCompanyInList, toggleCompaniesInList, updateList]
+- status: 400
+  code: promptNotFound
+  title: Prompt not found
+  operations: [deletePrompt]
+- status: 400
+  code: typeMissing
+  title: Action type missing
+  operations: [requestAction]
+- status: 401
+  code: missingApiSecret
+  title: Missing API token
+  remediation: Send the token in the Authorization header as "Basic <token>" or as the ?token= query parameter.
+  operations_count: 42
+- status: 401
+  code: invalidApiSecret
+  title: Invalid API token
+  remediation: Regenerate the token from the API tokens page in account settings.
+  operations_count: 42
+- status: 401
+  code: tokenNotFound
+  title: Token not found
+  operations_count: 42
+- status: 401
+  code: userNotAuthenticated
+  title: User not authenticated
+  operations_count: 42
+- status: 403
+  code: noCreditsRemaining
+  title: No credits remaining
+  remediation: >-
+    Buy on-demand credits from the dashboard or raise the plan. Credit-free calls are possible
+    with simplified=true on company fetches.
+  operations_count: 14
+- status: 403
+  code: userCurrentTeamIsNotInstanceOwner
+  title: Current team does not own this resource
+  operations_count: 7
+- status: 403
+  code: userNotInTeam
+  title: User is not a member of this team
+  operations: [fetchTeam, updateTeam]
+- status: 403
+  code: invalidPromptId
+  title: Invalid prompt id
+  operations: [requestAction]
+- status: 404
+  code: companyNotFound
+  title: Company not found
+  operations: [askCompany, fetchCompany, fetchCompanyContext, fetchCompanyEmailPatterns, fetchCompanyInList, toggleCompaniesInList]
+  note: >-
+    fetchCompany is documented as returning an empty object and charging no credits when no
+    company is found, so 404 is not the only miss path.
+- status: 404
+  code: teamNotFound
+  title: Team not found
+  operations: [fetchTeam, updateTeam]
+coverage:
+  operations_total: 44
+  operations_with_4xx_declared: 43
+  statuses_declared_in_spec: [400, 401, 403, 404]
+  statuses_documented_only: [402, 409, 429, 500, 502, 503, 504]
+  gap: >-
+    429 is documented in the error reference and in the rate-limit page but is declared on
+    zero operations in the OpenAPI, so a generated client will not model the throttle path.
+    5xx is likewise undeclared. fetchApiHealth and fetchOpenApi declare only 200.
