@@ -41,6 +41,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Actions
+  tags_raw:
   - actions
   properties:
   - type: OpenAPI
@@ -57,6 +59,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Analytics
+  tags_raw:
   - analytics
   properties:
   - type: OpenAPI
@@ -73,6 +77,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Companies
+  tags_raw:
   - companies
   properties:
   - type: OpenAPI
@@ -89,6 +95,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Industries
+  tags_raw:
   - industries
   properties:
   - type: OpenAPI
@@ -105,6 +113,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Job Titles
+  tags_raw:
   - job-titles
   properties:
   - type: OpenAPI
@@ -121,6 +131,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - List
+  tags_raw:
   - lists
   properties:
   - type: OpenAPI
@@ -137,6 +149,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Locations
+  tags_raw:
   - locations
   properties:
   - type: OpenAPI
@@ -153,6 +167,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Prompts
+  tags_raw:
   - prompts
   properties:
   - type: OpenAPI
@@ -169,6 +185,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Team
+  tags_raw:
   - teams
   properties:
   - type: OpenAPI
@@ -201,6 +219,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
@@ -217,6 +237,8 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
+  - Utilities
+  tags_raw:
   - utilities
   properties:
   - type: OpenAPI
