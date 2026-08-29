@@ -9,6 +9,18 @@ description: The Companies API is a company data and enrichment platform offerin
   data, saved lists, and asynchronous bulk actions. Requests are authenticated with an API token passed
   in the Authorization header, billing is credit-based, and the full OpenAPI 3.1 description is published
   at /v2/openapi.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
