@@ -107,7 +107,7 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
-  - Industries
+  - industries
   tags_raw:
   - industries
   properties:
@@ -125,7 +125,7 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
-  - Job Titles
+  - job-titles
   tags_raw:
   - job-titles
   properties:
