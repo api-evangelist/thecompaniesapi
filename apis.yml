@@ -161,7 +161,7 @@ apis:
   humanURL: https://www.thecompaniesapi.com/api
   baseURL: https://api.thecompaniesapi.com/v2
   tags:
-  - Locations
+  - Location
   tags_raw:
   - locations
   properties:
