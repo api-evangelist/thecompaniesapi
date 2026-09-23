@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions locations API
+  title: Companies Locations API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: locations
+- name: Locations
 paths:
   /v2/locations/cities:
     get:
       description: Search cities.
       operationId: searchCities
       tags:
-      - locations
+      - Locations
       security:
       - apiKey: []
       parameters:
@@ -99,12 +99,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search cities
+      x-summary-source: derived
   /v2/locations/counties:
     get:
       description: Search counties.
       operationId: searchCounties
       tags:
-      - locations
+      - Locations
       security:
       - apiKey: []
       parameters:
@@ -179,12 +181,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search counties
+      x-summary-source: derived
   /v2/locations/countries:
     get:
       description: Search countries.
       operationId: searchCountries
       tags:
-      - locations
+      - Locations
       security:
       - apiKey: []
       parameters:
@@ -264,12 +268,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search countries
+      x-summary-source: derived
   /v2/locations/states:
     get:
       description: Search states.
       operationId: searchStates
       tags:
-      - locations
+      - Locations
       security:
       - apiKey: []
       parameters:
@@ -344,12 +350,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search states
+      x-summary-source: derived
   /v2/locations/continents:
     get:
       description: Search continents.
       operationId: searchContinents
       tags:
-      - locations
+      - Locations
       security:
       - apiKey: []
       parameters:
@@ -424,9 +432,11 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search continents
+      x-summary-source: derived
 components:
   schemas:
-    NominatimCounty:
+    NominatimContinent:
       type: object
       properties:
         citiesCount:
@@ -435,9 +445,29 @@ components:
           - 'null'
         code:
           type: string
+          enum:
+          - af
+          - an
+          - as
+          - eu
+          - na
+          - oc
+          - sa
         companiesCount:
           type:
           - number
+          - 'null'
+        countiesCount:
+          type:
+          - number
+          - 'null'
+        countriesCount:
+          type:
+          - number
+          - 'null'
+        icon:
+          type:
+          - string
           - 'null'
         id:
           type: number
@@ -453,21 +483,17 @@ components:
           type:
           - string
           - 'null'
-        linkedinQuery:
-          type:
-          - string
-          - 'null'
         longitude:
           type:
           - string
           - 'null'
         name:
           type: string
-        nominatimCountryId:
-          type:
-          - number
-          - 'null'
-        nominatimStateId:
+        nameEs:
+          type: string
+        nameFr:
+          type: string
+        statesCount:
           type:
           - number
           - 'null'
@@ -479,43 +505,18 @@ components:
       - citiesCount
       - code
       - companiesCount
+      - countiesCount
+      - countriesCount
+      - icon
       - id
       - latitude
       - longitude
       - name
+      - nameEs
+      - nameFr
+      - statesCount
       - usageCount
-      description: A county from the Nominatim API.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
+      description: A continent from the Nominatim API.
     NominatimCountry:
       type: object
       properties:
@@ -673,87 +674,37 @@ components:
       - name
       - usageCount
       description: A state from the Nominatim API.
-    NominatimContinent:
+    PaginationMeta:
       type: object
       properties:
-        citiesCount:
-          type:
-          - number
-          - 'null'
-        code:
-          type: string
-          enum:
-          - af
-          - an
-          - as
-          - eu
-          - na
-          - oc
-          - sa
-        companiesCount:
-          type:
-          - number
-          - 'null'
-        countiesCount:
-          type:
-          - number
-          - 'null'
-        countriesCount:
-          type:
-          - number
-          - 'null'
-        icon:
-          type:
-          - string
-          - 'null'
-        id:
+        cost:
           type: number
-        latitude:
-          type:
-          - string
-          - 'null'
-        linkedinHeadline:
-          type:
-          - string
-          - 'null'
-        linkedinId:
-          type:
-          - string
-          - 'null'
-        longitude:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        nameEs:
-          type: string
-        nameFr:
-          type: string
-        statesCount:
-          type:
-          - number
-          - 'null'
-        usageCount:
-          type:
-          - number
-          - 'null'
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
       required:
-      - citiesCount
-      - code
-      - companiesCount
-      - countiesCount
-      - countriesCount
-      - icon
-      - id
-      - latitude
-      - longitude
-      - name
-      - nameEs
-      - nameFr
-      - statesCount
-      - usageCount
-      description: A continent from the Nominatim API.
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
     NominatimCity:
       type: object
       properties:
@@ -817,6 +768,65 @@ components:
       - postcode
       - usageCount
       description: A city from the Nominatim API.
+    NominatimCounty:
+      type: object
+      properties:
+        citiesCount:
+          type:
+          - number
+          - 'null'
+        code:
+          type: string
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        linkedinQuery:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nominatimCountryId:
+          type:
+          - number
+          - 'null'
+        nominatimStateId:
+          type:
+          - number
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - citiesCount
+      - code
+      - companiesCount
+      - id
+      - latitude
+      - longitude
+      - name
+      - usageCount
+      description: A county from the Nominatim API.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

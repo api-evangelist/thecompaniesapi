@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions teams API
+  title: Companies Teams API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: teams
+- name: Teams
 paths:
   /v2/teams/{teamId}:
     get:
       description: Get team information.
       operationId: fetchTeam
       tags:
-      - teams
+      - Teams
       security:
       - apiKey: []
       parameters:
@@ -95,11 +95,13 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch team
+      x-summary-source: derived
     patch:
       description: Update a team.
       operationId: updateTeam
       tags:
-      - teams
+      - Teams
       security:
       - apiKey: []
       parameters:
@@ -190,6 +192,8 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Update team
+      x-summary-source: derived
 components:
   schemas:
     Team:

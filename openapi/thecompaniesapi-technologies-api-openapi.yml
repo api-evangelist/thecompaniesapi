@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions technologies API
+  title: Companies Technologies API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: technologies
+- name: Technologies
 paths:
   /v2/technologies:
     get:
       description: Search technologies.
       operationId: searchTechnologies
       tags:
-      - technologies
+      - Technologies
       security:
       - apiKey: []
       parameters:
@@ -79,6 +79,8 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search technologies
+      x-summary-source: derived
 components:
   schemas:
     PaginationMeta:

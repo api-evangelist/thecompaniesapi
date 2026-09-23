@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions job-titles API
+  title: Companies Job Titles API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: job-titles
+- name: Job Titles
 paths:
   /v2/job-titles/enrich:
     get:
       description: Enrich job titles.
       operationId: enrichJobTitles
       tags:
-      - job-titles
+      - Job Titles
       security:
       - apiKey: []
       parameters:
@@ -60,6 +60,8 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Enrich job titles
+      x-summary-source: derived
 components:
   schemas:
     JobTitle:

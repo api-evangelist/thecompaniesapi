@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions analytics API
+  title: Companies Analytics API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: analytics
+- name: Analytics
 paths:
   /v2/companies/analytics:
     get:
       description: Fetch analytics data for search segmentations and lists.
       operationId: fetchCompaniesAnalytics
       tags:
-      - analytics
+      - Analytics
       security:
       - apiKey: []
       parameters:
@@ -155,12 +155,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch companies analytics
+      x-summary-source: derived
   /v2/companies/analytics/export:
     post:
       description: Export analytics data for search segmentations and lists.
       operationId: exportCompaniesAnalytics
       tags:
-      - analytics
+      - Analytics
       security:
       - apiKey: []
       requestBody:
@@ -295,6 +297,8 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Export companies analytics
+      x-summary-source: derived
 components:
   schemas:
     SegmentationCondition:

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions industries API
+  title: Companies Industries API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: industries
+- name: Industries
 paths:
   /v2/industries:
     get:
       description: Search industries.
       operationId: searchIndustries
       tags:
-      - industries
+      - Industries
       security:
       - apiKey: []
       parameters:
@@ -90,12 +90,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search industries
+      x-summary-source: derived
   /v2/industries/similar:
     get:
       description: Get similar industries from one or many industries.
       operationId: searchIndustriesSimilar
       tags:
-      - industries
+      - Industries
       security:
       - apiKey: []
       parameters:
@@ -168,6 +170,8 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search industries similar
+      x-summary-source: derived
 components:
   schemas:
     PaginationMeta:

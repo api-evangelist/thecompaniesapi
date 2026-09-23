@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions lists API
+  title: Companies Lists API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: lists
+- name: Lists
 paths:
   /v2/lists:
     get:
       description: Get and filter your lists.
       operationId: fetchLists
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -74,11 +74,13 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch lists
+      x-summary-source: derived
     post:
       description: Create a new list.
       operationId: createList
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       requestBody:
@@ -144,12 +146,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Create list
+      x-summary-source: derived
   /v2/lists/{listId}:
     patch:
       description: Update a list.
       operationId: updateList
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -257,11 +261,13 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Update list
+      x-summary-source: derived
     delete:
       description: Delete a list.
       operationId: deleteList
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -337,12 +343,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Delete list
+      x-summary-source: derived
   /v2/lists/{listId}/companies:
     get:
       description: Get companies in a list with a segmentation query.
       operationId: fetchCompaniesInList
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -545,11 +553,13 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch companies in list
+      x-summary-source: derived
     post:
       description: Get companies in a list with a segmentation body.
       operationId: fetchCompaniesInListPost
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -734,12 +744,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch companies in list post
+      x-summary-source: derived
   /v2/lists/{listId}/companies/{domain}:
     get:
       description: Get a company in a list.
       operationId: fetchCompanyInList
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -839,12 +851,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch company in list
+      x-summary-source: derived
   /v2/lists/{listId}/companies/toggle:
     patch:
       description: Toggle one or more companies in a list.
       operationId: toggleCompaniesInList
       tags:
-      - lists
+      - Lists
       security:
       - apiKey: []
       parameters:
@@ -962,107 +976,10 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Toggle companies in list
+      x-summary-source: derived
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        colorMode:
-          type: string
-          enum:
-          - dark
-          - light
-          - system
-        createdAt:
-          type:
-          - string
-          - 'null'
-        currentTeamId:
-          type:
-          - number
-          - 'null'
-        email:
-          type: string
-        emailFree:
-          type:
-          - boolean
-          - 'null'
-        emailVerified:
-          type:
-          - boolean
-          - 'null'
-        emailVerifiedResentAt:
-          type:
-          - string
-          - 'null'
-        fullName:
-          type:
-          - string
-          - 'null'
-        hasPassword:
-          type:
-          - boolean
-          - 'null'
-        id:
-          type: number
-        locale: {}
-        pictureUrl:
-          type:
-          - string
-          - 'null'
-        referral:
-          type:
-          - string
-          - 'null'
-        role:
-          type:
-          - string
-          - 'null'
-          enum:
-          - owner
-          - user
-      required:
-      - currentTeamId
-      - email
-      - emailFree
-      - emailVerified
-      - emailVerifiedResentAt
-      - fullName
-      - hasPassword
-      - id
-      - pictureUrl
-      description: A user of the platform.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
     SegmentationCondition:
       type: object
       properties:
@@ -1125,6 +1042,119 @@ components:
       - sign
       - values
       description: A condition for our platform segmentation engine.
+    LLMAnswer:
+      type: object
+      properties:
+        companyId:
+          type: number
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
+          type: boolean
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
+          type: number
+      required:
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
+    Team:
+      type: object
+      properties:
+        admin:
+          type:
+          - boolean
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        credits:
+          type: number
+        creditsPack:
+          type: number
+        id:
+          type: number
+        name:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+        stripeCustomerId:
+          type:
+          - string
+          - 'null'
+        stripeProductId:
+          type:
+          - string
+          - 'null'
+        stripeSubscribed:
+          type: boolean
+        stripeSubscriptionId:
+          type:
+          - string
+          - 'null'
+        stripeSubscriptionStatus:
+          type:
+          - string
+          - 'null'
+        websiteUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - admin
+      - country
+      - createdAt
+      - credits
+      - creditsPack
+      - id
+      - name
+      - stripeCustomerId
+      - stripeProductId
+      - stripeSubscribed
+      - stripeSubscriptionId
+      - stripeSubscriptionStatus
+      - websiteUrl
+      description: A collection of users that can access the same resources.
     CompanyV2:
       type: object
       properties:
@@ -3544,86 +3574,6 @@ components:
               description: The answer of the action.
           description: The action results for the company.
       description: Our complete schema for company data.
-    Team:
-      type: object
-      properties:
-        admin:
-          type:
-          - boolean
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-        credits:
-          type: number
-        creditsPack:
-          type: number
-        id:
-          type: number
-        name:
-          type:
-          - string
-          - 'null'
-        role:
-          type:
-          - string
-          - 'null'
-        stripeCustomerId:
-          type:
-          - string
-          - 'null'
-        stripeProductId:
-          type:
-          - string
-          - 'null'
-        stripeSubscribed:
-          type: boolean
-        stripeSubscriptionId:
-          type:
-          - string
-          - 'null'
-        stripeSubscriptionStatus:
-          type:
-          - string
-          - 'null'
-        websiteUrl:
-          type:
-          - string
-          - 'null'
-      required:
-      - admin
-      - country
-      - createdAt
-      - credits
-      - creditsPack
-      - id
-      - name
-      - stripeCustomerId
-      - stripeProductId
-      - stripeSubscribed
-      - stripeSubscriptionId
-      - stripeSubscriptionStatus
-      - websiteUrl
-      description: A collection of users that can access the same resources.
-    ListAnalytics:
-      type: object
-      properties:
-        companiesCount:
-          type:
-          - number
-          - 'null'
-        id:
-          type: number
-        listId:
-          type:
-          - number
-          - 'null'
-      description: Analytics collection of a list.
     Action:
       type: object
       properties:
@@ -3776,53 +3726,6 @@ components:
       - id
       - status
       description: An action tracks a request made to our job queue and its result.
-    LLMAnswer:
-      type: object
-      properties:
-        companyId:
-          type: number
-        explanation:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
-          type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
-          type: number
-      required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
     List:
       type: object
       properties:
@@ -3924,6 +3827,119 @@ components:
       - processMessage
       - querySimilar
       description: A collection of companies saved or imported by a team.
+    User:
+      type: object
+      properties:
+        colorMode:
+          type: string
+          enum:
+          - dark
+          - light
+          - system
+        createdAt:
+          type:
+          - string
+          - 'null'
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        email:
+          type: string
+        emailFree:
+          type:
+          - boolean
+          - 'null'
+        emailVerified:
+          type:
+          - boolean
+          - 'null'
+        emailVerifiedResentAt:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        hasPassword:
+          type:
+          - boolean
+          - 'null'
+        id:
+          type: number
+        locale: {}
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+        referral:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+          enum:
+          - owner
+          - user
+      required:
+      - currentTeamId
+      - email
+      - emailFree
+      - emailVerified
+      - emailVerifiedResentAt
+      - fullName
+      - hasPassword
+      - id
+      - pictureUrl
+      description: A user of the platform.
+    ListAnalytics:
+      type: object
+      properties:
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        listId:
+          type:
+          - number
+          - 'null'
+      description: Analytics collection of a list.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

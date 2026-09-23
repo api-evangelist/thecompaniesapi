@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The Companies actions users API
+  title: Companies Users API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: users
+- name: Users
 paths:
   /v2/user:
     get:
       description: Get current user information.
       operationId: fetchUser
       tags:
-      - users
+      - Users
       security:
       - apiKey: []
       responses:
@@ -51,6 +51,8 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch user
+      x-summary-source: derived
 components:
   schemas:
     User:

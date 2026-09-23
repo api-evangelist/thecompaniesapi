@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@thecompaniesapi.com
@@ -6,20 +6,20 @@ info:
     url: https://www.thecompaniesapi.com
   description: An enrichment platform to search and retrieve information about companies
   termsOfService: https://www.thecompaniesapi.com/product/terms
-  title: The actions companies API
+  title: The Companies API
   version: 2.0.0
 servers:
 - description: Production server
   url: https://api.thecompaniesapi.com
 tags:
-- name: companies
+- name: Companies
 paths:
   /v2/companies:
     get:
       description: Search companies using a segmentation query.
       operationId: searchCompanies
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -224,11 +224,13 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search companies
+      x-summary-source: derived
     post:
       description: Search companies using a segmentation query.
       operationId: searchCompaniesPost
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       requestBody:
@@ -402,12 +404,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search companies post
+      x-summary-source: derived
   /v2/companies/{domain}:
     get:
       description: Get a single company data by its domain.
       operationId: fetchCompany
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -493,12 +497,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch company
+      x-summary-source: derived
   /v2/companies/by-name:
     get:
       description: Search companies by name.
       operationId: searchCompaniesByName
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -710,12 +716,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search companies by name
+      x-summary-source: derived
   /v2/companies/by-prompt:
     get:
       description: Search companies by prompt.
       operationId: searchCompaniesByPrompt
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -895,12 +903,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search companies by prompt
+      x-summary-source: derived
   /v2/companies/similar:
     get:
       description: Get similar companies from one or many domains.
       operationId: searchSimilarCompanies
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1085,12 +1095,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Search similar companies
+      x-summary-source: derived
   /v2/companies/count:
     get:
       description: Get the count of companies using a segmentation query.
       operationId: countCompanies
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1174,11 +1186,13 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Count companies
+      x-summary-source: derived
     post:
       description: Get the count of companies using a segmentation body.
       operationId: countCompaniesPost
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       requestBody:
@@ -1255,12 +1269,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Count companies post
+      x-summary-source: derived
   /v2/companies/by-email:
     get:
       description: Get a company data by email.
       operationId: fetchCompanyByEmail
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1378,12 +1394,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch company by email
+      x-summary-source: derived
   /v2/companies/by-social:
     get:
       description: Get a company data by social media.
       operationId: fetchCompanyBySocial
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1523,12 +1541,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch company by social
+      x-summary-source: derived
   /v2/companies/{domain}/email-patterns:
     get:
       description: Get email patterns for a company by its domain.
       operationId: fetchCompanyEmailPatterns
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1618,12 +1638,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch company email patterns
+      x-summary-source: derived
   /v2/companies/{domain}/ask:
     post:
       description: Ask a question about a company by its domain.
       operationId: askCompany
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1870,12 +1892,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Ask company
+      x-summary-source: derived
   /v2/companies/{domain}/context:
     get:
       description: Get the full context of a company by its domain.
       operationId: fetchCompanyContext
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -1979,12 +2003,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch company context
+      x-summary-source: derived
   /v2/companies/analytics:
     get:
       description: Fetch analytics data for search segmentations and lists.
       operationId: fetchCompaniesAnalytics
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       parameters:
@@ -2120,12 +2146,14 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Fetch companies analytics
+      x-summary-source: derived
   /v2/companies/analytics/export:
     post:
       description: Export analytics data for search segmentations and lists.
       operationId: exportCompaniesAnalytics
       tags:
-      - companies
+      - Companies
       security:
       - apiKey: []
       requestBody:
@@ -2260,167 +2288,67 @@ paths:
                 required:
                 - messages
                 - status
+      summary: Export companies analytics
+      x-summary-source: derived
 components:
   schemas:
-    PageContentsPage:
+    PageContentsLink:
       type: object
       properties:
+        text:
+          type: string
         url:
-          type: string
-        content:
-          type: string
-        html:
-          type: string
-        description:
-          type: string
-        title:
-          type: string
-        externals:
-          type: array
-          items:
-            $ref: '#/components/schemas/PageContentsLink'
-        navigation:
-          type: array
-          items:
-            $ref: '#/components/schemas/PageContentsLink'
-        visitedAt:
           type: string
       required:
       - url
-      description: A page content saved as a source for a company context.
-    PageContentsIdeated:
+      description: A link found in a page content.
+    LLMAnswer:
       type: object
       properties:
-        domain:
+        companyId:
+          type: number
+        explanation:
           type: string
-        about:
+        fields:
           type: array
           items:
-            type: string
-        acquired:
-          type: array
-          items:
-            type: string
-        contacts:
-          type: array
-          items:
-            type: string
-        customers:
-          type: array
-          items:
-            type: string
-        features:
-          type: array
-          items:
-            type: string
-        finances:
-          type: array
-          items:
-            type: string
-        industries:
-          type: array
-          items:
-            type: string
-        jobs:
-          type: array
-          items:
-            type: string
-        locations:
-          type: array
-          items:
-            type: string
-        others:
-          type: array
-          items:
-            type: string
-        pricing:
-          type: array
-          items:
-            type: string
-        related:
-          type: array
-          items:
-            type: string
-        resources:
-          type: array
-          items:
-            type: string
-        security:
-          type: array
-          items:
-            type: string
-        social:
-          type: array
-          items:
-            type: string
-        solutions:
-          type: array
-          items:
-            type: string
-        support:
-          type: array
-          items:
-            type: string
-        team:
-          type: array
-          items:
-            type: string
-        technologies:
-          type: array
-          items:
-            type: string
-        updates:
-          type: array
-          items:
-            type: string
-        broken:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
           type: boolean
-        closed:
-          type: boolean
-        forSale:
-          type: boolean
-        nsfw:
-          type: boolean
-        updatedAt:
+        output:
+          type: object
+          additionalProperties: {}
+        question:
           type: string
-        sources:
-          type: array
-          items:
-            type: string
-        tokens:
-          type: number
-      description: A collection of categorized facts about a company aggregated from multiple sources.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
+        score:
           type: number
       required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
     SegmentationCondition:
       type: object
       properties:
@@ -2483,37 +2411,6 @@ components:
       - sign
       - values
       description: A condition for our platform segmentation engine.
-    PageContentsLink:
-      type: object
-      properties:
-        text:
-          type: string
-        url:
-          type: string
-      required:
-      - url
-      description: A link found in a page content.
-    EmailPattern:
-      type: object
-      properties:
-        emailsCount:
-          type:
-          - number
-          - 'null'
-        id:
-          type: number
-        pattern:
-          type: string
-        usagePercentage:
-          type:
-          - number
-          - 'null'
-      required:
-      - emailsCount
-      - id
-      - pattern
-      - usagePercentage
-      description: An email pattern and its related informations.
     CompanyV2:
       type: object
       properties:
@@ -4933,6 +4830,108 @@ components:
               description: The answer of the action.
           description: The action results for the company.
       description: Our complete schema for company data.
+    PageContentsIdeated:
+      type: object
+      properties:
+        domain:
+          type: string
+        about:
+          type: array
+          items:
+            type: string
+        acquired:
+          type: array
+          items:
+            type: string
+        contacts:
+          type: array
+          items:
+            type: string
+        customers:
+          type: array
+          items:
+            type: string
+        features:
+          type: array
+          items:
+            type: string
+        finances:
+          type: array
+          items:
+            type: string
+        industries:
+          type: array
+          items:
+            type: string
+        jobs:
+          type: array
+          items:
+            type: string
+        locations:
+          type: array
+          items:
+            type: string
+        others:
+          type: array
+          items:
+            type: string
+        pricing:
+          type: array
+          items:
+            type: string
+        related:
+          type: array
+          items:
+            type: string
+        resources:
+          type: array
+          items:
+            type: string
+        security:
+          type: array
+          items:
+            type: string
+        social:
+          type: array
+          items:
+            type: string
+        solutions:
+          type: array
+          items:
+            type: string
+        support:
+          type: array
+          items:
+            type: string
+        team:
+          type: array
+          items:
+            type: string
+        technologies:
+          type: array
+          items:
+            type: string
+        updates:
+          type: array
+          items:
+            type: string
+        broken:
+          type: boolean
+        closed:
+          type: boolean
+        forSale:
+          type: boolean
+        nsfw:
+          type: boolean
+        updatedAt:
+          type: string
+        sources:
+          type: array
+          items:
+            type: string
+        tokens:
+          type: number
+      description: A collection of categorized facts about a company aggregated from multiple sources.
     Prompt:
       type: object
       properties:
@@ -5276,53 +5275,84 @@ components:
       - prompt
       - promptKey
       description: A natural language request made to the platform resolving to a specific action or search segment.
-    LLMAnswer:
+    PaginationMeta:
       type: object
       properties:
-        companyId:
+        cost:
           type: number
-        explanation:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
           type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
           type: number
       required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    PageContentsPage:
+      type: object
+      properties:
+        url:
+          type: string
+        content:
+          type: string
+        html:
+          type: string
+        description:
+          type: string
+        title:
+          type: string
+        externals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PageContentsLink'
+        navigation:
+          type: array
+          items:
+            $ref: '#/components/schemas/PageContentsLink'
+        visitedAt:
+          type: string
+      required:
+      - url
+      description: A page content saved as a source for a company context.
+    EmailPattern:
+      type: object
+      properties:
+        emailsCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        pattern:
+          type: string
+        usagePercentage:
+          type:
+          - number
+          - 'null'
+      required:
+      - emailsCount
+      - id
+      - pattern
+      - usagePercentage
+      description: An email pattern and its related informations.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

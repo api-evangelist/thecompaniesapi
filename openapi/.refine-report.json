@@ -1,18 +1,7 @@
 {
   "provider": "thecompaniesapi",
   "sources": [
-    "thecompaniesapi-actions-api-openapi.yml",
-    "thecompaniesapi-analytics-api-openapi.yml",
-    "thecompaniesapi-companies-api-openapi.yml",
-    "thecompaniesapi-industries-api-openapi.yml",
-    "thecompaniesapi-job-titles-api-openapi.yml",
-    "thecompaniesapi-lists-api-openapi.yml",
-    "thecompaniesapi-locations-api-openapi.yml",
-    "thecompaniesapi-prompts-api-openapi.yml",
-    "thecompaniesapi-teams-api-openapi.yml",
-    "thecompaniesapi-technologies-api-openapi.yml",
-    "thecompaniesapi-users-api-openapi.yml",
-    "thecompaniesapi-utilities-api-openapi.yml"
+    "_original/thecompaniesapi-openapi.yml"
   ],
   "outputs": [
     "thecompaniesapi-actions-api-openapi.yml",
@@ -31,6 +20,35 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "thecompaniesapi-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "thecompaniesapi-openapi.yml: declared missing tag: actions",
+    "thecompaniesapi-openapi.yml: declared missing tag: analytics",
+    "thecompaniesapi-openapi.yml: declared missing tag: companies",
+    "thecompaniesapi-openapi.yml: declared missing tag: industries",
+    "thecompaniesapi-openapi.yml: declared missing tag: job-titles",
+    "thecompaniesapi-openapi.yml: declared missing tag: lists",
+    "thecompaniesapi-openapi.yml: declared missing tag: locations",
+    "thecompaniesapi-openapi.yml: declared missing tag: prompts",
+    "thecompaniesapi-openapi.yml: declared missing tag: teams",
+    "thecompaniesapi-openapi.yml: declared missing tag: technologies",
+    "thecompaniesapi-openapi.yml: declared missing tag: users",
+    "thecompaniesapi-openapi.yml: declared missing tag: utilities",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "thecompaniesapi-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-industries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-job-titles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-prompts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-technologies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "thecompaniesapi-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
