@@ -436,7 +436,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NominatimContinent:
+    NominatimState:
       type: object
       properties:
         citiesCount:
@@ -445,14 +445,6 @@ components:
           - 'null'
         code:
           type: string
-          enum:
-          - af
-          - an
-          - as
-          - eu
-          - na
-          - oc
-          - sa
         companiesCount:
           type:
           - number
@@ -460,14 +452,6 @@ components:
         countiesCount:
           type:
           - number
-          - 'null'
-        countriesCount:
-          type:
-          - number
-          - 'null'
-        icon:
-          type:
-          - string
           - 'null'
         id:
           type: number
@@ -483,17 +467,17 @@ components:
           type:
           - string
           - 'null'
+        linkedinQuery:
+          type:
+          - string
+          - 'null'
         longitude:
           type:
           - string
           - 'null'
         name:
           type: string
-        nameEs:
-          type: string
-        nameFr:
-          type: string
-        statesCount:
+        nominatimCountryId:
           type:
           - number
           - 'null'
@@ -506,17 +490,43 @@ components:
       - code
       - companiesCount
       - countiesCount
-      - countriesCount
-      - icon
       - id
       - latitude
       - longitude
       - name
-      - nameEs
-      - nameFr
-      - statesCount
       - usageCount
-      description: A continent from the Nominatim API.
+      description: A state from the Nominatim API.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
     NominatimCountry:
       type: object
       properties:
@@ -614,7 +624,7 @@ components:
       - statesCount
       - usageCount
       description: A country from the Nominatim API.
-    NominatimState:
+    NominatimCounty:
       type: object
       properties:
         citiesCount:
@@ -624,10 +634,6 @@ components:
         code:
           type: string
         companiesCount:
-          type:
-          - number
-          - 'null'
-        countiesCount:
           type:
           - number
           - 'null'
@@ -659,6 +665,85 @@ components:
           type:
           - number
           - 'null'
+        nominatimStateId:
+          type:
+          - number
+          - 'null'
+        usageCount:
+          type:
+          - number
+          - 'null'
+      required:
+      - citiesCount
+      - code
+      - companiesCount
+      - id
+      - latitude
+      - longitude
+      - name
+      - usageCount
+      description: A county from the Nominatim API.
+    NominatimContinent:
+      type: object
+      properties:
+        citiesCount:
+          type:
+          - number
+          - 'null'
+        code:
+          type: string
+          enum:
+          - af
+          - an
+          - as
+          - eu
+          - na
+          - oc
+          - sa
+        companiesCount:
+          type:
+          - number
+          - 'null'
+        countiesCount:
+          type:
+          - number
+          - 'null'
+        countriesCount:
+          type:
+          - number
+          - 'null'
+        icon:
+          type:
+          - string
+          - 'null'
+        id:
+          type: number
+        latitude:
+          type:
+          - string
+          - 'null'
+        linkedinHeadline:
+          type:
+          - string
+          - 'null'
+        linkedinId:
+          type:
+          - string
+          - 'null'
+        longitude:
+          type:
+          - string
+          - 'null'
+        name:
+          type: string
+        nameEs:
+          type: string
+        nameFr:
+          type: string
+        statesCount:
+          type:
+          - number
+          - 'null'
         usageCount:
           type:
           - number
@@ -668,43 +753,17 @@ components:
       - code
       - companiesCount
       - countiesCount
+      - countriesCount
+      - icon
       - id
       - latitude
       - longitude
       - name
+      - nameEs
+      - nameFr
+      - statesCount
       - usageCount
-      description: A state from the Nominatim API.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
+      description: A continent from the Nominatim API.
     NominatimCity:
       type: object
       properties:
@@ -768,65 +827,6 @@ components:
       - postcode
       - usageCount
       description: A city from the Nominatim API.
-    NominatimCounty:
-      type: object
-      properties:
-        citiesCount:
-          type:
-          - number
-          - 'null'
-        code:
-          type: string
-        companiesCount:
-          type:
-          - number
-          - 'null'
-        id:
-          type: number
-        latitude:
-          type:
-          - string
-          - 'null'
-        linkedinHeadline:
-          type:
-          - string
-          - 'null'
-        linkedinId:
-          type:
-          - string
-          - 'null'
-        linkedinQuery:
-          type:
-          - string
-          - 'null'
-        longitude:
-          type:
-          - string
-          - 'null'
-        name:
-          type: string
-        nominatimCountryId:
-          type:
-          - number
-          - 'null'
-        nominatimStateId:
-          type:
-          - number
-          - 'null'
-        usageCount:
-          type:
-          - number
-          - 'null'
-      required:
-      - citiesCount
-      - code
-      - companiesCount
-      - id
-      - latitude
-      - longitude
-      - name
-      - usageCount
-      description: A county from the Nominatim API.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

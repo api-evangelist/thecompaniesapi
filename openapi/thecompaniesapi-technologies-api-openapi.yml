@@ -83,37 +83,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
     Technology:
       type: object
       properties:
@@ -178,6 +147,37 @@ components:
       - usageCount
       - websiteUrl
       description: A technology description from our platform.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

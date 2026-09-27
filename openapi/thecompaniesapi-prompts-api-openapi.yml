@@ -669,53 +669,68 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    LLMAnswer:
+    SegmentationCondition:
       type: object
       properties:
-        companyId:
-          type: number
-        explanation:
+        attribute:
           type: string
-        fields:
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
           type: array
           items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
-          type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
-          type: number
+            anyOf:
+            - type: string
+            - type: number
       required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
     Prompt:
       type: object
       properties:
@@ -1059,68 +1074,6 @@ components:
       - prompt
       - promptKey
       description: A natural language request made to the platform resolving to a specific action or search segment.
-    SegmentationCondition:
-      type: object
-      properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
-      required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
     PaginationMeta:
       type: object
       properties:
@@ -1152,6 +1105,53 @@ components:
       - perPage
       - total
       description: Metadata about a paginated or billed response.
+    LLMAnswer:
+      type: object
+      properties:
+        companyId:
+          type: number
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
+          type: boolean
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
+          type: number
+      required:
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

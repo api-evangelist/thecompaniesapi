@@ -367,115 +367,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    LLMAnswer:
-      type: object
-      properties:
-        companyId:
-          type: number
-        explanation:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
-          type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
-          type: number
-      required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
-    SegmentationCondition:
-      type: object
-      properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
-      required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
     Team:
       type: object
       properties:
@@ -694,6 +585,99 @@ components:
       - id
       - status
       description: An action tracks a request made to our job queue and its result.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
     User:
       type: object
       properties:
@@ -762,37 +746,53 @@ components:
       - id
       - pictureUrl
       description: A user of the platform.
-    PaginationMeta:
+    LLMAnswer:
       type: object
       properties:
-        cost:
+        companyId:
           type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
           type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
           type: number
       required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.
