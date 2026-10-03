@@ -367,72 +367,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Team:
-      type: object
-      properties:
-        admin:
-          type:
-          - boolean
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-        credits:
-          type: number
-        creditsPack:
-          type: number
-        id:
-          type: number
-        name:
-          type:
-          - string
-          - 'null'
-        role:
-          type:
-          - string
-          - 'null'
-        stripeCustomerId:
-          type:
-          - string
-          - 'null'
-        stripeProductId:
-          type:
-          - string
-          - 'null'
-        stripeSubscribed:
-          type: boolean
-        stripeSubscriptionId:
-          type:
-          - string
-          - 'null'
-        stripeSubscriptionStatus:
-          type:
-          - string
-          - 'null'
-        websiteUrl:
-          type:
-          - string
-          - 'null'
-      required:
-      - admin
-      - country
-      - createdAt
-      - credits
-      - creditsPack
-      - id
-      - name
-      - stripeCustomerId
-      - stripeProductId
-      - stripeSubscribed
-      - stripeSubscriptionId
-      - stripeSubscriptionStatus
-      - websiteUrl
-      description: A collection of users that can access the same resources.
     Action:
       type: object
       properties:
@@ -585,37 +519,6 @@ components:
       - id
       - status
       description: An action tracks a request made to our job queue and its result.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
     SegmentationCondition:
       type: object
       properties:
@@ -678,6 +581,72 @@ components:
       - sign
       - values
       description: A condition for our platform segmentation engine.
+    Team:
+      type: object
+      properties:
+        admin:
+          type:
+          - boolean
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        credits:
+          type: number
+        creditsPack:
+          type: number
+        id:
+          type: number
+        name:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+        stripeCustomerId:
+          type:
+          - string
+          - 'null'
+        stripeProductId:
+          type:
+          - string
+          - 'null'
+        stripeSubscribed:
+          type: boolean
+        stripeSubscriptionId:
+          type:
+          - string
+          - 'null'
+        stripeSubscriptionStatus:
+          type:
+          - string
+          - 'null'
+        websiteUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - admin
+      - country
+      - createdAt
+      - credits
+      - creditsPack
+      - id
+      - name
+      - stripeCustomerId
+      - stripeProductId
+      - stripeSubscribed
+      - stripeSubscriptionId
+      - stripeSubscriptionStatus
+      - websiteUrl
+      description: A collection of users that can access the same resources.
     User:
       type: object
       properties:
@@ -746,6 +715,37 @@ components:
       - id
       - pictureUrl
       description: A user of the platform.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
     LLMAnswer:
       type: object
       properties:

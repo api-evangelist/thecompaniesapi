@@ -2292,63 +2292,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
-    PageContentsPage:
-      type: object
-      properties:
-        url:
-          type: string
-        content:
-          type: string
-        html:
-          type: string
-        description:
-          type: string
-        title:
-          type: string
-        externals:
-          type: array
-          items:
-            $ref: '#/components/schemas/PageContentsLink'
-        navigation:
-          type: array
-          items:
-            $ref: '#/components/schemas/PageContentsLink'
-        visitedAt:
-          type: string
-      required:
-      - url
-      description: A page content saved as a source for a company context.
     Prompt:
       type: object
       properties:
@@ -2692,89 +2635,6 @@ components:
       - prompt
       - promptKey
       description: A natural language request made to the platform resolving to a specific action or search segment.
-    EmailPattern:
-      type: object
-      properties:
-        emailsCount:
-          type:
-          - number
-          - 'null'
-        id:
-          type: number
-        pattern:
-          type: string
-        usagePercentage:
-          type:
-          - number
-          - 'null'
-      required:
-      - emailsCount
-      - id
-      - pattern
-      - usagePercentage
-      description: An email pattern and its related informations.
-    SegmentationCondition:
-      type: object
-      properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
-      required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
     PageContentsIdeated:
       type: object
       properties:
@@ -2877,6 +2737,125 @@ components:
         tokens:
           type: number
       description: A collection of categorized facts about a company aggregated from multiple sources.
+    PageContentsLink:
+      type: object
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+      required:
+      - url
+      description: A link found in a page content.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
+    EmailPattern:
+      type: object
+      properties:
+        emailsCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        pattern:
+          type: string
+        usagePercentage:
+          type:
+          - number
+          - 'null'
+      required:
+      - emailsCount
+      - id
+      - pattern
+      - usagePercentage
+      description: An email pattern and its related informations.
+    PageContentsPage:
+      type: object
+      properties:
+        url:
+          type: string
+        content:
+          type: string
+        html:
+          type: string
+        description:
+          type: string
+        title:
+          type: string
+        externals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PageContentsLink'
+        navigation:
+          type: array
+          items:
+            $ref: '#/components/schemas/PageContentsLink'
+        visitedAt:
+          type: string
+      required:
+      - url
+      description: A page content saved as a source for a company context.
     CompanyV2:
       type: object
       properties:
@@ -5296,6 +5275,37 @@ components:
               description: The answer of the action.
           description: The action results for the company.
       description: Our complete schema for company data.
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
     LLMAnswer:
       type: object
       properties:
@@ -5343,16 +5353,6 @@ components:
       - question
       - score
       description: An answer from a query made to the LLM.
-    PageContentsLink:
-      type: object
-      properties:
-        text:
-          type: string
-        url:
-          type: string
-      required:
-      - url
-      description: A link found in a page content.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.
