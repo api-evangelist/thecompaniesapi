@@ -519,134 +519,6 @@ components:
       - id
       - status
       description: An action tracks a request made to our job queue and its result.
-    SegmentationCondition:
-      type: object
-      properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
-      required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
-    Team:
-      type: object
-      properties:
-        admin:
-          type:
-          - boolean
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-        credits:
-          type: number
-        creditsPack:
-          type: number
-        id:
-          type: number
-        name:
-          type:
-          - string
-          - 'null'
-        role:
-          type:
-          - string
-          - 'null'
-        stripeCustomerId:
-          type:
-          - string
-          - 'null'
-        stripeProductId:
-          type:
-          - string
-          - 'null'
-        stripeSubscribed:
-          type: boolean
-        stripeSubscriptionId:
-          type:
-          - string
-          - 'null'
-        stripeSubscriptionStatus:
-          type:
-          - string
-          - 'null'
-        websiteUrl:
-          type:
-          - string
-          - 'null'
-      required:
-      - admin
-      - country
-      - createdAt
-      - credits
-      - creditsPack
-      - id
-      - name
-      - stripeCustomerId
-      - stripeProductId
-      - stripeSubscribed
-      - stripeSubscriptionId
-      - stripeSubscriptionStatus
-      - websiteUrl
-      description: A collection of users that can access the same resources.
     User:
       type: object
       properties:
@@ -746,6 +618,72 @@ components:
       - perPage
       - total
       description: Metadata about a paginated or billed response.
+    Team:
+      type: object
+      properties:
+        admin:
+          type:
+          - boolean
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        credits:
+          type: number
+        creditsPack:
+          type: number
+        id:
+          type: number
+        name:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+        stripeCustomerId:
+          type:
+          - string
+          - 'null'
+        stripeProductId:
+          type:
+          - string
+          - 'null'
+        stripeSubscribed:
+          type: boolean
+        stripeSubscriptionId:
+          type:
+          - string
+          - 'null'
+        stripeSubscriptionStatus:
+          type:
+          - string
+          - 'null'
+        websiteUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - admin
+      - country
+      - createdAt
+      - credits
+      - creditsPack
+      - id
+      - name
+      - stripeCustomerId
+      - stripeProductId
+      - stripeSubscribed
+      - stripeSubscriptionId
+      - stripeSubscriptionStatus
+      - websiteUrl
+      description: A collection of users that can access the same resources.
     LLMAnswer:
       type: object
       properties:
@@ -793,6 +731,68 @@ components:
       - question
       - score
       description: An answer from a query made to the LLM.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

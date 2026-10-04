@@ -669,6 +669,37 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PaginationMeta:
+      type: object
+      properties:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
     SegmentationCondition:
       type: object
       properties:
@@ -731,6 +762,53 @@ components:
       - sign
       - values
       description: A condition for our platform segmentation engine.
+    LLMAnswer:
+      type: object
+      properties:
+        companyId:
+          type: number
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
+          type: boolean
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
+          type: number
+      required:
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
     Prompt:
       type: object
       properties:
@@ -1074,84 +1152,6 @@ components:
       - prompt
       - promptKey
       description: A natural language request made to the platform resolving to a specific action or search segment.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
-    LLMAnswer:
-      type: object
-      properties:
-        companyId:
-          type: number
-        explanation:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
-          type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
-          type: number
-      required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

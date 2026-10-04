@@ -2292,349 +2292,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Prompt:
+    PaginationMeta:
       type: object
       properties:
-        companyId:
+        cost:
           type: number
-        context:
-          type: string
-          enum:
-          - analytics
-          - api
-          - companies
-          - company
-          - documentation
-          - enrichment
-          - landing
-          - list
-          - similarity
-        createdAt:
-          type: string
-        data:
-          type: object
-          properties:
-            all:
-              type: boolean
-            count:
-              type: number
-            domains:
-              type: array
-              items:
-                type: string
-            explain:
-              type: boolean
-            fields:
-              type: array
-              items:
-                type: object
-                properties:
-                  description:
-                    type: string
-                  key:
-                    type: string
-                  type:
-                    type: string
-                    enum:
-                    - array|boolean
-                    - array|number
-                    - array|string
-                    - boolean
-                    - number
-                    - string
-                  values:
-                    type: array
-                    items:
-                      type: string
-                required:
-                - key
-                - type
-            model:
-              type: string
-              enum:
-              - small
-              - large
-            names:
-              type: array
-              items:
-                type: string
-            query:
-              type: array
-              items:
-                $ref: '#/components/schemas/SegmentationCondition'
-            question:
-              type: string
-            segmentation:
-              type: boolean
-        feature:
-          type: string
-          enum:
-          - ask
-          - cleanup
-          - enrich
-          - product
-          - search
-          - similar
-        hits:
+        credits:
           type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
+          type: boolean
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
+      required:
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    EmailPattern:
+      type: object
+      properties:
+        emailsCount:
+          type:
+          - number
+          - 'null'
         id:
           type: number
-        model:
+        pattern:
           type: string
-          enum:
-          - small
-          - large
-        prompt:
-          type: string
-        promptKey:
-          type: string
-        response:
-          anyOf:
-          - type: object
-            properties:
-              all:
-                type: boolean
-              cost:
-                type: number
-              count:
-                type: number
-              domain:
-                type: string
-              error:
-                type: string
-              action:
-                type: object
-                properties:
-                  cost:
-                    type: number
-                  data:
-                    type: object
-                    properties:
-                      answer:
-                        $ref: '#/components/schemas/LLMAnswer'
-                      domains:
-                        type: array
-                        items:
-                          type: string
-                      fields:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            description:
-                              type: string
-                            key:
-                              type: string
-                            type:
-                              type: string
-                              enum:
-                              - array|boolean
-                              - array|number
-                              - array|string
-                              - boolean
-                              - number
-                              - string
-                            values:
-                              type: array
-                              items:
-                                type: string
-                          required:
-                          - key
-                          - type
-                      job:
-                        type: string
-                        enum:
-                        - ask-list
-                      query:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/SegmentationCondition'
-                      question:
-                        type: string
-                    required:
-                    - answer
-                    - fields
-                    - job
-                    - question
-                  listId:
-                    type: number
-                  promptId:
-                    type: number
-                  status:
-                    type: string
-                    enum:
-                    - pending
-                  type:
-                    type: string
-                    enum:
-                    - jobs:request
-                required:
-                - promptId
-                - status
-                - type
-              answer:
-                type: object
-                properties:
-                  explanation:
-                    type: string
-                  output:
-                    type: object
-                    additionalProperties: {}
-                  score:
-                    type: number
-                required:
-                - output
-                - score
-          - type: object
-            properties:
-              all:
-                type: boolean
-              cost:
-                type: number
-              count:
-                type: number
-              domain:
-                type: string
-              error:
-                type: string
-              action:
-                type: object
-                properties:
-                  cost:
-                    type: number
-                    enum:
-                    - 0
-                  data:
-                    type: object
-                    properties:
-                      domains:
-                        type: array
-                        items:
-                          type: string
-                      job:
-                        type: string
-                        enum:
-                        - cleanup-list
-                      query:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/SegmentationCondition'
-                    required:
-                    - job
-                  listId:
-                    type: number
-                  promptId:
-                    type: number
-                  status:
-                    type: string
-                    enum:
-                    - pending
-                  type:
-                    type: string
-                    enum:
-                    - jobs:request
-                required:
-                - promptId
-                - status
-                - type
-          - type: object
-            properties:
-              all:
-                type: boolean
-              cost:
-                type: number
-              count:
-                type: number
-              domain:
-                type: string
-              error:
-                type: string
-              action:
-                type: object
-                properties:
-                  cost:
-                    type: number
-                  data:
-                    type: object
-                    properties:
-                      domains:
-                        type: array
-                        items:
-                          type: string
-                      job:
-                        type: string
-                        enum:
-                        - enrich-companies
-                        - enrich-list
-                      query:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/SegmentationCondition'
-                    required:
-                    - job
-                  listId:
-                    type: number
-                  promptId:
-                    type: number
-                  status:
-                    type: string
-                    enum:
-                    - pending
-                  type:
-                    type: string
-                    enum:
-                    - jobs:request
-                required:
-                - data
-                - promptId
-                - status
-                - type
-          - type: object
-            properties:
-              all:
-                type: boolean
-              cost:
-                type: number
-              count:
-                type: number
-              domain:
-                type: string
-              error:
-                type: string
-              domains:
-                type: array
-                items:
-                  type: string
-              listId:
-                type: number
-              query:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SegmentationCondition'
-          - type: object
-            properties:
-              all:
-                type: boolean
-              cost:
-                type: number
-              count:
-                type: number
-              domain:
-                type: string
-              error:
-                type: string
-              domains:
-                type: array
-                items:
-                  type: string
-        updatedAt:
-          type: string
+        usagePercentage:
+          type:
+          - number
+          - 'null'
       required:
-      - context
+      - emailsCount
       - id
-      - prompt
-      - promptKey
-      description: A natural language request made to the platform resolving to a specific action or search segment.
+      - pattern
+      - usagePercentage
+      description: An email pattern and its related informations.
     PageContentsIdeated:
       type: object
       properties:
@@ -2747,89 +2456,6 @@ components:
       required:
       - url
       description: A link found in a page content.
-    SegmentationCondition:
-      type: object
-      properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
-      required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
-    EmailPattern:
-      type: object
-      properties:
-        emailsCount:
-          type:
-          - number
-          - 'null'
-        id:
-          type: number
-        pattern:
-          type: string
-        usagePercentage:
-          type:
-          - number
-          - 'null'
-      required:
-      - emailsCount
-      - id
-      - pattern
-      - usagePercentage
-      description: An email pattern and its related informations.
     PageContentsPage:
       type: object
       properties:
@@ -5275,37 +4901,349 @@ components:
               description: The answer of the action.
           description: The action results for the company.
       description: Our complete schema for company data.
-    PaginationMeta:
+    Prompt:
       type: object
       properties:
-        cost:
+        companyId:
           type: number
-        credits:
+        context:
+          type: string
+          enum:
+          - analytics
+          - api
+          - companies
+          - company
+          - documentation
+          - enrichment
+          - landing
+          - list
+          - similarity
+        createdAt:
+          type: string
+        data:
+          type: object
+          properties:
+            all:
+              type: boolean
+            count:
+              type: number
+            domains:
+              type: array
+              items:
+                type: string
+            explain:
+              type: boolean
+            fields:
+              type: array
+              items:
+                type: object
+                properties:
+                  description:
+                    type: string
+                  key:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                    - array|boolean
+                    - array|number
+                    - array|string
+                    - boolean
+                    - number
+                    - string
+                  values:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - key
+                - type
+            model:
+              type: string
+              enum:
+              - small
+              - large
+            names:
+              type: array
+              items:
+                type: string
+            query:
+              type: array
+              items:
+                $ref: '#/components/schemas/SegmentationCondition'
+            question:
+              type: string
+            segmentation:
+              type: boolean
+        feature:
+          type: string
+          enum:
+          - ask
+          - cleanup
+          - enrich
+          - product
+          - search
+          - similar
+        hits:
           type: number
-        currentPage:
+        id:
           type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
+        model:
+          type: string
+          enum:
+          - small
+          - large
+        prompt:
+          type: string
+        promptKey:
+          type: string
+        response:
+          anyOf:
+          - type: object
+            properties:
+              all:
+                type: boolean
+              cost:
+                type: number
+              count:
+                type: number
+              domain:
+                type: string
+              error:
+                type: string
+              action:
+                type: object
+                properties:
+                  cost:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      answer:
+                        $ref: '#/components/schemas/LLMAnswer'
+                      domains:
+                        type: array
+                        items:
+                          type: string
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            description:
+                              type: string
+                            key:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                              - array|boolean
+                              - array|number
+                              - array|string
+                              - boolean
+                              - number
+                              - string
+                            values:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - key
+                          - type
+                      job:
+                        type: string
+                        enum:
+                        - ask-list
+                      query:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SegmentationCondition'
+                      question:
+                        type: string
+                    required:
+                    - answer
+                    - fields
+                    - job
+                    - question
+                  listId:
+                    type: number
+                  promptId:
+                    type: number
+                  status:
+                    type: string
+                    enum:
+                    - pending
+                  type:
+                    type: string
+                    enum:
+                    - jobs:request
+                required:
+                - promptId
+                - status
+                - type
+              answer:
+                type: object
+                properties:
+                  explanation:
+                    type: string
+                  output:
+                    type: object
+                    additionalProperties: {}
+                  score:
+                    type: number
+                required:
+                - output
+                - score
+          - type: object
+            properties:
+              all:
+                type: boolean
+              cost:
+                type: number
+              count:
+                type: number
+              domain:
+                type: string
+              error:
+                type: string
+              action:
+                type: object
+                properties:
+                  cost:
+                    type: number
+                    enum:
+                    - 0
+                  data:
+                    type: object
+                    properties:
+                      domains:
+                        type: array
+                        items:
+                          type: string
+                      job:
+                        type: string
+                        enum:
+                        - cleanup-list
+                      query:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SegmentationCondition'
+                    required:
+                    - job
+                  listId:
+                    type: number
+                  promptId:
+                    type: number
+                  status:
+                    type: string
+                    enum:
+                    - pending
+                  type:
+                    type: string
+                    enum:
+                    - jobs:request
+                required:
+                - promptId
+                - status
+                - type
+          - type: object
+            properties:
+              all:
+                type: boolean
+              cost:
+                type: number
+              count:
+                type: number
+              domain:
+                type: string
+              error:
+                type: string
+              action:
+                type: object
+                properties:
+                  cost:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      domains:
+                        type: array
+                        items:
+                          type: string
+                      job:
+                        type: string
+                        enum:
+                        - enrich-companies
+                        - enrich-list
+                      query:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SegmentationCondition'
+                    required:
+                    - job
+                  listId:
+                    type: number
+                  promptId:
+                    type: number
+                  status:
+                    type: string
+                    enum:
+                    - pending
+                  type:
+                    type: string
+                    enum:
+                    - jobs:request
+                required:
+                - data
+                - promptId
+                - status
+                - type
+          - type: object
+            properties:
+              all:
+                type: boolean
+              cost:
+                type: number
+              count:
+                type: number
+              domain:
+                type: string
+              error:
+                type: string
+              domains:
+                type: array
+                items:
+                  type: string
+              listId:
+                type: number
+              query:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SegmentationCondition'
+          - type: object
+            properties:
+              all:
+                type: boolean
+              cost:
+                type: number
+              count:
+                type: number
+              domain:
+                type: string
+              error:
+                type: string
+              domains:
+                type: array
+                items:
+                  type: string
+        updatedAt:
+          type: string
       required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
+      - context
+      - id
+      - prompt
+      - promptKey
+      description: A natural language request made to the platform resolving to a specific action or search segment.
     LLMAnswer:
       type: object
       properties:
@@ -5353,6 +5291,68 @@ components:
       - question
       - score
       description: An answer from a query made to the LLM.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.
