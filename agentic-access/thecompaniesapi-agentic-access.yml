@@ -1,39 +1,24 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/thecompaniesapi-openapi.yml
+source: openapi/thecompaniesapi-actions-api-openapi.yml, openapi/thecompaniesapi-analytics-api-openapi.yml,
+  openapi/thecompaniesapi-companies-api-openapi.yml, openapi/thecompaniesapi-industries-api-openapi.yml,
+  openapi/thecompaniesapi-job-titles-api-openapi.yml, openapi/thecompaniesapi-lists-api-openapi.yml,
+  openapi/thecompaniesapi-locations-api-openapi.yml, openapi/thecompaniesapi-prompts-api-openapi.yml,
+  openapi/thecompaniesapi-teams-api-openapi.yml, openapi/thecompaniesapi-technologies-api-openapi.yml,
+  openapi/thecompaniesapi-users-api-openapi.yml, openapi/thecompaniesapi-utilities-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 44
+  operations: 46
   by_action_class:
-    connected: 29
-    acting: 15
+    connected: 33
+    acting: 13
   by_consequence:
-    read: 29
-    write: 15
+    read: 33
+    write: 13
   human_in_the_loop_required: 0
 operations:
-- path: /
-  method: get
-  operationId: fetchApiHealth
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/openapi
-  method: get
-  operationId: fetchOpenApi
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v2/actions
   method: get
   operationId: fetchActions
@@ -76,6 +61,32 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/companies/analytics
+  method: get
+  operationId: fetchCompaniesAnalytics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/companies/analytics/export
+  method: post
+  operationId: exportCompaniesAnalytics
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /v2/companies
   method: get
   operationId: searchCompanies
@@ -90,18 +101,12 @@ operations:
   method: post
   operationId: searchCompaniesPost
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/companies/{domain}
   method: get
   operationId: fetchCompany
@@ -156,18 +161,12 @@ operations:
   method: post
   operationId: countCompaniesPost
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/companies/by-email
   method: get
   operationId: fetchCompanyByEmail
@@ -270,66 +269,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/technologies
-  method: get
-  operationId: searchTechnologies
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/locations/cities
-  method: get
-  operationId: searchCities
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/locations/counties
-  method: get
-  operationId: searchCounties
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/locations/countries
-  method: get
-  operationId: searchCountries
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/locations/states
-  method: get
-  operationId: searchStates
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/locations/continents
-  method: get
-  operationId: searchContinents
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v2/job-titles/enrich
   method: get
   operationId: enrichJobTitles
@@ -412,18 +351,12 @@ operations:
   method: post
   operationId: fetchCompaniesInListPost
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/lists/{listId}/companies/{domain}
   method: get
   operationId: fetchCompanyInList
@@ -450,9 +383,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v2/teams/{teamId}
+- path: /v2/locations/cities
   method: get
-  operationId: fetchTeam
+  operationId: searchCities
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -460,25 +393,39 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/teams/{teamId}
-  method: patch
-  operationId: updateTeam
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/user
+- path: /v2/locations/counties
   method: get
-  operationId: fetchUser
+  operationId: searchCounties
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/locations/countries
+  method: get
+  operationId: searchCountries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/locations/states
+  method: get
+  operationId: searchStates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/locations/continents
+  method: get
+  operationId: searchContinents
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -544,3 +491,69 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/teams/{teamId}
+  method: get
+  operationId: fetchTeam
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/teams/{teamId}
+  method: patch
+  operationId: updateTeam
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/technologies
+  method: get
+  operationId: searchTechnologies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user
+  method: get
+  operationId: fetchUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: fetchApiHealth
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/openapi
+  method: get
+  operationId: fetchOpenApi
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

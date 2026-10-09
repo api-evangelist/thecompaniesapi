@@ -179,3 +179,48 @@ generated: '2026-08-14'
 method: searched
 source: https://www.thecompaniesapi.com/pricing
 plan_count: 4
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - hybrid
+  units:
+  - credit
+  - period
+  plans:
+  - name: Free Credits
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - one-time
+  - name: Startup
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    - period
+    periods:
+    - month
+  - name: Scaleup
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    - period
+    periods:
+    - month
+  - name: Enterprise
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    - period
+    periods:
+    - month
