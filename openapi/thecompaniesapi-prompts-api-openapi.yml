@@ -669,37 +669,53 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationMeta:
+    LLMAnswer:
       type: object
       properties:
-        cost:
+        companyId:
           type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
           type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
           type: number
       required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
     SegmentationCondition:
       type: object
       properties:
@@ -762,53 +778,37 @@ components:
       - sign
       - values
       description: A condition for our platform segmentation engine.
-    LLMAnswer:
+    PaginationMeta:
       type: object
       properties:
-        companyId:
+        cost:
           type: number
-        explanation:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
           type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
           type: number
       required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
     Prompt:
       type: object
       properties:

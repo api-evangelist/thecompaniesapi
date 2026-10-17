@@ -2292,170 +2292,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
-    EmailPattern:
-      type: object
-      properties:
-        emailsCount:
-          type:
-          - number
-          - 'null'
-        id:
-          type: number
-        pattern:
-          type: string
-        usagePercentage:
-          type:
-          - number
-          - 'null'
-      required:
-      - emailsCount
-      - id
-      - pattern
-      - usagePercentage
-      description: An email pattern and its related informations.
-    PageContentsIdeated:
-      type: object
-      properties:
-        domain:
-          type: string
-        about:
-          type: array
-          items:
-            type: string
-        acquired:
-          type: array
-          items:
-            type: string
-        contacts:
-          type: array
-          items:
-            type: string
-        customers:
-          type: array
-          items:
-            type: string
-        features:
-          type: array
-          items:
-            type: string
-        finances:
-          type: array
-          items:
-            type: string
-        industries:
-          type: array
-          items:
-            type: string
-        jobs:
-          type: array
-          items:
-            type: string
-        locations:
-          type: array
-          items:
-            type: string
-        others:
-          type: array
-          items:
-            type: string
-        pricing:
-          type: array
-          items:
-            type: string
-        related:
-          type: array
-          items:
-            type: string
-        resources:
-          type: array
-          items:
-            type: string
-        security:
-          type: array
-          items:
-            type: string
-        social:
-          type: array
-          items:
-            type: string
-        solutions:
-          type: array
-          items:
-            type: string
-        support:
-          type: array
-          items:
-            type: string
-        team:
-          type: array
-          items:
-            type: string
-        technologies:
-          type: array
-          items:
-            type: string
-        updates:
-          type: array
-          items:
-            type: string
-        broken:
-          type: boolean
-        closed:
-          type: boolean
-        forSale:
-          type: boolean
-        nsfw:
-          type: boolean
-        updatedAt:
-          type: string
-        sources:
-          type: array
-          items:
-            type: string
-        tokens:
-          type: number
-      description: A collection of categorized facts about a company aggregated from multiple sources.
-    PageContentsLink:
-      type: object
-      properties:
-        text:
-          type: string
-        url:
-          type: string
-      required:
-      - url
-      description: A link found in a page content.
     PageContentsPage:
       type: object
       properties:
@@ -2482,6 +2318,89 @@ components:
       required:
       - url
       description: A page content saved as a source for a company context.
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
+    EmailPattern:
+      type: object
+      properties:
+        emailsCount:
+          type:
+          - number
+          - 'null'
+        id:
+          type: number
+        pattern:
+          type: string
+        usagePercentage:
+          type:
+          - number
+          - 'null'
+      required:
+      - emailsCount
+      - id
+      - pattern
+      - usagePercentage
+      description: An email pattern and its related informations.
     CompanyV2:
       type: object
       properties:
@@ -4901,6 +4820,165 @@ components:
               description: The answer of the action.
           description: The action results for the company.
       description: Our complete schema for company data.
+    PageContentsLink:
+      type: object
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+      required:
+      - url
+      description: A link found in a page content.
+    PageContentsIdeated:
+      type: object
+      properties:
+        domain:
+          type: string
+        about:
+          type: array
+          items:
+            type: string
+        acquired:
+          type: array
+          items:
+            type: string
+        contacts:
+          type: array
+          items:
+            type: string
+        customers:
+          type: array
+          items:
+            type: string
+        features:
+          type: array
+          items:
+            type: string
+        finances:
+          type: array
+          items:
+            type: string
+        industries:
+          type: array
+          items:
+            type: string
+        jobs:
+          type: array
+          items:
+            type: string
+        locations:
+          type: array
+          items:
+            type: string
+        others:
+          type: array
+          items:
+            type: string
+        pricing:
+          type: array
+          items:
+            type: string
+        related:
+          type: array
+          items:
+            type: string
+        resources:
+          type: array
+          items:
+            type: string
+        security:
+          type: array
+          items:
+            type: string
+        social:
+          type: array
+          items:
+            type: string
+        solutions:
+          type: array
+          items:
+            type: string
+        support:
+          type: array
+          items:
+            type: string
+        team:
+          type: array
+          items:
+            type: string
+        technologies:
+          type: array
+          items:
+            type: string
+        updates:
+          type: array
+          items:
+            type: string
+        broken:
+          type: boolean
+        closed:
+          type: boolean
+        forSale:
+          type: boolean
+        nsfw:
+          type: boolean
+        updatedAt:
+          type: string
+        sources:
+          type: array
+          items:
+            type: string
+        tokens:
+          type: number
+      description: A collection of categorized facts about a company aggregated from multiple sources.
+    LLMAnswer:
+      type: object
+      properties:
+        companyId:
+          type: number
+        explanation:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              key:
+                type: string
+              type:
+                type: string
+                enum:
+                - array|boolean
+                - array|number
+                - array|string
+                - boolean
+                - number
+                - string
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+            - key
+            - type
+        grounded:
+          type: boolean
+        output:
+          type: object
+          additionalProperties: {}
+        question:
+          type: string
+        score:
+          type: number
+      required:
+      - companyId
+      - output
+      - question
+      - score
+      description: An answer from a query made to the LLM.
     Prompt:
       type: object
       properties:
@@ -5244,115 +5322,37 @@ components:
       - prompt
       - promptKey
       description: A natural language request made to the platform resolving to a specific action or search segment.
-    LLMAnswer:
+    PaginationMeta:
       type: object
       properties:
-        companyId:
+        cost:
           type: number
-        explanation:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              key:
-                type: string
-              type:
-                type: string
-                enum:
-                - array|boolean
-                - array|number
-                - array|string
-                - boolean
-                - number
-                - string
-              values:
-                type: array
-                items:
-                  type: string
-            required:
-            - key
-            - type
-        grounded:
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
           type: boolean
-        output:
-          type: object
-          additionalProperties: {}
-        question:
-          type: string
-        score:
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
           type: number
       required:
-      - companyId
-      - output
-      - question
-      - score
-      description: An answer from a query made to the LLM.
-    SegmentationCondition:
-      type: object
-      properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
-      required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.

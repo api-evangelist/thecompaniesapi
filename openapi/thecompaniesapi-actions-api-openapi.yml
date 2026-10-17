@@ -367,6 +367,68 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    SegmentationCondition:
+      type: object
+      properties:
+        attribute:
+          type: string
+          enum:
+          - about.businessType
+          - about.industries
+          - about.industry
+          - about.name
+          - about.totalEmployees
+          - about.yearFounded
+          - ai.search
+          - analytics.monthlyVisitors
+          - apps
+          - codes.naics
+          - codes.sic
+          - contacts
+          - domain.domain
+          - domain.tld
+          - finances.revenue
+          - finances.stockExchange
+          - locations.headquarters.city.code
+          - locations.headquarters.continent.code
+          - locations.headquarters.country.code
+          - locations.headquarters.county.code
+          - locations.headquarters.state.code
+          - meta.listIds
+          - meta.score
+          - meta.syncedAt
+          - socials
+          - socials.linkedin.id
+          - technologies.active
+          - technologies.categories
+          - urls
+        blockedOperator:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - and
+          - or
+        sign:
+          type: string
+          enum:
+          - equals
+          - exactEquals
+          - greater
+          - lower
+          - notEquals
+        values:
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: number
+      required:
+      - attribute
+      - operator
+      - sign
+      - values
+      description: A condition for our platform segmentation engine.
     Action:
       type: object
       properties:
@@ -519,105 +581,6 @@ components:
       - id
       - status
       description: An action tracks a request made to our job queue and its result.
-    User:
-      type: object
-      properties:
-        colorMode:
-          type: string
-          enum:
-          - dark
-          - light
-          - system
-        createdAt:
-          type:
-          - string
-          - 'null'
-        currentTeamId:
-          type:
-          - number
-          - 'null'
-        email:
-          type: string
-        emailFree:
-          type:
-          - boolean
-          - 'null'
-        emailVerified:
-          type:
-          - boolean
-          - 'null'
-        emailVerifiedResentAt:
-          type:
-          - string
-          - 'null'
-        fullName:
-          type:
-          - string
-          - 'null'
-        hasPassword:
-          type:
-          - boolean
-          - 'null'
-        id:
-          type: number
-        locale: {}
-        pictureUrl:
-          type:
-          - string
-          - 'null'
-        referral:
-          type:
-          - string
-          - 'null'
-        role:
-          type:
-          - string
-          - 'null'
-          enum:
-          - owner
-          - user
-      required:
-      - currentTeamId
-      - email
-      - emailFree
-      - emailVerified
-      - emailVerifiedResentAt
-      - fullName
-      - hasPassword
-      - id
-      - pictureUrl
-      description: A user of the platform.
-    PaginationMeta:
-      type: object
-      properties:
-        cost:
-          type: number
-        credits:
-          type: number
-        currentPage:
-          type: number
-        firstPage:
-          type: number
-        freeRequest:
-          type: boolean
-        lastPage:
-          type: number
-        maxScrollResultsReached:
-          type: boolean
-        perPage:
-          type: number
-        total:
-          type: number
-      required:
-      - cost
-      - credits
-      - currentPage
-      - firstPage
-      - freeRequest
-      - lastPage
-      - perPage
-      - total
-      description: Metadata about a paginated or billed response.
     Team:
       type: object
       properties:
@@ -731,68 +694,105 @@ components:
       - question
       - score
       description: An answer from a query made to the LLM.
-    SegmentationCondition:
+    PaginationMeta:
       type: object
       properties:
-        attribute:
-          type: string
-          enum:
-          - about.businessType
-          - about.industries
-          - about.industry
-          - about.name
-          - about.totalEmployees
-          - about.yearFounded
-          - ai.search
-          - analytics.monthlyVisitors
-          - apps
-          - codes.naics
-          - codes.sic
-          - contacts
-          - domain.domain
-          - domain.tld
-          - finances.revenue
-          - finances.stockExchange
-          - locations.headquarters.city.code
-          - locations.headquarters.continent.code
-          - locations.headquarters.country.code
-          - locations.headquarters.county.code
-          - locations.headquarters.state.code
-          - meta.listIds
-          - meta.score
-          - meta.syncedAt
-          - socials
-          - socials.linkedin.id
-          - technologies.active
-          - technologies.categories
-          - urls
-        blockedOperator:
+        cost:
+          type: number
+        credits:
+          type: number
+        currentPage:
+          type: number
+        firstPage:
+          type: number
+        freeRequest:
           type: boolean
-        operator:
-          type: string
-          enum:
-          - and
-          - or
-        sign:
-          type: string
-          enum:
-          - equals
-          - exactEquals
-          - greater
-          - lower
-          - notEquals
-        values:
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: number
+        lastPage:
+          type: number
+        maxScrollResultsReached:
+          type: boolean
+        perPage:
+          type: number
+        total:
+          type: number
       required:
-      - attribute
-      - operator
-      - sign
-      - values
-      description: A condition for our platform segmentation engine.
+      - cost
+      - credits
+      - currentPage
+      - firstPage
+      - freeRequest
+      - lastPage
+      - perPage
+      - total
+      description: Metadata about a paginated or billed response.
+    User:
+      type: object
+      properties:
+        colorMode:
+          type: string
+          enum:
+          - dark
+          - light
+          - system
+        createdAt:
+          type:
+          - string
+          - 'null'
+        currentTeamId:
+          type:
+          - number
+          - 'null'
+        email:
+          type: string
+        emailFree:
+          type:
+          - boolean
+          - 'null'
+        emailVerified:
+          type:
+          - boolean
+          - 'null'
+        emailVerifiedResentAt:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        hasPassword:
+          type:
+          - boolean
+          - 'null'
+        id:
+          type: number
+        locale: {}
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+        referral:
+          type:
+          - string
+          - 'null'
+        role:
+          type:
+          - string
+          - 'null'
+          enum:
+          - owner
+          - user
+      required:
+      - currentTeamId
+      - email
+      - emailFree
+      - emailVerified
+      - emailVerifiedResentAt
+      - fullName
+      - hasPassword
+      - id
+      - pictureUrl
+      description: A user of the platform.
   securitySchemes:
     apiKey:
       description: The API key to use for authentication, you can get it from your API tokens page.
