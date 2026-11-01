@@ -1,4 +1,4 @@
-# The Companies API (thecompaniesapi)
+# The Companies API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,218 +64,176 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The Companies API is a company data and enrichment platform offering programmatic access to firmographic, technographic, and web-intelligence data on 50M+ companies. Its REST API (base `https://api.thecompaniesapi.com`, all resources under `/v2`) covers company search and segmentation, company enrichment by domain, email, or social profile, similar-company lookup, industry and technology reference data, location reference data, saved lists, and asynchronous bulk actions. Requests are authenticated with an API token in the `Authorization` header, billing is credit-based, and the full OpenAPI 3.1 description is published at `GET /v2/openapi`.
+The Companies API is a company data and enrichment platform offering programmatic access to firmographic, technographic, and web-intelligence data on 50M+ companies. Its REST API (base https://api.thecompaniesapi.com, all resources under /v2) covers company search and segmentation, company enrichment by domain, email, or social profile, similar-company lookup, industry and technology reference data, location reference data, saved lists, and asynchronous bulk actions. Requests are authenticated with an API token passed in the Authorization header, billing is credit-based, and the full OpenAPI 3.1 description is published at /v2/openapi.
 
-**Access model (be honest):** The Companies API is a proprietary, hosted commercial service - not open source or self-hostable. Open-source *client SDKs* (TypeScript/JavaScript, Python, Go) are published under [github.com/thecompaniesapi](https://github.com/thecompaniesapi), but the data platform and API are closed and reached only over the hosted endpoints. New accounts receive **500 free credits** (no credit card required) for evaluation; beyond that, usage is billed against a credit-based monthly plan (Startup / Scaleup / Enterprise). There is no documented public WebSocket/streaming API - long-running and bulk work is handled by an asynchronous Actions job queue that is polled over REST.
+**Areas:** Company Data · Data Enrichment · Firmographics · Web Intelligence · B2B Data · Reference Data · Company Search
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/thecompaniesapi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/thecompaniesapi/refs/heads/main/apis.yml)
+## The Companies API on APIs.io
 
-## Tags
+Everything profiled for The Companies API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/thecompaniesapi/](https://apis.io/providers/thecompaniesapi/)** — or go straight to one of the APIs or properties below.
 
-- Company Data
-- Data Enrichment
-- Firmographics
-- Web Intelligence
-- B2B Data
-- Reference Data
-- Company Search
+### APIs (12)
 
-## Timestamps
+- [The Companies API Actions API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-actions-api/) — The actions API from The Companies API — 2 operation(s) for actions.
+- [The Companies API Analytics API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-analytics-api/) — The analytics API from The Companies API — 2 operation(s) for analytics.
+- [The Companies API Companies API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-companies-api/) — The companies API from The Companies API — 13 operation(s) for companies.
+- [The Companies API Industries API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-industries-api/) — The industries API from The Companies API — 2 operation(s) for industries.
+- [The Companies API Job Titles API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-job-titles-api/) — The job-titles API from The Companies API — 1 operation(s) for job-titles.
+- [The Companies API Lists API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-lists-api/) — The lists API from The Companies API — 5 operation(s) for lists.
+- [The Companies API Locations API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-locations-api/) — The locations API from The Companies API — 5 operation(s) for locations.
+- [The Companies API Prompts API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-prompts-api/) — The prompts API from The Companies API — 4 operation(s) for prompts.
+- [The Companies API Teams API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-teams-api/) — The teams API from The Companies API — 1 operation(s) for teams.
+- [The Companies API Technologies API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-technologies-api/) — The technologies API from The Companies API — 1 operation(s) for technologies.
+- [The Companies API Users API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-users-api/) — The users API from The Companies API — 1 operation(s) for users.
+- [The Companies API Utilities API](https://apis.io/apis/thecompaniesapi/thecompaniesapi-utilities-api/) — The utilities API from The Companies API — 2 operation(s) for utilities.
 
-- **Created:** 2026-07-11
-- **Modified:** 2026-07-11
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### The Companies API Company Search API
+#### AsyncAPI (1)
 
-Search and segment the 50M+ company database with structured segmentation queries, natural-language prompts, or company name. Endpoints include `GET`/`POST /v2/companies`, `GET /v2/companies/by-name`, `GET /v2/companies/by-prompt`, `GET`/`POST /v2/companies/count`, and `GET /v2/companies/similar`.
+Event-driven and webhook contracts.
 
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
+- [Thecompaniesapi Webhooks](https://apis.io/asyncapis/thecompaniesapi/thecompaniesapi-webhooks/)
 
-#### Tags
+#### MCP servers (1)
 
-- Company Search
-- Firmographics
-- B2B Data
-- Segmentation
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [thecompaniesapi](https://apis.io/servers/thecompaniesapi/thecompaniesapi/)
 
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/thecompaniesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/thecompaniesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Agentic access (1)
 
-### The Companies API Company Enrichment API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Retrieve 100+ data points on a single company by its domain, a work email, or a social-media profile. Endpoints include `GET /v2/companies/{domain}`, `GET /v2/companies/by-email`, `GET /v2/companies/by-social`, `GET /v2/companies/{domain}/context`, `GET /v2/companies/{domain}/email-patterns`, and `POST /v2/companies/{domain}/ask`.
+- [Thecompaniesapi Agentic Access](https://apis.io/agentic-access/thecompaniesapi/thecompaniesapi-agentic-access/)
 
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
+#### Collections (13)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Data Enrichment
-- Company Data
-- Web Intelligence
-- Firmographics
+- [The Companies API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi/)
+- [The Companies actions API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-actions-api/)
+- [The Companies actions analytics API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-analytics-api/)
+- [The actions companies API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-companies-api/)
+- [The Companies actions industries API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-industries-api/)
+- [The Companies actions job-titles API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-job-titles-api/)
+- [The Companies actions lists API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-lists-api/)
+- [The Companies actions locations API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-locations-api/)
+- [The Companies actions prompts API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-prompts-api/)
+- [The Companies actions teams API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-teams-api/)
+- [The Companies actions technologies API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-technologies-api/)
+- [The Companies actions users API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-users-api/)
+- [The Companies actions utilities API](https://apis.io/collections/thecompaniesapi/open-thecompaniesapi-utilities-api/)
 
-#### Properties
+#### Overlays (12)
 
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/thecompaniesapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/thecompaniesapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-### The Companies API Company Analytics API
+- [Thecompaniesapi Actions Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-actions-api-overlay/)
+- [Thecompaniesapi Analytics Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-analytics-api-overlay/)
+- [Thecompaniesapi Companies Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-companies-api-overlay/)
+- [Thecompaniesapi Industries Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-industries-api-overlay/)
+- [Thecompaniesapi Job Titles Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-job-titles-api-overlay/)
+- [Thecompaniesapi Lists Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-lists-api-overlay/)
+- [Thecompaniesapi Locations Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-locations-api-overlay/)
+- [Thecompaniesapi Prompts Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-prompts-api-overlay/)
+- [Thecompaniesapi Teams Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-teams-api-overlay/)
+- [Thecompaniesapi Technologies Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-technologies-api-overlay/)
+- [Thecompaniesapi Users Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-users-api-overlay/)
+- [Thecompaniesapi Utilities Api Overlay](https://apis.io/overlays/thecompaniesapi/thecompaniesapi-utilities-api-overlay/)
 
-Aggregate analytics over search segmentations and saved lists for market sizing and firmographic distribution. Endpoints include `GET /v2/companies/analytics` and `POST /v2/companies/analytics/export`.
+#### Security (2)
 
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Thecompaniesapi Authentication](https://apis.io/security/thecompaniesapi/thecompaniesapi-authentication/)
+- [Thecompaniesapi Domain Security](https://apis.io/security/thecompaniesapi/thecompaniesapi-domain-security/)
 
-- Analytics
-- Firmographics
-- B2B Data
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Thecompaniesapi Plans Pricing](https://apis.io/plans/thecompaniesapi/thecompaniesapi-plans-pricing/)
 
-### The Companies API Industries API
+#### Rate limits (1)
 
-Reference data for industry classification used across the company dataset. Endpoints include `GET /v2/industries` and `GET /v2/industries/similar` for building and normalizing segmentation filters.
+Published request limits.
 
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
+- [Thecompaniesapi Rate Limits](https://apis.io/rate-limits/thecompaniesapi/thecompaniesapi-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Industries
-- Reference Data
-- Classification
+What the API costs to run, by operation.
 
-#### Properties
+- [Thecompaniesapi Finops](https://apis.io/finops/thecompaniesapi/thecompaniesapi-finops/)
 
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+## Where to find this API
 
-### The Companies API Technologies API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-Reference data for the technologies (technographics) detected on company websites, used to build technology-based segments. Endpoint `GET /v2/technologies`.
-
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
-
-#### Tags
-
-- Technographics
-- Reference Data
-- Web Intelligence
-
-#### Properties
-
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### The Companies API Locations API
-
-Geographic reference data for normalizing and filtering companies by location. Endpoints include `GET /v2/locations/cities`, `/v2/locations/counties`, `/v2/locations/states`, `/v2/locations/countries`, and `/v2/locations/continents`.
-
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
-
-#### Tags
-
-- Reference Data
-- Locations
-- Geographic
-
-#### Properties
-
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### The Companies API Lists API
-
-Create and manage saved lists of companies for building and maintaining target datasets. Endpoints include `GET`/`POST /v2/lists`, `PATCH`/`DELETE /v2/lists/{listId}`, `GET`/`POST /v2/lists/{listId}/companies`, `PATCH /v2/lists/{listId}/companies/toggle`, and `GET /v2/lists/{listId}/companies/{domain}`.
-
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
-
-#### Tags
-
-- Lists
-- Data Management
-- B2B Data
-
-#### Properties
-
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### The Companies API Actions API
-
-Queue, estimate, and track asynchronous jobs for bulk enrichment and search workloads. Endpoints include `GET /v2/actions`, `POST /v2/actions`, and `POST /v2/actions/{actionId}/retry`.
-
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
-
-#### Tags
-
-- Async
-- Bulk Enrichment
-- Jobs
-
-#### Properties
-
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### The Companies API Job Titles Enrichment API
-
-Normalize and enrich raw job titles into structured seniority and department signals. Endpoint `GET /v2/job-titles/enrich`.
-
-- **Human URL:** [https://www.thecompaniesapi.com/api](https://www.thecompaniesapi.com/api)
-- **Base URL:** `https://api.thecompaniesapi.com/v2`
-
-#### Tags
-
-- Data Enrichment
-- Job Titles
-- Reference Data
-
-#### Properties
-
-- [Documentation](https://www.thecompaniesapi.com/api)
-- [API Reference](https://thecompaniesapi.dev/api)
-- [OpenAPI](openapi/thecompaniesapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [Authentication](authentication/thecompaniesapi-authentication.yml)
-- [GitHub Organization](https://github.com/thecompaniesapi)
-- [LinkedIn](https://www.linkedin.com/company/thecompaniesapi)
 - [Website](https://www.thecompaniesapi.com)
 - [Documentation](https://www.thecompaniesapi.com/api)
-- [Plans](plans/thecompaniesapi-plans-pricing.yml)
-- [Rate Limits](rate-limits/thecompaniesapi-rate-limits.yml)
-- [Fin Ops](finops/thecompaniesapi-finops.yml)
+- [Getting started](https://www.thecompaniesapi.com/api)
+- [API reference](https://www.thecompaniesapi.com/api)
+- [Pricing](https://www.thecompaniesapi.com/pricing)
+- [Terms of service](https://www.thecompaniesapi.com/product/terms)
+- [Privacy policy](https://www.thecompaniesapi.com/product/privacy)
+- [GitHub](https://github.com/thecompaniesapi)
+- [Status](https://status.thecompaniesapi.com/en/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 63.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 60.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 78.9 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 66.6 |
+
+**Agent readiness 28.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/thecompaniesapi/](https://apis.io/providers/thecompaniesapi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for The Companies API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/thecompaniesapi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
